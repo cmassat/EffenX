@@ -17,14 +17,16 @@ _initMenu
     jsr vgm_on 
     rts 
 _waitForKey
-    lda mKeyW
-    cmp #1
-    beq _yes
+    jsr isAnyKeyPressed
+    ; lda mAnyKey
+    ; cmp #1
+    bcc _yes
     rts
 _yes
-   ; stz mAnyKey
+    stz mAnyKey
     jsr nextState
     jsr vgm_stop
+    jsr resetScore
     rts
 
 

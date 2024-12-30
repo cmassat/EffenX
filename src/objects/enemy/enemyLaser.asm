@@ -205,25 +205,25 @@ initEnemyLaser11
 
 
 moveEnemyLaser0 
-     #objectsActiveMacro mEnemy0, mEnemyLaserActive00
+     #objectsActiveMacro mEnemyLaserActive00, mEnemyLaserActive00
      #macroShowSprite spEnemyLaserNumber00, spEnemyLaserGreen, mEnemyLaserX00 , mEnemyLaserX00 + 1, mEnemyLaserY00, SPRITE24L0C2
      #moveEnemyLaserMacro mEnemyLaserActive00, mEnemyLaserY00, spEnemyLaserNumber00
     rts
 
 moveEnemyLaser1
-    #objectsActiveMacro mEnemy1, mEnemyLaserActive01
+    #objectsActiveMacro mEnemyLaserActive01, mEnemyLaserActive01
     #macroShowSprite spEnemyLaserNumber01, spEnemyLaserGreen, mEnemyLaserX01 , mEnemyLaserX01 + 1, mEnemyLaserY01, SPRITE24L0C2
     #moveEnemyLaserMacro mEnemyLaserActive01, mEnemyLaserY01, spEnemyLaserNumber01
     rts
 
 moveEnemyLaser2
-    #objectsActiveMacro mEnemy2, mEnemyLaserActive02
+    #objectsActiveMacro mEnemyLaserActive02, mEnemyLaserActive02
     #macroShowSprite spEnemyLaserNumber02, spEnemyLaserGreen, mEnemyLaserX02, mEnemyLaserX02 + 1, mEnemyLaserY02, SPRITE24L0C2
     #moveEnemyLaserMacro mEnemyLaserActive02, mEnemyLaserY02, spEnemyLaserNumber02
     rts
 
 moveEnemyLaser3
-    #objectsActiveMacro mEnemy3, mEnemyLaserActive03
+    #objectsActiveMacro mEnemyLaserActive03, mEnemyLaserActive03
     #macroShowSprite spEnemyLaserNumber03, spEnemyLaserGreen, mEnemyLaserX03 , mEnemyLaserX03 + 1, mEnemyLaserY03, SPRITE24L0C2
     #moveEnemyLaserMacro mEnemyLaserActive03, mEnemyLaserY03, spEnemyLaserNumber03
     rts

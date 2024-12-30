@@ -5,7 +5,7 @@ handleLevelOne
     bcc _execute
     rts
 _execute
-    jsr LevelOneLayerOneScroll 
+     
     lda mLevelOneState
     cmp #levelOneStateInit
     beq _init
@@ -28,10 +28,11 @@ _ready
     rts
 _waitForKey
     lda mAnyKey
-    cmp #0
+    cmp #1
     bne _yes
     rts
 _yes
+    jsr resetControls
     stz mAnyKey
     stz v_sync
     jsr clearScreenMemory
@@ -44,10 +45,11 @@ _yes
     rts
 
 levelOnePlay
-    jsr levelOnePlayerWasHit
-    jsr handleResetBoard
+
    ; jsr delayEnemyStart
-    jsr LevelOneLayerZeroScroll
+    jsr levelOnePlayerWasHit
+    jsr handleShipDelay
+   
     jsr handlePlayer
     jsr playerLaserMove
     jsr playerFireDelayTimer
@@ -55,7 +57,7 @@ levelOnePlay
     ;cmp #objectActive
     ;beq _gameStarted
     ;rts
-_gameStarted
+
     jsr handleEnemy
     jsr playerCollidedWithEnemy
     jsr handleEnemyLaserCollision
@@ -67,17 +69,20 @@ _gameStarted
 levelOnePlayerWasHit
     jsr isPlayerHit
     bcc _resetLevel
+    jsr LevelOneLayerZeroScroll
+    jsr LevelOneLayerOneScroll
     rts 
 _resetLevel
     jsr LevelOneReady
     jsr levelOneresetMap
     jsr resetEnemies
+    
     rts
 
 
 LevelOneReady
-    lda #<mLevelOneText0
-    ldx #>mLevelOneText0
+    lda #<mLevelOneHitMessage
+    ldx #>mLevelOneHitMessage
     ldy #menuMsgStartLine
     jsr writeText
     
@@ -185,7 +190,7 @@ levelOneresetMap
     stz mEnemeyDelay + 1
     rts
 
-handleResetBoard
+handleShipDelay
     lda mResetBoard
     cmp #1
     beq _resetEnemyShips
@@ -275,6 +280,9 @@ mResetBoard
 mEnemeyDelay
     .byte $00, $00
 
+
+mLevelOneHitMessage
+    .text '          Ship Lost In Battle', $00
 mLevelOneSpriteRawFileName
     .text '/aurora/lvl.bin', $00
 

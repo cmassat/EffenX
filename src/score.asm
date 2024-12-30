@@ -3,8 +3,6 @@ handleScore
     jsr set40Col
     jsr displayScore
     jsr displayLives
-
-  
     rts
 
 writeScoreMacro .macro 

@@ -1,5 +1,6 @@
 .section code
 keyboardTimer
+    jsr resetAnyKey
     lda mKeyboardDelay
     cmp #0
     bne _delay
@@ -7,6 +8,17 @@ keyboardTimer
 _delay
     dec mKeyboardDelay
     rts 
+
+resetAnyKey
+    lda mKeyboardResetAnyKey
+    cmp #0
+    bne _delay
+    stz mAnyKey
+    rts
+_delay
+    dec mKeyboardResetAnyKey
+    rts
+
 
 keyboardAnykey
     lda mKeyboardDelay
@@ -16,6 +28,10 @@ keyboardAnykey
 _setKey
     lda #1
     sta mAnyKey
+    lda #10
+    sta mKeyboardDelay
+    lda #15
+    sta mKeyboardResetAnyKey
     rts
     
 keyboardPressed
@@ -32,7 +48,12 @@ keyboardReleased
     jsr is_d_released
     jsr is_l_released
     rts
-
+resetControls
+    stz mKeyW
+    stz mKeyA
+    stz mKeyS
+    stz mKeyD
+    rts 
 keyPressMacro .macro
     lda mKeyPress
     cmp #\2
@@ -56,6 +77,23 @@ is_a_released
     rts
 _yes
     stz mKeyA
+    rts
+
+isAnyKeyPressed
+    lda mKeyboardDelay
+    cmp #0
+    beq _checkAnyKey
+    sec
+    rts
+_checkAnyKey
+    lda mAnyKey
+    cmp #1
+    beq _yes
+    sec
+    rts
+_yes
+    stz mAnyKey
+    clc
     rts
 
 is_d_pressed
@@ -133,6 +171,8 @@ _yes
 .section variables
 keyboardDelayTimer = 10
 mKeyboardDelay
+    .byte $00
+mKeyboardResetAnyKey
     .byte $00
 mAnyKey
     .byte $00

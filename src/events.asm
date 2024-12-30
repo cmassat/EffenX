@@ -1,5 +1,10 @@
 .section code
 game
+;     lda mSOFSemaphore
+;     cmp #0
+;     beq _handleGameEvents
+;     rts
+; _handleGameEvents
     jsr keyboardTimer
 	jsr handleSplash
     jsr handleMenu
@@ -10,17 +15,23 @@ game
    ; jsr handleCollisionDetect
     jsr handle_psg
     
+    ;lda #1
+    ;sta mSOFSemaphore
     inc v_sync
-    jsr debug
+   ; jsr debug
     lda v_sync
     cmp #120
     bcs _resetFrameCounter
+
     rts
 _resetFrameCounter
     stz v_sync
     rts
 handleEvents
- jsr vgm_update
+  ;  jsr debug
+  ;  jsr game
+    jsr vgm_update
+    
     
 _wait_for_event 
 ; Peek at the queue to see if anything is pending
@@ -59,7 +70,7 @@ keyPressed
    sta mKeyPress
    jsr keyboardAnykey
    jsr keyboardPressed
-   rts     ; Anything not handled can be ignored.
+   rts
 
 keyReleased
     lda event.key.ascii
@@ -68,16 +79,13 @@ keyReleased
     rts
 
 handleTimerEvent
-      ; jsr keyboardTimer
-    jsr game
-    ;jsr scanKeyBoard
     ;lda #1
     ;sta mSOFSemaphore
+    jsr game
     jsr sof_vgm
-	stz sof_semaphore
-    ;jsr sof_vgm
-	;stz sof_semaphore
 	jsr setFrameTimer
+    lda #0
+    sta mSOFSemaphore
 	rts
 
 setFrameTimer
@@ -101,12 +109,6 @@ setFrameTimer
     sta kernel.args.timer.cookie
     jsr kernel.Clock.SetTimer
     rts
-
-;resetKeys
-;    stz mKeypress
-;    lda #1
-;    sta mKeyRelease
-;    rts
     
 initEvents
     lda #<event

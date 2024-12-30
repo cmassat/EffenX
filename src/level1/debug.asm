@@ -2,7 +2,7 @@ debug
     lda #2
     sta MMU_IO_CTRL
 
-    lda mGameState
+    lda mAnyKey
     lsr
     lsr 
     lsr
@@ -11,13 +11,13 @@ debug
     lda mHex, y
     sta $C000 + 40
 
-    lda mGameState
+    lda mAnyKey
     and #$0F
      tay
     lda mHex, y
     sta $C001 + 40
 
-    lda mMenuState
+    lda mKeyboardDelay
     lsr
     lsr 
     lsr
@@ -26,7 +26,7 @@ debug
     lda mHex, y
     sta $C002 + 40
 
-    lda mMenuState
+    lda mKeyboardDelay
     and #$0F
     tay
     lda mHex, y

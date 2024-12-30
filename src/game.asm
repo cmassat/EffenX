@@ -43,11 +43,13 @@ _printMessage
     jsr writeText
     lda #hudStateGameOver
     sta mHudState
+    jsr displayScore
     rts
 _waitForKey
-    lda mKeyS
-    cmp #1
-    beq _restartGame
+    jsr isAnyKeyPressed
+    ; lda mAnyKey
+    ; cmp #1
+    bcc _restartGame
     rts
 _restartGame
     ;jsr resetMenu
@@ -80,5 +82,5 @@ mHudState
 mHudGameOverText0
     .text '             Game Over', $00
 mHudGameOverText1
-    .text '             Press Space To Continue', $00
+    .text '       Press Space To Continue', $00
 .endsection
