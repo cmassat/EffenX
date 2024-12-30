@@ -11,7 +11,7 @@ _sprites
     jsr loadLevelOneSpritePal
     jsr clut_load_2
 
-    
+
 _tileSet
     jsr loadLevelOneTileSetRaw
     jsr loadLevelOneTileSetPal
@@ -50,7 +50,19 @@ _tileMap
     ldx #$ff
     jsr setTileSize
     jsr showTileMap0
-   
+    
+_defaultMapStart    
+    lda #0
+    jsr setTilemapNumber
+    lda mLayerZeroTile
+    ldx mLayerZeroPixel
+    jsr setTilePositionY
+
+    lda #1
+    jsr setTilemapNumber
+    lda mLayerZeroTile
+    ldx mLayerZeroPixel
+    jsr setTilePositionY
 
 _vickyCtrl
     jsr setTileMapLayer0
@@ -62,4 +74,45 @@ _vickyCtrl
     jsr enableTile
     jsr setVideo
     rts
+
+loadLevelOneSpriteRaw
+    lda #<mLevelOneSpriteRawFileName
+    ldx #>mLevelOneSpriteRawFileName
+    ldy #spObjectsBank
+    jsr fopen
+    rts 
+
+loadLevelOneSpritePal
+    lda #<mLevelOneSpritePalFileName
+    ldx #>mLevelOneSpritePalFileName
+    ldy #$05
+    jsr fopen
+    rts 
+
+loadLevelOneTileSetRaw
+    lda #<mLevelOneTileSetRawFileName
+    ldx #>mLevelOneTileSetRawFileName
+    ldy #tileSetBank
+    jsr fopen
+    rts 
+
+loadLevelOneTileSetPal
+    lda #<mLevelOnetileSetPalFileName
+    ldx #>mLevelOnetileSetPalFileName
+    ldy #$05
+    jsr fopen
+    rts 
+
+loadLevelOneTileMap
+    lda #<mLevelOneTileMapBottomFileName
+    ldx #>mLevelOneTileMapBottomFileName
+    ldy #tileMapBankBankL1
+    jsr fopen
+    rts 
+lodaLevelOneOrganicMap
+    lda #<mLevelOneMapOrganicFileName
+    ldx #>mLevelOneMapOrganicFileName
+    ldy #tileMapBankBankL0
+    jsr fopen
+    rts 
 .endsection

@@ -5,9 +5,11 @@ game
     jsr handleMenu
     jsr handle_joy_ports
     jsr handleLevelOne
+    jsr handleHud
 
    ; jsr handleCollisionDetect
     jsr handle_psg
+    
     inc v_sync
     jsr debug
     lda v_sync

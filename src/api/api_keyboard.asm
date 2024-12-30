@@ -71,8 +71,6 @@ _yes
     stz mKeyD
     rts
 
-
-
 is_l_pressed
     #keyPressMacro mKeyL, 'l'
     rts
@@ -124,7 +122,7 @@ _yes
 
 is_space_pressed
     lda mKeyPress
-    cmp #'l'
+    cmp #$20
     beq _yes
     rts
 _yes

@@ -20,6 +20,7 @@ _init
     inc mLevelOneState
     jsr initLevelOne
     jsr play_lvl1
+
     rts
 _ready
     jsr LevelOneReady
@@ -37,263 +38,42 @@ _yes
     inc mLevelOneState
     lda #objectActive
     sta mPlayerStatus
+    
+    jsr levelOneresetMap
+    jsr levelOneStart
     rts
 
 levelOnePlay
-    jsr delayEnemyStart
+    jsr levelOnePlayerWasHit
+    jsr handleResetBoard
+   ; jsr delayEnemyStart
     jsr LevelOneLayerZeroScroll
     jsr handlePlayer
     jsr playerLaserMove
     jsr playerFireDelayTimer
-    lda mEnemyActive
-    cmp #objectActive
-    beq _gameStarted
-    rts
+    ;lda mEnemyActive
+    ;cmp #objectActive
+    ;beq _gameStarted
+    ;rts
 _gameStarted
     jsr handleEnemy
-    jsr handleEnemyFire
     jsr playerCollidedWithEnemy
     jsr handleEnemyLaserCollision
     jsr enemyHit
+    jsr handleScore
     rts
 
 
-delayEnemyStart
-    lda mEnemyActive
-    cmp #objectActive
-    bne _wait
-    dec enemy_delay
-    jsr delayShipStart0
-    jsr delayShipStart2
-    jsr delayShipStart3
-    jsr delayShipStart4
-    jsr delayShipStart5
-    jsr delayShipStart6
-    jsr delayShipStart7
-    jsr delayShipStart8
-    jsr delayShipStart9
-    jsr delayShipStart10
-    jsr delayShipStart11
-    rts
-_wait
-    dec enemy_delay
-    lda enemy_delay
-    cmp #0
-    beq _start
-    rts
-_start
-    stz v_sync
-    lda #objectActive
-    sta mEnemyActive
-    stz enemy_delay
+levelOnePlayerWasHit
+    jsr isPlayerHit
+    bcc _resetLevel
+    rts 
+_resetLevel
+    jsr LevelOneReady
+    jsr levelOneresetMap
+    jsr resetEnemies
     rts
 
-delayShipStart0
-    lda mEnemy0
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #59
-    beq _activate
-    rts 
-_activate
-    stz mEnemy0
-    rts 
-delayShipStart1
-    lda mEnemy1
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #59
-    beq _activate
-    rts 
-_activate
-    stz mEnemy1
-    rts
-
-delayShipStart2
-    lda mEnemy2
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #49
-    beq _activate
-    rts 
-_activate
-    stz mEnemy2
-    rts
-delayShipStart3
-    lda mEnemy3
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #49
-    beq _activate
-    rts 
-_activate
-    stz mEnemy3
-    rts
-delayShipStart4
-    lda mEnemy4
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #39
-    beq _activate
-    rts 
-_activate
-    stz mEnemy4
-    rts
-
-delayShipStart5
-    lda mEnemy5
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #39
-    beq _activate
-    rts 
-_activate
-    stz mEnemy5
-    rts
-
-delayShipStart6
-    lda mEnemy6
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #29
-    beq _activate
-    rts 
-_activate
-    stz mEnemy6
-    rts
-
-delayShipStart7
-    lda mEnemy7
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #29
-    beq _activate
-    rts 
-_activate
-    stz mEnemy7
-    rts
-
-
-delayShipStart8
-    lda mEnemy8
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #19
-    beq _activate
-    rts 
-_activate
-    stz mEnemy8
-    rts
-
-delayShipStart9
-    lda mEnemy9
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #19
-    beq _activate
-    rts 
-_activate
-    stz mEnemy9
-    rts
-
-delayShipStart10
-    lda mEnemy10
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #9
-    beq _activate
-    rts 
-_activate
-    stz mEnemy10
-    rts
-
-delayShipStart11
-    lda mEnemy11
-    cmp #objectWait
-    beq _waitToReset
-    rts
-_waitToReset
-    lda enemy_delay
-    cmp #9
-    beq _activate
-    rts 
-_activate
-    stz mEnemy11
-    rts
-
-loadLevelOneSpriteRaw
-    lda #<mLevelOneSpriteRawFileName
-    ldx #>mLevelOneSpriteRawFileName
-    ldy #spObjectsBank
-    jsr fopen
-    rts 
-
-loadLevelOneSpritePal
-    lda #<mLevelOneSpritePalFileName
-    ldx #>mLevelOneSpritePalFileName
-    ldy #$05
-    jsr fopen
-    rts 
-
-loadLevelOneTileSetRaw
-    lda #<mLevelOneTileSetRawFileName
-    ldx #>mLevelOneTileSetRawFileName
-    ldy #tileSetBank
-    jsr fopen
-    rts 
-
-loadLevelOneTileSetPal
-    lda #<mLevelOnetileSetPalFileName
-    ldx #>mLevelOnetileSetPalFileName
-    ldy #$05
-    jsr fopen
-    rts 
-
-loadLevelOneTileMap
-    lda #<mLevelOneTileMapBottomFileName
-    ldx #>mLevelOneTileMapBottomFileName
-    ldy #tileMapBankBankL1
-    jsr fopen
-    rts 
-lodaLevelOneOrganicMap
-    lda #<mLevelOneMapOrganicFileName
-    ldx #>mLevelOneMapOrganicFileName
-    ldy #tileMapBankBankL0
-    jsr fopen
-    rts 
 
 LevelOneReady
     lda #<mLevelOneText0
@@ -321,11 +101,11 @@ _moveTile
     lda #15
     sta mLevelOnePixel
     dec mLevelOneTile
-    bmi _resetTile 
-    bra _scroll
-_resetTile
-    lda #$ff
-    sta mLevelOneTile
+;    bmi _resetTile 
+;    bra _scroll
+;;_resetTile
+;    lda #$ff
+;    sta mLevelOneTile
 
 _scroll
     lda #1
@@ -335,7 +115,7 @@ _scroll
     ldx mLevelOnePixel
     
     jsr setTilePositionY
-    jsr debug
+    ;jsr debug
     rts
 
 LevelOneLayerZeroScroll
@@ -373,17 +153,17 @@ _scroll
     ldx mLayerZeroPixel
     
     jsr setTilePositionY
-    jsr debug
+    ;jsr debug
     rts
 
-resetLevelOne
-    lda #0
-    sta mLevelOneState
-    sta mLevelOneTile
-    sta mLayerZeroSpeed
+levelOneStart
+ ;   lda #0
+  ;  sta mLevelOneState
+  ;  sta mLevelOneTile
+  ;  sta mLayerZeroSpeed
 
-    lda #15
-    sta mLevelOnePixel
+  ;  lda #15
+  ;  sta mLevelOnePixel
 
     lda #320/2 + 32
     sta mPlayerPosX
@@ -392,11 +172,62 @@ resetLevelOne
     lda #240
     sta mPlayerPosY
     stz mPlayerPosY + 1
-
-    lda #60
-    sta enemy_delay
-    stz mEnemyActive
     rts
+
+levelOneresetMap
+    stz mLayerZeroPixel
+    lda #255 -20
+    sta mLayerZeroTile
+    jsr resetEnemies
+    lda #1
+    sta mResetBoard
+    stz mEnemeyDelay
+    stz mEnemeyDelay + 1
+    rts
+
+handleResetBoard
+    lda mResetBoard
+    cmp #1
+    beq _resetEnemyShips
+    rts
+_resetEnemyShips
+    lda mEnemeyDelay
+    clc
+    adc #1
+    sta mEnemeyDelay
+
+    lda mEnemeyDelay + 1
+    adc #0
+    sta mEnemeyDelay + 1
+
+    lda mEnemeyDelay + 1
+    cmp #0
+    beq _checkFirstWaves
+    rts
+_checkFirstWaves
+    lda mEnemeyDelay
+    cmp #60
+    beq _launchWave1
+    cmp #120
+    beq _launchWave2
+    rts
+_launchWave1
+    lda #objectInactive
+    sta mEnemy0
+    sta mEnemyLaserActive00
+    sta mEnemy1
+    sta mEnemyLaserActive01
+    rts
+_launchWave2
+    lda #objectInactive
+    sta mEnemy2
+    sta mEnemyLaserActive02
+    sta mEnemy3
+    sta mEnemyLaserActive03
+    stz mResetBoard
+    jsr clearScreenMemory
+    rts
+
 .endsection
 
 .include "init.asm"
@@ -409,6 +240,7 @@ levelOneStateInit = 0
 levelOneStateReady = 1
 levelOneStateWait = 2
 levelOneStatePlay = 3
+levelOneStatePlayerHit = 4
 skipEver3 = 3
 skipEver2 = 2
 
@@ -417,14 +249,13 @@ mLevelOneState
 mLevelOnePixel
     .byte $00
 mLevelOneTile
-    .byte $ff
+    .byte 255 -20
 
 
 mLayerZeroPixel
     .byte $00
 mLayerZeroTile
-    .byte $ff
-
+    .byte 255 -20
 
 mLayerZeroSpeed
     .byte $00
@@ -439,10 +270,10 @@ layerZero_timer
 layerOne_timer
     .byte $00
 
-enemy_delay
-    .byte 60
-mEnemyActive
+mResetBoard
     .byte $0
+mEnemeyDelay
+    .byte $00, $00
 
 mLevelOneSpriteRawFileName
     .text '/aurora/lvl.bin', $00

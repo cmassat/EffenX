@@ -3,6 +3,9 @@
 
 *=$2000
 .dsection code 
+
+*=$6000
+.dsection data
 .section code
 start
     jmp main
@@ -13,7 +16,10 @@ main
     sta VKY_BKG_COL_B
     sta VKY_BKG_COL_R
     sta VKY_BKG_COL_G
-    jsr resetLevelOne
+    jsr loadFont
+    jsr resetGame
+
+    
     jsr initEvents
     jsr InitState
     jsr resetEnemies
@@ -43,19 +49,25 @@ _gameLoop
 .include "./api/api_playVGM.asm"
 .include "./api/api_psg.asm"
 .include "./api/api_joy.asm"
+.include "./api/api_score.asm"
+.include "./api/api_math.asm"
 .include "./objects/player.asm"
 .include "./objects/playerHit.asm"
 .include "./objects/playerLaser.asm"
-.include "./objects/enemyHit.asm"
-.include "./objects/enemy.asm"
-.include "./objects/paths.asm"
-.include "./objects/enemyLaser.asm"
+.include "./objects/enemy/enemyHit.asm"
+.include "./objects/enemy/enemy.asm"
+.include "./objects/enemy/paths.asm"
+.include "./objects/enemy/enemyLaser.asm"
+.include "./objects/enemy/enemyReset.asm"
 .include "state.asm"
 .include "events.asm"
 .include "splash.asm"
 .include "menu.asm"
 .include "fmMusic.asm"
+.include "game.asm"
+.include "font.asm"
 .include "psgSound.asm"
+.include "score.asm"
 .include "./level1/main.asm"
 
 .include "./collision/api_collision.asm"

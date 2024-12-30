@@ -12,72 +12,79 @@ playerCollidedWithEnemy
     jsr playerCollidedCheck9
     jsr playerCollidedCheck10
     jsr playerCollidedCheck11
-    
-    lda mLaser00Active
-    cmp #01
-    beq _checkLaserCollision
-    rts
-_checkLaserCollision
+
     jsr playerLaserCollide
   
     rts
 playerCollidedCheck0
-    #coollideMacro mPlayerPosX, 14, mEnemy0 + 2, 14, mPlayerPosY,14,mEnemy0 + 4 , 14, mEnemy0
+    #objectsActiveMacro mEnemy0, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy0 + 2, 14, mPlayerPosY,14,mEnemy0 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck1
-    #coollideMacro mPlayerPosX, 14, mEnemy1 + 2, 14, mPlayerPosY,14,mEnemy1 + 4 , 14, mEnemy1
+    #objectsActiveMacro mEnemy1, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy1 + 2, 14, mPlayerPosY,14,mEnemy1 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck2
-    #coollideMacro mPlayerPosX, 14, mEnemy2 + 2, 14, mPlayerPosY,14,mEnemy2 + 4 , 14, mEnemy2
+    #objectsActiveMacro mEnemy2, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy2 + 2, 14, mPlayerPosY,14,mEnemy2 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck3
-    #coollideMacro mPlayerPosX, 14, mEnemy3 + 2, 14, mPlayerPosY,14,mEnemy3 + 4 , 14, mEnemy3
+    #objectsActiveMacro mEnemy3, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy3 + 2, 14, mPlayerPosY,14,mEnemy3 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck4
-    #coollideMacro mPlayerPosX, 14, mEnemy4 + 2, 14, mPlayerPosY,14,mEnemy4 + 4 , 14, mEnemy4
+    #objectsActiveMacro mEnemy4, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy4 + 2, 14, mPlayerPosY,14,mEnemy4 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck5
-    #coollideMacro mPlayerPosX, 14, mEnemy5 + 2, 14, mPlayerPosY,14,mEnemy5 + 4 , 14, mEnemy5
+    #objectsActiveMacro mEnemy5, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy5 + 2, 14, mPlayerPosY,14,mEnemy5 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck6
-    #coollideMacro mPlayerPosX, 14, mEnemy6 + 2, 14, mPlayerPosY,14,mEnemy6 + 4 , 14, mEnemy6
+    #objectsActiveMacro mEnemy6, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy6 + 2, 14, mPlayerPosY,14,mEnemy6 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck7
-    #coollideMacro mPlayerPosX, 14, mEnemy7 + 2, 14, mPlayerPosY,14,mEnemy7 + 4 , 14, mEnemy7
+    #objectsActiveMacro mEnemy7, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy7 + 2, 14, mPlayerPosY,14,mEnemy7 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck8
-    #coollideMacro mPlayerPosX, 14, mEnemy8 + 2, 14, mPlayerPosY,14,mEnemy8 + 4 , 14, mEnemy8
+    #objectsActiveMacro mEnemy8, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy8 + 2, 14, mPlayerPosY,14,mEnemy8 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck9
-    #coollideMacro mPlayerPosX, 14, mEnemy9 + 2, 14, mPlayerPosY,14,mEnemy9 + 4 , 14, mEnemy9
+    #objectsActiveMacro mEnemy9, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy9 + 2, 14, mPlayerPosY,14,mEnemy9 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck10
-    #coollideMacro mPlayerPosX, 14, mEnemy10 + 2, 14, mPlayerPosY,14,mEnemy10 + 4 , 14, mEnemy10
+    #objectsActiveMacro mEnemy10, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy10 + 2, 14, mPlayerPosY,14,mEnemy10 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts
 playerCollidedCheck11
-    #coollideMacro mPlayerPosX, 14, mEnemy11 + 2, 14, mPlayerPosY,14,mEnemy11 + 4 , 14, mEnemy11
+    #objectsActiveMacro mEnemy11, mPlayerStatus
+    #coollideMacro mPlayerPosX, 14, mEnemy11 + 2, 14, mPlayerPosY,14,mEnemy11 + 4 , 14
     lda #objectCollided
     sta mPlayerStatus
     rts

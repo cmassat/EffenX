@@ -115,6 +115,8 @@ macroShowSprite .macro
 ;_ |size |layer |lut| enable
 ;1 |  2  |  2   |2  |  1
 SPRITE16L0C1 = %01000011
+SPRITE16L1C1 = %01001011
+SPRITE16L2C1 = %01011011
 SPRITE24L0C2 = %00100101
 mSpriteTracker
     .byte $00

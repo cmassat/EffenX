@@ -8,7 +8,6 @@ nextState
     inc mGameState
     rts
 
-
 ;a register is state number
 isState
     cmp mGameState
@@ -18,11 +17,16 @@ isState
 _yes
     clc
     rts
+
+setState
+    sta mGameState
+    rts
 .endsection
 .section variables
-stateSplash = 0
-stateMenu   = 1
-stateLvl1   = 2
+stateSplash   = 0
+stateMenu     = 1
+stateLvl1     = 2
+stateGameOver = 10
 mGameState
     .byte 0
 .endsection

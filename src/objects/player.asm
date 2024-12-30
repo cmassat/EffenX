@@ -11,6 +11,7 @@ handlePlayer
     beq _godMode
 _controlPlayer
     jsr playerControl
+    jsr playerControl
     rts
 _playerHit
     jsr playerHit
@@ -26,6 +27,18 @@ _resetGodMode
     lda #objectActive
     sta mPlayerStatus
     rts
+
+
+isPlayerHit
+    lda mplayerStatus
+    cmp #objectCollided
+    beq _yes
+    sec
+    rts
+_yes
+    clc
+    rts
+
 playerControl
     #macroShowSprite spPlayer1ShipNumber, spPlayer02,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
     jsr moveN
@@ -64,7 +77,7 @@ _move
 
 moveS
     lda mPlayerPosY
-    cmp #240
+    cmp #230
     bcc _checkMove
     rts
 _checkMove

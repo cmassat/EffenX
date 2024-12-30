@@ -66,11 +66,6 @@ _hit
 
 .endsection
 coollideMacro .macro
-    lda \9
-    cmp #objectActive
-    beq _valid
-    rts
-_valid
     stz mXhit
     stz mYhit
     lda \1
@@ -102,7 +97,7 @@ _CheckY
     rts
 _collision
      lda #1
-    sta mYhit
+     sta mYhit
 .endmacro 
 .section variables
 mObjectStartA

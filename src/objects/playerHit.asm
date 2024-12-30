@@ -45,11 +45,13 @@ _frame2
     ldy #`spExplosionfr2
     jsr setSpriteAddress 
     inc mPlayerHitFrames
+    rts
 _end
+    jsr loseLife
     jsr hideSprite
     lda #objectGodMode
     sta mPlayerStatus
-    lda #30
+    lda #120
     sta mPlayerGodModeTime
     STZ mPlayerHitFrames
     stz mPlayerHitDelay

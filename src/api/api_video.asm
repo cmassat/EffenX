@@ -5,7 +5,6 @@ clearVideo
     sta VCKY_CTRL
     sta VCKY_CTRL_ATTRIB
     sta mVideoCtrl
-
     rts
 
 enableText
@@ -97,7 +96,10 @@ setTileMapLayer2
     rts    
 
 
-
+setDoubleText
+    lda #%00000110
+    sta VCKY_CTRL_ATTRIB
+    rts
 
 setLayers
     lda mVideoLayerCtrl01

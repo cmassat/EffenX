@@ -17,15 +17,16 @@ _initMenu
     jsr vgm_on 
     rts 
 _waitForKey
-    lda mAnyKey
-    cmp #0
-    bne _yes
+    lda mKeyW
+    cmp #1
+    beq _yes
     rts
 _yes
-    stz mAnyKey
+   ; stz mAnyKey
     jsr nextState
     jsr vgm_stop
     rts
+
 
 initMenu
     ;jsr resetKeys
@@ -46,7 +47,7 @@ initMenu
     ldy `#bitmapStart
     jsr setBitmapAddress
     jsr showBitmap
-
+    jsr enableBitmapLayer0
 
     jsr enableGrafix
     jsr clearScreenMemory
@@ -81,8 +82,8 @@ writeMenuText .macro
 
 
 printMenuTitle
-    lda #0
-    jsr setSpriteNumber
+   ;lda #0
+    ;jsr setSpriteNumber
     #writeMenuText 0, spCharE, col01, row01
     #writeMenuText 1, spCharF, col02, row01
     #writeMenuText 2, spCharF, col03, row01
@@ -183,6 +184,14 @@ loadMenuBackPal
     jsr fopen
     rts 
 
+loadMenuFont
+    lda #<mMenuBackPalFileName
+    ldx #>mMenuBackPalFileName
+    ldy #$05
+    jsr fopen
+    rts 
+
+
 
 resetMenu
     stz mMenuState
@@ -195,12 +204,12 @@ menuStateWait = 1
 menuMsgStartLine = 5
 mMenuState
     .byte $00
+
 mMenuRawFileName
     .text '/aurora/char.bin', $00
 
 mMenuhPalFileName
     .text '/aurora/char.pal', $00
-
 mMenuBackRawFileName
     .text '/aurora/menu.bin', $00
 
@@ -233,4 +242,7 @@ mMenuText11
     .text '      The stars are calling.', $00 
 mMenuText12
     .text '      Its time to take flight!', $00
+
+
+
 .endsection

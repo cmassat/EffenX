@@ -75,6 +75,18 @@ row07 = row06 + spCharHeigth
 row08 = row07 + spCharHeigth
 row09 = row08 + spCharHeigth
 row10 = row09 + spCharHeigth
+row11 = row10 + spCharHeigth
+row12 = row11 + spCharHeigth
+row13 = row12 + spCharHeigth
+row14 = row13 + spCharHeigth
+row15 = row14 + spCharHeigth
+row16 = row15 + spCharHeigth
+row17 = row16 + spCharHeigth
+row18 = row17 + spCharHeigth
+row19 = row18 + spCharHeigth
+row20 = row19 + spCharHeigth
+
+
 
 
 
@@ -104,10 +116,10 @@ spLevelStart = $44000
 tileSetBank =  $26 ; 64k
 tileSetStart = $4c000
 
-tileMapBankBankL0 =  $2d ; 11k 2 banks
-tileMapStartL0 = $5a000
-tileMapBankBankL1  =  $2f ; 2k 1 banks
-tileMapStartL1 = $5e000
+tileMapBankBankL0 =  $2f ; 11k 2 banks
+tileMapStartL0 = $5e000
+tileMapBankBankL1  =  $32 ; 2k 1 banks
+tileMapStartL1 = $64000
 
 ;SPRITE
 ;spNumberEnemyStart = 10
@@ -136,39 +148,62 @@ spEnemyLaserOrange = spLevelStart + (44 * spLevelSize)
 
 spPlayer1ShipNumber = 63
 spPlayer1ThrustNumber = 62
-spPlayer1Laser0 = 2
-spPlayer1Laser1 = 3
-spPlayer1Laser2 = 4
+spPlayer1Laser0 = 61
+spPlayer1Laser1 = 60
+spPlayer1Laser2 = 59
 
-spEnemyNumber00 = 10
-spEnemyNumber01 = 11
-spEnemyNumber02 = 12
-spEnemyNumber03 = 13
-spEnemyNumber04 = 14
-spEnemyNumber05 = 15
-spEnemyNumber06 = 16
-spEnemyNumber07 = 17
-spEnemyNumber08 = 18
-spEnemyNumber09 = 19
-spEnemyNumber10 = 20
-spEnemyNumber11 = 21
+spPlayer1Laser3 = 58
+spPlayer1Laser4 = 57
+spPlayer1Laser5 = 56
 
-spEnemyLaserNumber00 = 22
-spEnemyLaserNumber01 = 23
-spEnemyLaserNumber02 = 24
-spEnemyLaserNumber03 = 25
-spEnemyLaserNumber04 = 26
-spEnemyLaserNumber05 = 27
-spEnemyLaserNumber06 = 28
-spEnemyLaserNumber07 = 29
-spEnemyLaserNumber08 = 30
-spEnemyLaserNumber09 = 31
-spEnemyLaserNumber10 = 31
-spEnemyLaserNumber11 = 33
+
+spPlayer1Laser6 = 55
+spPlayer1Laser7 = 54
+spPlayer1Laser8 = 53
+
+
+spPlayer1Laser9 = 52
+spPlayer1Laser10 = 51
+spPlayer1Laser11 = 50
+
+spEnemyNumber00 = 49
+spEnemyNumber01 = 48
+spEnemyNumber02 = 47
+spEnemyNumber03 = 46
+spEnemyNumber04 = 45
+spEnemyNumber05 = 44
+spEnemyNumber06 = 43
+spEnemyNumber07 = 42
+spEnemyNumber08 = 41
+spEnemyNumber09 = 40
+spEnemyNumber10 = 39
+spEnemyNumber11 = 38
+
+spEnemyLaserNumber00 = 29
+spEnemyLaserNumber01 = 28
+spEnemyLaserNumber02 = 27
+spEnemyLaserNumber03 = 26
+spEnemyLaserNumber04 = 25
+spEnemyLaserNumber05 = 24
+spEnemyLaserNumber06 = 23
+spEnemyLaserNumber07 = 22
+spEnemyLaserNumber08 = 21
+spEnemyLaserNumber09 = 20
+spEnemyLaserNumber10 = 19
+spEnemyLaserNumber11 = 18
+
+spScoreNumber0 = 7  
+spScoreNumber1 = 6
+spScoreNumber2 = 5
+spScoreNumber3 = 4
+spScoreNumber4 = 3
+spScoreNumber5 = 2
+spScoreNumber6 = 1
+spScoreNumber7 = 0
 .endsection
 
 objectInactive = $00
 objectActive   = $01
 objectCollided = $02
 objectGodMode = $fe
-objectWait = $ff
+objectDisabled = $ff
