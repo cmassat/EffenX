@@ -5,7 +5,6 @@ handleLevelOne
     bcc _execute
     rts
 _execute
-     
     lda mLevelOneState
     cmp #levelOneStateInit
     beq _init
@@ -14,7 +13,9 @@ _execute
     cmp #levelOneStateWait
     beq _waitForKey
     cmp #levelOneStatePlay
-    jsr levelOnePlay
+    beq levelOnePlay
+    cmp #levelOneStateBossTime
+    beq _bossTime
     rts 
 _init
     inc mLevelOneState
@@ -43,20 +44,18 @@ _yes
     jsr levelOneresetMap
     jsr levelOneStart
     rts
+_bossTime
+    jsr handleLevelOneBossBattle
+    rts
 
 levelOnePlay
-
-   ; jsr delayEnemyStart
+    jsr handleLevelOneScroll
     jsr levelOnePlayerWasHit
     jsr handleShipDelay
    
     jsr handlePlayer
     jsr playerLaserMove
     jsr playerFireDelayTimer
-    ;lda mEnemyActive
-    ;cmp #objectActive
-    ;beq _gameStarted
-    ;rts
 
     jsr handleEnemy
     jsr playerCollidedWithEnemy
@@ -65,27 +64,38 @@ levelOnePlay
     jsr handleScore
     rts
 
-
+handleLevelOneScroll
+    jsr isPlayerHit
+    bcc _skipScroll
+    lda mLayerZeroTile
+    cmp #0
+    beq _bossTime
+    jsr LevelOneLayerZeroScroll
+    jsr LevelOneLayerOneScroll
+    rts
+_skipScroll
+    jsr resetEnemies
+    rts
+_bossTime
+     jsr resetEnemies
+    lda #levelOneStateBossTime
+    sta mLevelOneState
+    rts 
 levelOnePlayerWasHit
     jsr isPlayerHit
     bcc _resetLevel
-    jsr LevelOneLayerZeroScroll
-    jsr LevelOneLayerOneScroll
     rts 
 _resetLevel
     jsr LevelOneReady
     jsr levelOneresetMap
     jsr resetEnemies
-    
     rts
-
 
 LevelOneReady
     lda #<mLevelOneHitMessage
     ldx #>mLevelOneHitMessage
     ldy #menuMsgStartLine
     jsr writeText
-    
     rts 
 
 LevelOneLayerOneScroll
@@ -106,12 +116,6 @@ _moveTile
     lda #15
     sta mLevelOnePixel
     dec mLevelOneTile
-;    bmi _resetTile 
-;    bra _scroll
-;;_resetTile
-;    lda #$ff
-;    sta mLevelOneTile
-
 _scroll
     lda #1
     jsr setTilemapNumber
@@ -120,7 +124,6 @@ _scroll
     ldx mLevelOnePixel
     
     jsr setTilePositionY
-    ;jsr debug
     rts
 
 LevelOneLayerZeroScroll
@@ -141,15 +144,6 @@ _moveTile
     lda #15
     sta mLayerZeroPixel
     dec mLayerZeroTile
- ;   lda mLayerZeroTile
- ;   cmp #$ff
- ;   beq _resetTile
-
- ;   bra _scroll
-_;resetTile
- ;   lda #$ff
- ;   sta mLayerZeroTile
-
 _scroll
     lda #0
     jsr setTilemapNumber
@@ -158,18 +152,9 @@ _scroll
     ldx mLayerZeroPixel
     
     jsr setTilePositionY
-    ;jsr debug
     rts
 
 levelOneStart
- ;   lda #0
-  ;  sta mLevelOneState
-  ;  sta mLevelOneTile
-  ;  sta mLayerZeroSpeed
-
-  ;  lda #15
-  ;  sta mLevelOnePixel
-
     lda #320/2 + 32
     sta mPlayerPosX
     stz mPlayerPosX + 1
@@ -215,6 +200,8 @@ _checkFirstWaves
     beq _launchWave1
     cmp #120
     beq _launchWave2
+    cmp #180
+    beq _launchWave3
     rts
 _launchWave1
     lda #objectInactive
@@ -224,15 +211,24 @@ _launchWave1
     sta mEnemyLaserActive01
     rts
 _launchWave2
+    jsr clearScreenMemory
     lda #objectInactive
     sta mEnemy2
     sta mEnemyLaserActive02
     sta mEnemy3
     sta mEnemyLaserActive03
-    stz mResetBoard
     jsr clearScreenMemory
     rts
-
+_launchWave3
+    lda #objectInactive
+    sta mEnemy4
+    sta mEnemyLaserActive04
+    lda #objectInactive
+    sta mEnemy7
+    sta mEnemyLaserActive07
+    stz mResetBoard
+    
+    rts
 .endsection
 
 .include "init.asm"
@@ -246,6 +242,7 @@ levelOneStateReady = 1
 levelOneStateWait = 2
 levelOneStatePlay = 3
 levelOneStatePlayerHit = 4
+levelOneStateBossTime = 5
 skipEver3 = 3
 skipEver2 = 2
 
@@ -284,10 +281,10 @@ mEnemeyDelay
 mLevelOneHitMessage
     .text '          Ship Lost In Battle', $00
 mLevelOneSpriteRawFileName
-    .text '/aurora/lvl.bin', $00
+    .text '/aurora/sprite.bin', $00
 
 mLevelOneSpritePalFileName
-    .text '/aurora/lvl.pal', $00
+    .text '/aurora/sprite.pal', $00
 
 mLevelOneTileSetRawFileName
     .text '/aurora/tilemap.bin', $00

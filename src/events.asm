@@ -5,6 +5,7 @@ game
 ;     beq _handleGameEvents
 ;     rts
 ; _handleGameEvents
+
     jsr keyboardTimer
 	jsr handleSplash
     jsr handleMenu
@@ -18,17 +19,16 @@ game
     ;lda #1
     ;sta mSOFSemaphore
     inc v_sync
-   ; jsr debug
     lda v_sync
     cmp #120
     bcs _resetFrameCounter
+
 
     rts
 _resetFrameCounter
     stz v_sync
     rts
 handleEvents
-  ;  jsr debug
   ;  jsr game
     jsr vgm_update
     

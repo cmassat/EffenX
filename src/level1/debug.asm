@@ -2,7 +2,7 @@ debug
     lda #2
     sta MMU_IO_CTRL
 
-    lda mAnyKey
+    lda mLevelOneBossState
     lsr
     lsr 
     lsr
@@ -17,7 +17,7 @@ debug
     lda mHex, y
     sta $C001 + 40
 
-    lda mKeyboardDelay
+    lda mLevelOneBossState
     lsr
     lsr 
     lsr

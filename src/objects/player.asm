@@ -40,7 +40,7 @@ _yes
     rts
 
 playerControl
-    #macroShowSprite spPlayer1ShipNumber, spPlayer02,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
+    #macroShowSprite spPlayer1ShipNumber, spPlayer01,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
     jsr moveN
     jsr moveS
     jsr moveL
@@ -70,7 +70,7 @@ _move
 
     jsr playerCalcThrust
     ;#macroShowSprite spPlayer1ShipNumber, spPlayer02,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
-    #macroShowSprite spPlayer1ShipNumber, spPlayer02,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
+    #macroShowSprite spPlayer1ShipNumber, spPlayer01,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
     #macroShowSprite spPlayer1ThrustNumber, spThrust00, mPlayerThrustPosX, mPlayerThrustPosX + 1, mPlayerThrustPosY, SPRITE24L0C2
     jsr sound_play_thrust
     rts
@@ -129,11 +129,11 @@ _move
     ldx mPlayerPosX + 1
     jsr setSpriteX
 
-    lda #<spPlayer04
-    ldx #>spPlayer04
-    ldy #`spPlayer04
+    lda #<spPlayer02
+    ldx #>spPlayer02
+    ldy #`spPlayer02
     jsr setSpriteAddress
-     #macroShowSprite spPlayer1ShipNumber, spPlayer04, mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
+     #macroShowSprite spPlayer1ShipNumber, spPlayer02, mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
     rts
 
 moveL

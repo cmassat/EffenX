@@ -7,7 +7,7 @@ _checkCollisions
     jsr enemyLaser0HitPlayer0
     jsr enemyLaser1HitPlayer0
     jsr enemyLaser2HitPlayer0
-    ;jsr enemyLaser3HitPlayer0
+    jsr enemyLaser3HitPlayer0
     ;jsr enemyLaser4HitPlayer0
     ;jsr enemyLaser5HitPlayer0
     ;jsr enemyLaser6HitPlayer0

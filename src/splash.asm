@@ -35,7 +35,7 @@ initSplash
     jsr enableGrafix
     jsr enableBitmap
 
-    jsr enableText
+  ;  jsr enableText
     jsr setVideo
     stz MMU_IO_CTRL
     jsr loadSplashPal

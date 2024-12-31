@@ -16,6 +16,7 @@ main
     sta VKY_BKG_COL_B
     sta VKY_BKG_COL_R
     sta VKY_BKG_COL_G
+
     jsr loadFont
     jsr resetGame
 
@@ -69,6 +70,7 @@ _gameLoop
 .include "psgSound.asm"
 .include "score.asm"
 .include "./level1/main.asm"
+.include "./level1/bossFight.asm"
 
 .include "./collision/api_collision.asm"
 .include "./collision/playerLaser.asm"

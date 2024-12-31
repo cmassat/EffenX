@@ -1,6 +1,5 @@
 .section variables
 
-
 spCharWidth = 16
 spCharHeigth = 16
 spCharSize = spCharWidth * spCharHeigth
@@ -63,7 +62,6 @@ col14 = col13 + spCharWidth
 col15 = col14 + spCharWidth
 col16 = col15 + spCharWidth
 
-
 row00 = 32
 row01 = row00 + spCharHeigth
 row02 = row01 + spCharHeigth
@@ -86,10 +84,6 @@ row18 = row17 + spCharHeigth
 row19 = row18 + spCharHeigth
 row20 = row19 + spCharHeigth
 
-
-
-
-
 spLevelWidth = 24
 spLevelHeigth = 24
 spLevelSize = spLevelWidth * spLevelHeigth
@@ -97,14 +91,21 @@ spLevelSize = spLevelWidth * spLevelHeigth
 spPlayer00 = spLevelStart
 spPlayer01 = spPlayer00 + spLevelSize
 spPlayer02 = spPlayer01 + spLevelSize
-spPlayer03 = spPlayer02 + spLevelSize
-spPlayer04 = spPlayer03 + spLevelSize
 
-spThrust00 = spLevelStart + (11 * spLevelSize)
+spThrust00 = spLevelStart + (10 * spLevelSize)
 spLaser00 = spLevelStart + (14 * spLevelSize)
 spExplosionfr0 = spLevelStart + (20 * spLevelSize)
 spExplosionfr1 = spLevelStart + (21 * spLevelSize)
 spExplosionfr2 = spLevelStart + (22 * spLevelSize)
+spEnemyLaserGreen = spLevelStart + (13 * spLevelSize)
+
+;BOSS1
+spBoss1part0 = spLevelStart + (30 * spLevelSize)
+spBoss1part1 = spLevelStart + (31 * spLevelSize)
+spBoss1part2 = spLevelStart + (32 * spLevelSize)
+spBoss1part3 = spLevelStart + (40 * spLevelSize)
+spBoss1part4 = spLevelStart + (41 * spLevelSize)
+spBoss1part5 = spLevelStart + (42 * spLevelSize)
 
 bitmapBank = $36
 bitmapStart = $6C000
@@ -136,15 +137,12 @@ spEnemy09 = spLevelStart + (26 * spLevelSize)
 spEnemy10 = spLevelStart + (27 * spLevelSize)
 spEnemy11 = spLevelStart + (28 * spLevelSize)
 
-
 spHoldStar = spLevelStart + (35 * spLevelSize)
 spEnemy13 = spLevelStart + (36 * spLevelSize)
 spEnemy14 = spLevelStart + (37 * spLevelSize)
 spEnemy15 = spLevelStart + (38 * spLevelSize)
 
-spEnemyLaserGreen = spLevelStart + (34 * spLevelSize)
 spEnemyLaserOrange = spLevelStart + (44 * spLevelSize)
-
 
 spPlayer1ShipNumber = 63
 spPlayer1ThrustNumber = 62
@@ -156,11 +154,9 @@ spPlayer1Laser3 = 58
 spPlayer1Laser4 = 57
 spPlayer1Laser5 = 56
 
-
 spPlayer1Laser6 = 55
 spPlayer1Laser7 = 54
 spPlayer1Laser8 = 53
-
 
 spPlayer1Laser9 = 52
 spPlayer1Laser10 = 51
@@ -178,6 +174,9 @@ spEnemyNumber08 = 41
 spEnemyNumber09 = 40
 spEnemyNumber10 = 39
 spEnemyNumber11 = 38
+
+spPowerUp = 37
+spGoldStar = 36
 
 spEnemyLaserNumber00 = 29
 spEnemyLaserNumber01 = 28

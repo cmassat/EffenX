@@ -5,14 +5,14 @@ handleEnemy
     jsr resetEnemy1
     jsr resetEnemy2
     jsr resetEnemy3
-    ;jsr resetEnemy4
-    ;jsr resetEnemy5
-    ;jsr resetEnemy6
-    ;jsr resetEnemy7
-    ;jsr resetEnemy8
-    ;jsr resetEnemy9
-    ;jsr resetEnemy10
-    ;jsr resetEnemy11
+    jsr resetEnemy4
+    jsr resetEnemy5
+    jsr resetEnemy6
+    jsr resetEnemy7
+    jsr resetEnemy8
+    jsr resetEnemy9
+    jsr resetEnemy10
+    jsr resetEnemy11
     jsr moveEnemy0
     ;jsr moveEnemy0
     jsr moveEnemy1
@@ -21,19 +21,20 @@ handleEnemy
     ;jsr moveEnemy2
     jsr moveEnemy3
     ;jsr moveEnemy3
-    ;jsr moveEnemy4
-    ;jsr moveEnemy4
-    ;jsr moveEnemy5
-    ;jsr moveEnemy5
-    ;jsr moveEnemy6
-    ;jsr moveEnemy6
-    ;jsr moveEnemy7
-    ;jsr moveEnemy7
-    ;jsr moveEnemy8
-    ;jsr moveEnemy8
-    ;jsr moveEnemy9
-    ;jsr moveEnemy10
-    ;jsr moveEnemy11
+    jsr moveEnemy4
+    jsr moveEnemy4
+    jsr moveEnemy4
+    jsr moveEnemy5
+    jsr moveEnemy5
+    jsr moveEnemy6
+    jsr moveEnemy6
+    jsr moveEnemy7
+    jsr moveEnemy7
+    jsr moveEnemy8
+    jsr moveEnemy8
+    jsr moveEnemy9
+    jsr moveEnemy10
+    jsr moveEnemy11
     jsr handleEnemyFire
     rts
 
