@@ -2,7 +2,7 @@ debug
     lda #2
     sta MMU_IO_CTRL
 
-    lda mLevelOneBossState
+    lda mLevelOneBossObjectFrame
     lsr
     lsr 
     lsr
@@ -11,7 +11,7 @@ debug
     lda mHex, y
     sta $C000 + 40
 
-    lda mAnyKey
+    lda mLevelOneBossObjectFrame
     and #$0F
      tay
     lda mHex, y
@@ -26,7 +26,7 @@ debug
     lda mHex, y
     sta $C002 + 40
 
-    lda mKeyboardDelay
+    lda mLevelOneBossState
     and #$0F
     tay
     lda mHex, y

@@ -98,7 +98,7 @@ spExplosionfr0 = spLevelStart + (20 * spLevelSize)
 spExplosionfr1 = spLevelStart + (21 * spLevelSize)
 spExplosionfr2 = spLevelStart + (22 * spLevelSize)
 spEnemyLaserGreen = spLevelStart + (13 * spLevelSize)
-
+spEnemyLaserOrange = spLevelStart + (23 * spLevelSize)
 ;BOSS1
 spBoss1part0 = spLevelStart + (30 * spLevelSize)
 spBoss1part1 = spLevelStart + (31 * spLevelSize)
@@ -142,8 +142,6 @@ spEnemy13 = spLevelStart + (36 * spLevelSize)
 spEnemy14 = spLevelStart + (37 * spLevelSize)
 spEnemy15 = spLevelStart + (38 * spLevelSize)
 
-spEnemyLaserOrange = spLevelStart + (44 * spLevelSize)
-
 spPlayer1ShipNumber = 63
 spPlayer1ThrustNumber = 62
 spPlayer1Laser0 = 61
@@ -177,6 +175,7 @@ spEnemyNumber11 = 38
 
 spPowerUp = 37
 spGoldStar = 36
+spBossNumberExplosion = 35
 
 spEnemyLaserNumber00 = 29
 spEnemyLaserNumber01 = 28

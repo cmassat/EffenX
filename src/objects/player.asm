@@ -46,10 +46,9 @@ playerControl
     jsr moveL
     jsr moveR
     jsr playerFire
-     
    ; #macroShowSprite spPlayer1ThrustNumber, spThrust00, mPlayerThrustPosX, mPlayerThrustPosX + 1, mPlayerThrustPosY, SPRITE24L0C2
-
     rts 
+
 moveN
     lda mPlayerPosY
     cmp #32
@@ -185,6 +184,16 @@ playerCalcThrust
     clc
     adc #24
     sta mPlayerThrustPosY
+    rts
+
+hidePlayer1
+    lda #spPlayer1ShipNumber
+    jsr setSpriteNumber
+    jsr hideSprite
+
+    lda #spPlayer1ThrustNumber
+    jsr setSpriteNumber
+    jsr hideSprite
     rts
 .endsection
 

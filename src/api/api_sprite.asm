@@ -88,6 +88,29 @@ _loop
 _end
     rts
 
+showSpriteMacro .macro 
+    lda #\1
+    jsr setSpriteNumber
+
+    lda <#\2
+    ldx >#\2
+    ldy `#\2
+    jsr setSpriteAddress
+
+    lda \3
+    ldx \3 + 1
+    jsr setSpriteX
+
+    ;lda #<\4
+    ;ldx #>\4
+    lda \4
+    ldx \4 + 1
+    jsr setSpriteY
+
+    lda #\5
+    jsr showSprite
+.endmacro
+
 macroShowSprite .macro 
     lda #\1
     jsr setSpriteNumber
@@ -104,7 +127,7 @@ macroShowSprite .macro
     ;lda #<\4
     ;ldx #>\4
     lda \5
-    ldx #0
+    ldx \5 + 1
     jsr setSpriteY
 
     lda #\6
@@ -118,6 +141,7 @@ SPRITE16L0C1 = %01000011
 SPRITE16L1C1 = %01001011
 SPRITE16L2C1 = %01011011
 SPRITE24L0C2 = %00100101
+SPRITE24L1C2 = %00101101
 mSpriteTracker
     .byte $00
 mSpriteAttrAddr

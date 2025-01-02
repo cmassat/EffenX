@@ -20,7 +20,7 @@ game
     ;sta mSOFSemaphore
     inc v_sync
     lda v_sync
-    cmp #120
+    cmp #100
     bcs _resetFrameCounter
 
 

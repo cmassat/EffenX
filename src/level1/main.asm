@@ -48,6 +48,9 @@ _bossTime
     jsr handleLevelOneBossBattle
     rts
 
+;----------------------------------
+; Level One Game Loop
+;----------------------------------
 levelOnePlay
     jsr handleLevelOneScroll
     jsr levelOnePlayerWasHit
@@ -58,8 +61,8 @@ levelOnePlay
     jsr playerFireDelayTimer
 
     jsr handleEnemy
-    jsr playerCollidedWithEnemy
-    jsr handleEnemyLaserCollision
+    ;jsr playerCollidedWithEnemy
+    ;jsr handleEnemyLaserCollision
     jsr enemyHit
     jsr handleScore
     rts

@@ -79,7 +79,8 @@ _move
     lda #\3
     jsr setSpriteNumber
     jsr hideSprite
-    stz \1
+    lda #objectInactive
+    sta \1
 .endmacro
 
 handleEnemyFire

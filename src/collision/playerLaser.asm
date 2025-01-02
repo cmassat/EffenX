@@ -83,6 +83,12 @@ playerLaserCollide
     jsr playerLaser4HitEnemy11
     jsr playerLaser5HitEnemy11
 
+    jsr playerLaser0HitEnemyBoss
+    jsr playerLaser1HitEnemyBoss
+    jsr playerLaser2HitEnemyBoss
+    jsr playerLaser3HitEnemyBoss
+    jsr playerLaser4HitEnemyBoss
+    jsr playerLaser5HitEnemyBoss
     
     rts
  
@@ -545,4 +551,41 @@ playerLaser5HitEnemy11
     #objectsActiveMacro mEnemy11, mLaser05Active
     #coollideMacro mLaser05PosX, 10, mEnemy11 + 2, 18, mLaser05PosY, 6,mEnemy11 + 4, 20
     #didCollide mEnemy11, mLaser05Active
+    rts
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+playerLaser0HitEnemyBoss
+    #objectsActiveMacro mLevelOneBossObjectState, mLaser00Active
+    #coollideMacro mLaser00PosX, 10, mLevelOneBossX4, 18, mLaser00PosY, 6, mLevelOneBossY5, 20
+    #didCollide mLevelOneBossObjectState, mLaser00Active
+    rts
+
+playerLaser1HitEnemyBoss
+    #objectsActiveMacro mLevelOneBossObjectState, mLaser01Active
+    #coollideMacro mLaser01PosX, 10, mLevelOneBossX4, 18, mLaser01PosY, 6, mLevelOneBossY5, 20
+    #didCollide mLevelOneBossObjectState, mLaser01Active
+    rts
+
+playerLaser2HitEnemyBoss
+    #objectsActiveMacro mLevelOneBossObjectState, mLaser02Active
+    #coollideMacro mLaser02PosX, 10, mLevelOneBossX4, 18, mLaser02PosY, 6, mLevelOneBossY5, 20
+    #didCollide mLevelOneBossObjectState, mLaser02Active
+    rts
+
+playerLaser3HitEnemyBoss
+    #objectsActiveMacro mLevelOneBossObjectState, mLaser03Active
+    #coollideMacro mLaser03PosX, 10,mLevelOneBossX4, 18, mLaser03PosY, 6,mLevelOneBossY5, 20
+    #didCollide mLevelOneBossObjectState, mLaser03Active
+    rts
+
+playerLaser4HitEnemyBoss
+    #objectsActiveMacro mLevelOneBossObjectState, mLaser04Active
+    #coollideMacro mLaser04PosX, 10, mLevelOneBossX4, 18, mLaser04PosY, 6,mLevelOneBossY5, 20
+    #didCollide mLevelOneBossObjectState, mLaser04Active
+    rts
+
+playerLaser5HitEnemyBoss
+    #objectsActiveMacro mLevelOneBossObjectState, mLaser05Active
+    #coollideMacro mLaser05PosX, 10, mLevelOneBossX4, 18, mLaser05PosY, 6,mLevelOneBossY5, 20
+    #didCollide mLevelOneBossObjectState, mLaser04Active
     rts
