@@ -31,7 +31,7 @@ _startBattle
     rts
 _bossByeBye
     jsr handleBossByeBye
-    jsr debug
+
     rts
 _levelClear
     jsr hidePlayer1
@@ -45,10 +45,15 @@ gameLoopLevelOneBossBattle
     
     jsr handleLevelOneBossBomb0
     jsr handleLevelOneBossBomb1
+    jsr handleLevelOneBossBomb2
+    jsr handleLevelOneBossBomb3
     jsr handleLevelOneBossBoss
     jsr levelOneShowBoss
     jsr handleLevelOneBossEnamyLaser0
+    jsr handleEnemyLaserCollision
     jsr handleBossHit
+    jsr handleScore
+    
     rts
 
 handleBossByeBye    
@@ -216,6 +221,7 @@ _checkStrength
     lda #objectDisabled
     sta mLevelOneBossBombActive0
     sta mLevelOneBossBombActive1
+
     lda #spEnemyLaserNumber11
     jsr setSpriteNumber
     jsr hideSprite
@@ -368,14 +374,20 @@ handleLevelOneBossBomb0
     lda mLevelOneBossBombPathPtr0 + 1
     sta POINTER_SPR_X  + 1
 
+    lda #objectActive
+    sta mLevelOneBossBombActive0
+    sta mEnemyLaserActive11
 
     ldy #0
     lda (POINTER_SPR_X),y
     sta mLevelOneBossBombX0
+    sta mEnemyLaserX11
     stz mLevelOneBossBombX0 + 1
+    stz mEnemyLaserX11 + 1
     iny
     lda (POINTER_SPR_X),y
     sta mLevelOneBossBombY0
+    sta mEnemyLaserY11
 
     lda mLevelOneBossBombPathPtr0
     clc
@@ -401,7 +413,9 @@ _reset
 handleLevelOneBossBomb1
     lda mLevelOneBossBombPath1
     cmp #110
-    beq _reset
+    bcs _reset
+    lda #objectActive
+    sta mLevelOneBossBombActive1
     lda mLevelOneBossBombPathPtr1
     sta POINTER_SPR_X
     lda mLevelOneBossBombPathPtr1 + 1
@@ -411,12 +425,19 @@ handleLevelOneBossBomb1
     ldy #0
     lda (POINTER_SPR_X),y
     sta mLevelOneBossBombX1
+    sta mEnemyLaserX10
     iny
-     lda (POINTER_SPR_X),y
+    lda (POINTER_SPR_X),y
     sta mLevelOneBossBombX1 + 1
+    sta mEnemyLaserX10 + 1
     iny
     lda (POINTER_SPR_X),y
     sta mLevelOneBossBombY1
+    sta mEnemyLaserY10
+    iny 
+    lda (POINTER_SPR_X),y
+    sta mLevelOneBossBombY1 + 1
+    sta mEnemyLaserY10 + 1
 
     lda mLevelOneBossBombPathPtr1
     clc
@@ -426,17 +447,73 @@ handleLevelOneBossBomb1
     lda mLevelOneBossBombPathPtr1 + 1
     adc #0
     sta mLevelOneBossBombPathPtr1 + 1
-
-    #macroShowSprite spEnemyLaserNumber10, spEnemyLaserOrange, mLevelOneBossBombX1, mLevelOneBossBombX1 + 1, mLevelOneBossBombY1, SPRITE24L1C2
+    #showSpriteMacro spEnemyLaserNumber10, spEnemyLaserOrange, mEnemyLaserX10, mEnemyLaserY10, SPRITE24L1C2
+    ;#macroShowSprite spEnemyLaserNumber10, spEnemyLaserOrange, mLevelOneBossBombX1, mLevelOneBossBombX1 + 1, mLevelOneBossBombY1, SPRITE24L1C2
     inc mLevelOneBossBombPath1
     rts 
 _reset
-    stz mLevelOneBossBombActive1
+    lda #objectInactive
+    sta mLevelOneBossBombActive1
     lda #<mBossBombPath1
     sta mLevelOneBossBombPathPtr1
     lda #>mBossBombPath1 + 1
     sta mLevelOneBossBombPathPtr1  + 1
     stz  mLevelOneBossBombPath1
+    rts 
+
+handleLevelOneBossBomb2
+    lda mEnemyLaserActive09
+    cmp #objectActive
+    beq _move
+    lda  #objectActive
+    sta mEnemyLaserActive09
+
+    lda #50
+    sta mEnemyLaserX09
+    stz mEnemyLaserX09 + 1
+
+    lda #240
+    sta mEnemyLaserY09
+    stz mEnemyLaserY09 + 1
+    rts
+_move
+    lda mEnemyLaserY09
+    cmp #32
+    beq _reset
+    dec mEnemyLaserY09
+    #showSpriteMacro spEnemyLaserNumber09, spEnemyLaserOrange, mEnemyLaserX09, mEnemyLaserY09, SPRITE24L1C2
+    rts 
+_reset
+    lda #objectInactive
+    sta mEnemyLaserActive09
+    rts 
+
+handleLevelOneBossBomb3
+    lda mEnemyLaserActive08
+    cmp #objectActive
+    beq _move
+    lda  #objectActive
+    sta mEnemyLaserActive08
+
+    lda #$4A
+    sta mEnemyLaserX08
+    lda #1
+    sta mEnemyLaserX08 + 1
+
+    lda #240
+    sta mEnemyLaserY08
+    stz mEnemyLaserY08 + 1
+    rts
+_move
+    lda mEnemyLaserY08
+    cmp #32
+    beq _reset
+    dec mEnemyLaserY08
+    #showSpriteMacro spEnemyLaserNumber08, spEnemyLaserOrange, mEnemyLaserX08, mEnemyLaserY08, SPRITE24L1C2
+    rts 
+_reset
+    lda #objectInactive
+    sta mEnemyLaserActive08
     rts 
 
 startBattle
@@ -591,27 +668,7 @@ _show
     #showSpriteMacro spEnemyNumber05, spBoss1part5, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L0C2
     rts  
 
-subtractMacro .macro number, amount = 1
-    lda \number
-    sec
-    sbc #\amount
-    sta \number
-    
-    lda \number + 1
-    sbc #0
-    sta \number + 1 
-.endMacro
 
-addMacro .macro number, amount = 1
-    lda \number
-    clc
-    adc #\amount
-    sta \number
-    
-    lda \number + 1
-    adc #0
-    sta \number + 1
-.endMacro
 .endsection
 
 .section variables
@@ -703,230 +760,230 @@ mLevelOneBossBombPath1
     .byte $00
 .endsection
 
-.section data
+.section variables
 mBossBombPath0
-.byte 42,240
-.byte 44,236
-.byte 45,232
-.byte 47,228
-.byte 48,224
-.byte 50,221
-.byte 52,217
-.byte 53,214
-.byte 55,210
-.byte 57,207
-.byte 58,204
-.byte 60,200
-.byte 61,197
-.byte 63,194
-.byte 65,191
-.byte 66,189
-.byte 68,186
-.byte 69,183
-.byte 71,180
-.byte 73,178
-.byte 74,176
-.byte 76,173
-.byte 78,171
-.byte 79,169
-.byte 81,167
-.byte 82,164
-.byte 84,163
-.byte 86,161
-.byte 87,159
-.byte 89,157
-.byte 90,156
-.byte 92,154
-.byte 94,152
-.byte 95,151
-.byte 97,150
-.byte 99,149
-.byte 100,147
-.byte 102,146
-.byte 103,145
-.byte 105,144
-.byte 107,144
-.byte 108,143
-.byte 110,142
-.byte 111,142
-.byte 113,141
-.byte 115,141
-.byte 116,140
-.byte 118,140
-.byte 120,140
-.byte 121,140
-.byte 123,140
-.byte 124,140
-.byte 126,140
-.byte 128,140
-.byte 129,141
-.byte 131,141
-.byte 133,142
-.byte 134,142
-.byte 136,143
-.byte 137,144
-.byte 139,144
-.byte 141,145
-.byte 142,146
-.byte 144,147
-.byte 145,149
-.byte 147,150
-.byte 149,151
-.byte 150,152
-.byte 152,154
-.byte 154,156
-.byte 155,157
-.byte 157,159
-.byte 158,161
-.byte 160,163
-.byte 162,164
-.byte 163,167
-.byte 165,169
-.byte 166,171
-.byte 168,173
-.byte 170,176
-.byte 171,178
-.byte 173,180
-.byte 175,183
-.byte 176,186
-.byte 178,189
-.byte 179,191
-.byte 181,194
-.byte 183,197
-.byte 184,200
-.byte 186,204
-.byte 187,207
-.byte 189,210
-.byte 191,214
-.byte 192,217
-.byte 194,221
-.byte 196,224
-.byte 197,228
-.byte 199,232
-.byte 200,236
-.byte 202,240
-.byte 203,242
-.byte 203,244
-.byte 204,245
-.byte 204,248
-.byte 205,250
-.byte 205,252
-.byte 206,254
-.byte 206,254
-.byte 206,254
-.byte 206,254
+; .byte 42,240
+; .byte 44,236
+; .byte 45,232
+; .byte 47,228
+; .byte 48,224
+; .byte 50,221
+; .byte 52,217
+; .byte 53,214
+; .byte 55,210
+; .byte 57,207
+; .byte 58,204
+; .byte 60,200
+; .byte 61,197
+; .byte 63,194
+; .byte 65,191
+; .byte 66,189
+; .byte 68,186
+; .byte 69,183
+; .byte 71,180
+; .byte 73,178
+; .byte 74,176
+; .byte 76,173
+; .byte 78,171
+; .byte 79,169
+; .byte 81,167
+; .byte 82,164
+; .byte 84,163
+; .byte 86,161
+; .byte 87,159
+; .byte 89,157
+; .byte 90,156
+; .byte 92,154
+; .byte 94,152
+; .byte 95,151
+; .byte 97,150
+; .byte 99,149
+; .byte 100,147
+; .byte 102,146
+; .byte 103,145
+; .byte 105,144
+; .byte 107,144
+; .byte 108,143
+; .byte 110,142
+; .byte 111,142
+; .byte 113,141
+; .byte 115,141
+; .byte 116,140
+; .byte 118,140
+; .byte 120,140
+; .byte 121,140
+; .byte 123,140
+; .byte 124,140
+; .byte 126,140
+; .byte 128,140
+; .byte 129,141
+; .byte 131,141
+; .byte 133,142
+; .byte 134,142
+; .byte 136,143
+; .byte 137,144
+; .byte 139,144
+; .byte 141,145
+; .byte 142,146
+; .byte 144,147
+; .byte 145,149
+; .byte 147,150
+; .byte 149,151
+; .byte 150,152
+; .byte 152,154
+; .byte 154,156
+; .byte 155,157
+; .byte 157,159
+; .byte 158,161
+; .byte 160,163
+; .byte 162,164
+; .byte 163,167
+; .byte 165,169
+; .byte 166,171
+; .byte 168,173
+; .byte 170,176
+; .byte 171,178
+; .byte 173,180
+; .byte 175,183
+; .byte 176,186
+; .byte 178,189
+; .byte 179,191
+; .byte 181,194
+; .byte 183,197
+; .byte 184,200
+; .byte 186,204
+; .byte 187,207
+; .byte 189,210
+; .byte 191,214
+; .byte 192,217
+; .byte 194,221
+; .byte 196,224
+; .byte 197,228
+; .byte 199,232
+; .byte 200,236
+; .byte 202,240
+; .byte 203,242
+; .byte 203,244
+; .byte 204,245
+; .byte 204,248
+; .byte 205,250
+; .byte 205,252
+; .byte 206,254
+; .byte 206,254
+; .byte 206,254
+; .byte 206,254
 
 mBossBombPath1
-.word 334,240
-.word 334,236
-.word 334,232
-.word 334,228
-.word 333,224
-.word 333,221
-.word 332,217
-.word 332,214
-.word 331,210
-.word 331,207
-.word 330,204
-.word 328,200
-.word 327,197
-.word 325,194
-.word 324,191
-.word 322,189
-.word 320,186
-.word 319,183
-.word 317,180
-.word 315,178
-.word 314,176
-.word 312,173
-.word 311,171
-.word 309,169
-.word 307,167
-.word 306,164
-.word 304,163
-.word 303,161
-.word 301,159
-.word 299,157
-.word 298,156
-.word 296,154
-.word 294,152
-.word 293,151
-.word 291,150
-.word 290,149
-.word 288,147
-.word 286,146
-.word 285,145
-.word 283,144
-.word 282,144
-.word 280,143
-.word 278,142
-.word 277,142
-.word 275,141
-.word 273,141
-.word 272,140
-.word 270,140
-.word 269,140
-.word 267,140
-.word 265,140
-.word 264,140
-.word 262,140
-.word 261,140
-.word 259,141
-.word 257,141
-.word 256,142
-.word 254,142
-.word 252,143
-.word 251,144
-.word 249,144
-.word 248,145
-.word 246,146
-.word 244,147
-.word 243,149
-.word 241,150
-.word 239,151
-.word 238,152
-.word 236,154
-.word 235,156
-.word 233,157
-.word 231,159
-.word 230,161
-.word 228,163
-.word 227,164
-.word 225,167
-.word 223,169
-.word 222,171
-.word 220,173
-.word 218,176
-.word 217,178
-.word 215,180
-.word 214,183
-.word 212,186
-.word 210,189
-.word 209,191
-.word 207,194
-.word 206,197
-.word 204,200
-.word 202,204
-.word 201,207
-.word 199,210
-.word 197,214
-.word 196,217
-.word 194,221
-.word 193,224
-.word 191,228
-.word 189,232
-.word 188,236
-.word 186,240
-.word 185,242
-.word 183,244
-.word 181,245
-.word 180,248
-.word 178,250
-.word 176,252
-.word 175,254
-.word 173,254
-.word 172,254
-.word 170,254
+; .word 334,240
+; .word 334,236
+; .word 334,232
+; .word 334,228
+; .word 333,224
+; .word 333,221
+; .word 332,217
+; .word 332,214
+; .word 331,210
+; .word 331,207
+; .word 330,204
+; .word 328,200
+; .word 327,197
+; .word 325,194
+; .word 324,191
+; .word 322,189
+; .word 320,186
+; .word 319,183
+; .word 317,180
+; .word 315,178
+; .word 314,176
+; .word 312,173
+; .word 311,171
+; .word 309,169
+; .word 307,167
+; .word 306,164
+; .word 304,163
+; .word 303,161
+; .word 301,159
+; .word 299,157
+; .word 298,156
+; .word 296,154
+; .word 294,152
+; .word 293,151
+; .word 291,150
+; .word 290,149
+; .word 288,147
+; .word 286,146
+; .word 285,145
+; .word 283,144
+; .word 282,144
+; .word 280,143
+; .word 278,142
+; .word 277,142
+; .word 275,141
+; .word 273,141
+; .word 272,140
+; .word 270,140
+; .word 269,140
+; .word 267,140
+; .word 265,140
+; .word 264,140
+; .word 262,140
+; .word 261,140
+; .word 259,141
+; .word 257,141
+; .word 256,142
+; .word 254,142
+; .word 252,143
+; .word 251,144
+; .word 249,144
+; .word 248,145
+; .word 246,146
+; .word 244,147
+; .word 243,149
+; .word 241,150
+; .word 239,151
+; .word 238,152
+; .word 236,154
+; .word 235,156
+; .word 233,157
+; .word 231,159
+; .word 230,161
+; .word 228,163
+; .word 227,164
+; .word 225,167
+; .word 223,169
+; .word 222,171
+; .word 220,173
+; .word 218,176
+; .word 217,178
+; .word 215,180
+; .word 214,183
+; .word 212,186
+; .word 210,189
+; .word 209,191
+; .word 207,194
+; .word 206,197
+; .word 204,200
+; .word 202,204
+; .word 201,207
+; .word 199,210
+; .word 197,214
+; .word 196,217
+; .word 194,221
+; .word 193,224
+; .word 191,228
+; .word 189,232
+; .word 188,236
+; .word 186,240
+; .word 185,242
+; .word 183,244
+; .word 181,245
+; .word 180,248
+; .word 178,250
+; .word 176,252
+; .word 175,254
+; .word 173,254
+; .word 172,254
+; .word 170,254
 
 
 .endsection

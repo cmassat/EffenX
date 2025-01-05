@@ -4,8 +4,7 @@
 *=$2000
 .dsection code 
 
-*=$6000
-.dsection data
+
 .section code
 start
     jmp main
@@ -17,7 +16,7 @@ main
     sta VKY_BKG_COL_R
     sta VKY_BKG_COL_G
 
-    jsr loadFont
+    ;jsr loadFont
     jsr resetGame
 
     
@@ -60,6 +59,8 @@ _gameLoop
 .include "./objects/enemy/paths.asm"
 .include "./objects/enemy/enemyLaser.asm"
 .include "./objects/enemy/enemyReset.asm"
+.include "./objects/includes.asm"
+.include "./collision/includes.asm"
 .include "state.asm"
 .include "events.asm"
 .include "splash.asm"
@@ -72,7 +73,7 @@ _gameLoop
 .include "./level1/main.asm"
 .include "./level1/bossFight.asm"
 
-.include "./collision/api_collision.asm"
+.include "./api/api_collision.asm"
 .include "./collision/playerLaser.asm"
 .include "./collision/ships.asm"
 .include "./collision/enemyLaser.asm"

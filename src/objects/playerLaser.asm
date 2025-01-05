@@ -47,10 +47,10 @@ _move
 _fireAway
     lda #LaserDelay
     sta mLaserDelay
-    lda mLaser00Active
+    lda mLaserActive00
     cmp #0
     beq _playerFire0
-    lda mLaser03Active
+    lda mLaserActive03
     cmp #0
     beq _playerFire1
     rts
@@ -63,15 +63,15 @@ _playerFire1
     jsr sound_play_fire
     rts
 playerFire0
-    #playerLaserSetup mLaser00PosX, mLaser00PosX + 1, mLaser00PosY, mLaser00Active, 9
-    #playerLaserSetup mLaser01PosX, mLaser01PosX + 1, mLaser01PosY, mLaser01Active, 12
-    #playerLaserSetup mLaser02PosX, mLaser02PosX + 1, mLaser02PosY, mLaser02Active, 6
+    #playerLaserSetup mLaser00PosX, mLaser00PosX + 1, mLaser00PosY, mLaserActive00, 9
+    #playerLaserSetup mLaser01PosX, mLaser01PosX + 1, mLaser01PosY, mLaserActive01, 12
+    #playerLaserSetup mLaser02PosX, mLaser02PosX + 1, mLaser02PosY, mLaserActive02, 6
     rts
 
 playerFire1
-    #playerLaserSetup mLaser03PosX, mLaser03PosX + 1, mLaser03PosY, mLaser03Active, 9
-    #playerLaserSetup mLaser04PosX, mLaser04PosX + 1, mLaser04PosY, mLaser04Active, 12
-    #playerLaserSetup mLaser05PosX, mLaser05PosX + 1, mLaser05PosY, mLaser05Active, 6
+    #playerLaserSetup mLaser03PosX, mLaser03PosX + 1, mLaser03PosY, mLaserActive03, 9
+    #playerLaserSetup mLaser04PosX, mLaser04PosX + 1, mLaser04PosY, mLaserActive04, 12
+    #playerLaserSetup mLaser05PosX, mLaser05PosX + 1, mLaser05PosY, mLaserActive05, 6
     rts
 
 playerLaserMac .macro
@@ -92,6 +92,24 @@ _moveOK
 .endmacro
 
 playerLaserMove
+    lda mPlayerLaserPower
+    cmp #0
+    beq _low
+    cmp #1
+    beq _med
+    cmp #1
+    beq _hi
+    rts
+_low
+    jsr playerLaser0
+   ;jsr playerLaser3
+    rts
+_med
+    jsr playerLaser0
+    jsr playerLaser1
+    jsr playerLaser2
+    rts
+_hi
     jsr playerLaser0
     jsr playerLaser1
     jsr playerLaser2
@@ -102,7 +120,7 @@ playerLaserMove
     rts
 
 playerLaser0
-    lda mLaser00Active
+    lda mLaserActive00
     cmp #0
     bne _checkMoveOk
     lda #spPlayer1Laser0
@@ -113,7 +131,7 @@ _checkMoveOk
     lda mLaser00Posy
     cmp #3
     bcs _moveOK
-    stz mLaser00Active
+    stz mLaserActive00
     rts
 _moveOK
     dec mLaser00Posy
@@ -123,7 +141,7 @@ _moveOK
     rts
 
 playerLaser1
-    lda mLaser01Active
+    lda mLaserActive01
     cmp #0
     bne _checkMoveOk
     lda #spPlayer1Laser1
@@ -134,7 +152,7 @@ _checkMoveOk
     lda mLaser01Posy
     cmp #3
     bcs _moveOK
-    stz mLaser00Active
+    stz mLaserActive00
     rts
 _moveOK
     dec mLaser01Posy
@@ -151,7 +169,7 @@ _moveOK
     rts
 
 playerLaser2
-    lda mLaser02Active
+    lda mLaserActive02
     cmp #0
     bne _checkMoveOk
     lda #spPlayer1Laser2
@@ -162,7 +180,7 @@ _checkMoveOk
     lda mLaser02Posy
     cmp #3
     bcs _moveOK
-    stz mLaser02Active
+    stz mLaserActive02
     rts
 _moveOK
     dec mLaser02Posy
@@ -180,7 +198,7 @@ _moveOK
     rts
 
 playerLaser3
-    lda mLaser03Active
+    lda mLaserActive03
     cmp #0
     bne _checkMoveOk
     lda #spPlayer1Laser3
@@ -191,7 +209,7 @@ _checkMoveOk
     lda mLaser03Posy
     cmp #3
     bcs _moveOK
-    stz mLaser03Active
+    stz mLaserActive03
     rts
 _moveOK
     dec mLaser03Posy
@@ -201,7 +219,7 @@ _moveOK
     rts
 
 playerLaser4
-    lda mLaser04Active
+    lda mLaserActive04
     cmp #0
     bne _checkMoveOk
     lda #spPlayer1Laser4
@@ -212,7 +230,7 @@ _checkMoveOk
     lda mLaser04Posy
     cmp #3
     bcs _moveOK
-    stz mLaser04Active
+    stz mLaserActive04
     rts
 _moveOK
     dec mLaser04Posy
@@ -230,7 +248,7 @@ _moveOK
     rts
  
 playerLaser5
-    lda mLaser05Active
+    lda mLaserActive05
     cmp #0
     bne _checkMoveOk
     lda #spPlayer1Laser5
@@ -241,7 +259,7 @@ _checkMoveOk
     lda mLaser05Posy
     cmp #3
     bcs _moveOK
-    stz mLaser05Active
+    stz mLaserActive05
     rts
 _moveOK
     dec mLaser05Posy
@@ -256,6 +274,49 @@ _moveOK
     adc #0
     sta  mLaser05PosX + 1
     #macroShowSprite spPlayer1Laser5, spLaser00 ,mLaser05PosX, mLaser05PosX+1, mLaser05PosY, SPRITE24L0C2 
+    rts
+
+resetAllLasers
+    lda #objectDisabled
+    sta mLaserActive00
+    sta mLaserActive01
+    sta mLaserActive02
+    sta mLaserActive03
+    sta mLaserActive04
+    sta mLaserActive05
+
+    lda #0
+    sta mLaser00Posy
+    sta mLaser01Posy
+    sta mLaser02Posy
+    sta mLaser03Posy
+    sta mLaser04Posy
+    sta mLaser05Posy
+
+    lda spPlayer1Laser0
+    jsr setSpriteNumber
+    jsr hideSprite
+
+    lda spPlayer1Laser1
+    jsr setSpriteNumber
+    jsr hideSprite
+
+    lda spPlayer1Laser2
+    jsr setSpriteNumber
+    jsr hideSprite
+
+    lda spPlayer1Laser3
+    jsr setSpriteNumber
+    jsr hideSprite
+
+    lda spPlayer1Laser4
+    jsr setSpriteNumber
+    jsr hideSprite
+
+    lda spPlayer1Laser5
+    jsr setSpriteNumber
+    jsr hideSprite
+
     rts
 .endsection
 
@@ -274,11 +335,11 @@ mLaser02PosX
     .byte $00, $00
 mLaser02Posy
     .byte $00, $00
-mLaser00Active
+mLaserActive00
     .byte $00
-mLaser01Active
+mLaserActive01
     .byte $00
-mLaser02Active
+mLaserActive02
     .byte $00
 
 mLaser03PosX
@@ -293,9 +354,9 @@ mLaser05PosX
     .byte $00, $00
 mLaser05Posy
     .byte $00, $00
-mLaser03Active
+mLaserActive03
     .byte $00
-mLaser04Active
+mLaserActive04
     .byte $00
-mLaser05Active
+mLaserActive05
     .byte $00

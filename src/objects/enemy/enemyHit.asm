@@ -52,11 +52,23 @@ _frame2
     inc \3
 _end
     jsr hideSprite
-    lda #objectInactive
+    lda #objectDisabled
     sta \1
     stz \3
     stz \2
 .endmacro
+
+;a register
+; enemyStatus number
+isEnemyHit
+    cmp #objectCollided
+    beq _yes
+    sec
+    rts
+_yes
+    clc
+    rts
+    
 enemyHit
     jsr enemyHit0
     jsr enemyHit1
@@ -73,46 +85,46 @@ enemyHit
     rts
 
 enemyHit0
-    #enemyExplosionMacro mEnemy0, mPlayerHitDelay0, mEnemyHitFrames0, spEnemyNumber00
-    rts
+     #enemyExplosionMacro mEnemyStatus00, mPlayerHitDelay0, mEnemyHitFrames0, spEnemyNumber00
+     rts
 enemyHit1
-    #enemyExplosionMacro mEnemy1, mPlayerHitDelay1, mEnemyHitFrames1, spEnemyNumber01
-    rts
+     #enemyExplosionMacro mEnemyStatus01, mPlayerHitDelay1, mEnemyHitFrames1, spEnemyNumber01
+     rts
 enemyHit2
-    #enemyExplosionMacro mEnemy2, mPlayerHitDelay2, mEnemyHitFrames2, spEnemyNumber02
-    rts
+     #enemyExplosionMacro mEnemyStatus02, mPlayerHitDelay2, mEnemyHitFrames2, spEnemyNumber02
+     rts
 
 enemyHit3
-    #enemyExplosionMacro mEnemy3, mPlayerHitDelay3, mEnemyHitFrames3, spEnemyNumber03
-    rts
+     #enemyExplosionMacro mEnemyStatus03, mPlayerHitDelay3, mEnemyHitFrames3, spEnemyNumber03
+     rts
 
 enemyHit4
-    #enemyExplosionMacro mEnemy4, mPlayerHitDelay4, mEnemyHitFrames4, spEnemyNumber04
-    rts
+     #enemyExplosionMacro mEnemyStatus04, mPlayerHitDelay4, mEnemyHitFrames4, spEnemyNumber04
+     rts
 
 enemyHit5
-    #enemyExplosionMacro mEnemy5, mPlayerHitDelay5, mEnemyHitFrames5, spEnemyNumber05
-    rts
+     #enemyExplosionMacro mEnemyStatus05, mPlayerHitDelay5, mEnemyHitFrames5, spEnemyNumber05
+     rts
 
 enemyHit6
-    #enemyExplosionMacro mEnemy6, mPlayerHitDelay6, mEnemyHitFrames6, spEnemyNumber06
-    rts
+     #enemyExplosionMacro mEnemyStatus06, mPlayerHitDelay6, mEnemyHitFrames6, spEnemyNumber06
+     rts
 
 enemyHit7
-    #enemyExplosionMacro mEnemy7, mPlayerHitDelay7, mEnemyHitFrames7, spEnemyNumber07
-    rts
+     #enemyExplosionMacro mEnemyStatus07, mPlayerHitDelay7, mEnemyHitFrames7, spEnemyNumber07
+     rts
 enemyHit8
-    #enemyExplosionMacro mEnemy8, mPlayerHitDelay8, mEnemyHitFrames8, spEnemyNumber08
-    rts
+     #enemyExplosionMacro mEnemyStatus08, mPlayerHitDelay8, mEnemyHitFrames8, spEnemyNumber08
+     rts
 enemyHit9
-    #enemyExplosionMacro mEnemy9, mPlayerHitDelay9, mEnemyHitFrames9, spEnemyNumber09
-    rts
+     #enemyExplosionMacro mEnemyStatus09, mPlayerHitDelay9, mEnemyHitFrames9, spEnemyNumber09
+     rts
 enemyHit10
-    #enemyExplosionMacro mEnemy10, mPlayerHitDelay10, mEnemyHitFrames10, spEnemyNumber10
-    rts
+     #enemyExplosionMacro mEnemyStatus10, mPlayerHitDelay10, mEnemyHitFrames10, spEnemyNumber10
+     rts
 enemyHit11
-    #enemyExplosionMacro mEnemy11, mPlayerHitDelay11, mEnemyHitFrames11, spEnemyNumber11
-    rts
+     #enemyExplosionMacro mEnemyStatus11, mPlayerHitDelay11, mEnemyHitFrames11, spEnemyNumber11
+     rts
 .section variables
 mEnemyHitFrames0
     .byte $00

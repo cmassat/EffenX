@@ -1,3 +1,4 @@
+.section code
 playerLaserCollide
     jsr playerLaser0HitEnemy0
     jsr playerLaser1HitEnemy0
@@ -106,7 +107,7 @@ objectsActiveMacro .macro
     cmp #objectActive
     beq _objectOneActive
     rts
-_objectOneActive
+_objectOneActive  
     lda \2
     cmp  #objectActive
     beq _checkCollision
@@ -115,477 +116,478 @@ _checkCollision
  .endmacro
 
 playerLaser0HitEnemy0
-    #objectsActiveMacro mEnemy0, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy0 + 2, 18, mLaser00PosY, 6,mEnemy0 + 4, 20
-    #didCollide mEnemy0, mLaser00Active
+    #objectsActiveMacro mEnemyStatus00, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX00, 18, mLaser00PosY, 6, mEnemyY00, 20
+    #didCollide mEnemyStatus00, mLaserActive00
     rts
 
 playerLaser1HitEnemy0
-    #objectsActiveMacro mEnemy0, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy0 + 2, 18, mLaser01PosY, 6, mEnemy0 + 4, 20
-    #didCollide mEnemy0, mLaser01Active
+    #objectsActiveMacro mEnemyStatus00, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX00, 18, mLaser01PosY, 6,mEnemyY00, 20
+    #didCollide mEnemyStatus00, mLaserActive01
     rts
 
 playerLaser2HitEnemy0
-    #objectsActiveMacro mEnemy0, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy0 + 2, 18, mLaser02PosY, 6, mEnemy0 + 4, 20
-    #didCollide mEnemy0, mLaser02Active
+    #objectsActiveMacro mEnemyStatus00, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX00, 18, mLaser02PosY, 6,mEnemyY00, 20
+    #didCollide mEnemyStatus00, mLaserActive02
     rts
 
 
 playerLaser3HitEnemy0
-    #objectsActiveMacro mEnemy0, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy0 + 2, 18, mLaser03PosY, 6,mEnemy0 + 4, 20
-    #didCollide mEnemy0, mLaser03Active
+    #objectsActiveMacro mEnemyStatus00, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX00, 18, mLaser03PosY, 6,mEnemyY00, 20
+    #didCollide mEnemyStatus00, mLaserActive03
     rts
 
 
 playerLaser4HitEnemy0
-    #objectsActiveMacro mEnemy0, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy0 + 2, 18, mLaser04PosY, 6,mEnemy0 + 4, 20
-    #didCollide mEnemy0, mLaser04Active
+    #objectsActiveMacro mEnemyStatus00, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX00, 18, mLaser04PosY, 6,mEnemyY00 + 4, 20
+    #didCollide mEnemyStatus00, mLaserActive04
     rts
 
 
 playerLaser5HitEnemy0
-    #objectsActiveMacro mEnemy0, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy0 + 2, 18, mLaser05PosY, 6,mEnemy0 + 4, 20
-    #didCollide mEnemy0, mLaser05Active
+    #objectsActiveMacro mEnemyStatus00, mLaserActive05
+    #coollideMacro mLaser05PosX, 10,mEnemyX00, 18, mLaser05PosY, 6,mEnemyY00 + 4, 20
+    #didCollide mEnemyStatus00, mLaserActive05
     rts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 playerLaser0HitEnemy1
-    #objectsActiveMacro mEnemy1, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy1 + 2, 18, mLaser00PosY, 6, mEnemy1 + 4, 20
-    #didCollide mEnemy1, mLaser00Active
+    #objectsActiveMacro mEnemyStatus01, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX01, 18, mLaser00PosY, 6, mEnemyY01, 20
+    #didCollide mEnemyStatus01, mLaserActive00
     rts
 
 playerLaser1HitEnemy1
-    #objectsActiveMacro mEnemy1, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy1 + 2, 18, mLaser01PosY, 6, mEnemy1 + 4 , 20
-    #didCollide mEnemy1, mLaser01Active
+    #objectsActiveMacro mEnemyStatus01, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX01, 18, mLaser01PosY, 6, mEnemyY01, 20
+    #didCollide mEnemyStatus01, mLaserActive01
     rts
 
 playerLaser2HitEnemy1
-    #objectsActiveMacro mEnemy1, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy1 + 2, 18, mLaser02PosY, 6, mEnemy1 + 4 , 20
-    #didCollide mEnemy1, mLaser02Active
+    #objectsActiveMacro mEnemyStatus01, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX01, 18, mLaser02PosY, 6, mEnemyY01, 20
+    #didCollide mEnemyStatus01, mLaserActive02
     rts
 
 playerLaser3HitEnemy1
-    #objectsActiveMacro mEnemy1, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy1 + 2, 18, mLaser03PosY, 6,mEnemy1 + 4, 20
-    #didCollide mEnemy1, mLaser03Active
+    #objectsActiveMacro mEnemyStatus01, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX01, 18, mLaser03PosY, 6, mEnemyY01, 20
+    #didCollide mEnemyStatus01, mLaserActive03
     rts
 
 playerLaser4HitEnemy1
-    #objectsActiveMacro mEnemy1, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy1 + 2, 18, mLaser04PosY, 6,mEnemy1 + 4, 20
-    #didCollide mEnemy1, mLaser04Active
+    #objectsActiveMacro mEnemyStatus01, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX01, 18, mLaser04PosY, 6, mEnemyY01, 20
+    #didCollide mEnemyStatus01, mLaserActive04
     rts
 
 playerLaser5HitEnemy1
-    #objectsActiveMacro mEnemy1, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy1 + 2, 18, mLaser05PosY, 6,mEnemy1 + 4, 20
-    #didCollide mEnemy1, mLaser05Active
+    #objectsActiveMacro mEnemyStatus01, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX01, 18, mLaser05PosY, 6, mEnemyY01, 20
+    #didCollide mEnemyStatus01, mLaserActive05
     rts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemy2
-    #objectsActiveMacro mEnemy2, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy2 + 2, 18, mLaser00PosY, 6, mEnemy2 + 4, 20
-    #didCollide mEnemy2, mLaser00Active
+    #objectsActiveMacro mEnemyStatus02, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX02, 18, mLaser00PosY, 6, mEnemyY02, 20
+    #didCollide mEnemyStatus02, mLaserActive00
     rts
 
 playerLaser1HitEnemy2
-    #objectsActiveMacro mEnemy2, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy2 + 2, 18, mLaser01PosY, 6, mEnemy2 + 4, 20
-    #didCollide mEnemy2, mLaser01Active
+    #objectsActiveMacro mEnemyStatus02, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX02, 18, mLaser01PosY, 6, mEnemyY02, 20
+    #didCollide mEnemyStatus02, mLaserActive01
     rts
 
 playerLaser2HitEnemy2
-    #objectsActiveMacro mEnemy2, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy2 + 2, 18, mLaser02PosY, 6, mEnemy2 + 4, 20
-    #didCollide mEnemy2, mLaser02Active
+    #objectsActiveMacro mEnemyStatus02, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX02, 18, mLaser02PosY, 6, mEnemyY02, 20
+    #didCollide mEnemyStatus02, mLaserActive02
     rts
 
 playerLaser3HitEnemy2
-    #objectsActiveMacro mEnemy2, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy2 + 2, 18, mLaser03PosY, 6,mEnemy2 + 4, 20
-    #didCollide mEnemy2, mLaser03Active
+    #objectsActiveMacro mEnemyStatus02, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX02, 18, mLaser03PosY, 6,mEnemyY02, 20
+    #didCollide mEnemyStatus02, mLaserActive03
     rts
 
 playerLaser4HitEnemy2
-     #objectsActiveMacro mEnemy2, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy2 + 2, 18, mLaser04PosY, 6,mEnemy2 + 4, 20
-    #didCollide mEnemy2, mLaser04Active
+     #objectsActiveMacro mEnemyStatus02, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX02, 18, mLaser04PosY, 6,mEnemyY02, 20
+    #didCollide mEnemyStatus02, mLaserActive04
     rts
 
 playerLaser5HitEnemy2
-    #objectsActiveMacro mEnemy2, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy2 + 2, 18, mLaser05PosY, 6,mEnemy2 + 4, 20
-    #didCollide mEnemy2, mLaser05Active
+    #objectsActiveMacro mEnemyStatus02, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX02, 18, mLaser05PosY, 6,mEnemyY02, 20
+    #didCollide mEnemyStatus02, mLaserActive05
     rts
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemy3
-    #objectsActiveMacro mEnemy3, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy3 + 2, 18, mLaser00PosY, 6, mEnemy3 + 4, 20
-    #didCollide mEnemy3, mLaser00Active
+    #objectsActiveMacro mEnemyStatus03, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX03, 18, mLaser00PosY, 6, mEnemyY03, 20
+    #didCollide mEnemyStatus03, mLaserActive00
     rts
 
 playerLaser1HitEnemy3
-    #objectsActiveMacro mEnemy3, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy3 + 2, 18, mLaser01PosY, 6, mEnemy3 + 4, 20
-    #didCollide mEnemy3, mLaser01Active
+    #objectsActiveMacro mEnemyStatus03, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX03, 18, mLaser01PosY, 6, mEnemyY03, 20
+    #didCollide mEnemyStatus03, mLaserActive01
     rts
 
 playerLaser2HitEnemy3
-    #objectsActiveMacro mEnemy3, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy3 + 2, 18, mLaser02PosY, 6, mEnemy3 + 4, 20
-    #didCollide mEnemy3, mLaser02Active
+    #objectsActiveMacro mEnemyStatus03, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX03, 18, mLaser02PosY, 6, mEnemyY03, 20
+    #didCollide mEnemyStatus03, mLaserActive02
     rts
 
 playerLaser3HitEnemy3
-    #objectsActiveMacro mEnemy3, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy3 + 2, 18, mLaser03PosY, 6,mEnemy3 + 4, 20
-    #didCollide mEnemy3, mLaser03Active
+    #objectsActiveMacro mEnemyStatus03, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX03, 18, mLaser03PosY, 6,mEnemyY03, 20
+    #didCollide mEnemyStatus03, mLaserActive03
     rts
 
 playerLaser4HitEnemy3
-    #objectsActiveMacro mEnemy3, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy3 + 2, 18, mLaser04PosY, 6,mEnemy3 + 4, 20
-    #didCollide mEnemy3, mLaser04Active
+    #objectsActiveMacro mEnemyStatus03, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX03, 18, mLaser04PosY, 6,mEnemyY03, 20
+    #didCollide mEnemyStatus03, mLaserActive04
     rts
 
 playerLaser5HitEnemy3
-    #objectsActiveMacro mEnemy3, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy3 + 2, 18, mLaser05PosY, 6,mEnemy3 + 4, 20
-    #didCollide mEnemy3, mLaser05Active
+    #objectsActiveMacro mEnemyStatus03, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX03, 18, mLaser05PosY, 6,mEnemyY03, 20
+    #didCollide mEnemyStatus03, mLaserActive05
     rts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemy4
-    #objectsActiveMacro mEnemy4, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy4 + 2, 18, mLaser00PosY, 6, mEnemy4 + 4, 20
-    #didCollide mEnemy4, mLaser00Active
+    #objectsActiveMacro mEnemyStatus04, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX04, 18, mLaser00PosY, 6, mEnemyY04, 20
+    #didCollide mEnemyStatus04, mLaserActive00
     rts
 
 playerLaser1HitEnemy4
-    #objectsActiveMacro mEnemy4, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy4 + 2, 18, mLaser01PosY, 6, mEnemy4 + 4, 20
-    #didCollide mEnemy4, mLaser01Active
+    #objectsActiveMacro mEnemyStatus04, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX04, 18, mLaser01PosY, 6, mEnemyY04, 20
+    #didCollide mEnemyStatus04, mLaserActive01
     rts
 
 playerLaser2HitEnemy4
-    #objectsActiveMacro mEnemy4, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy4 + 2, 18, mLaser02PosY, 6, mEnemy4 + 4, 20
-    #didCollide mEnemy4, mLaser02Active
+    #objectsActiveMacro mEnemyStatus04, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX04, 18, mLaser02PosY, 6, mEnemyY04, 20
+    #didCollide mEnemyStatus04, mLaserActive02
     rts
 
 playerLaser3HitEnemy4
-    #objectsActiveMacro mEnemy4, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy4 + 2, 18, mLaser03PosY, 6,mEnemy4 + 4, 20
-    #didCollide mEnemy4, mLaser03Active
+    #objectsActiveMacro mEnemyStatus04, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX04, 18, mLaser03PosY, 6,mEnemyY04, 20
+    #didCollide mEnemyStatus04, mLaserActive03
     rts
 
 playerLaser4HitEnemy4
-    #objectsActiveMacro mEnemy4, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy4 + 2, 18, mLaser04PosY, 6,mEnemy4 + 4, 20
-    #didCollide mEnemy4, mLaser04Active
+    #objectsActiveMacro mEnemyStatus04, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX04, 18, mLaser04PosY, 6,mEnemyY04, 20
+    #didCollide mEnemyStatus04, mLaserActive04
     rts
 
 playerLaser5HitEnemy4
-    #objectsActiveMacro mEnemy4, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy4 + 2, 18, mLaser05PosY, 6,mEnemy4 + 4, 20
-    #didCollide mEnemy4, mLaser05Active
+    #objectsActiveMacro mEnemyStatus04, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX04, 18, mLaser05PosY, 6,mEnemyY04, 20
+    #didCollide mEnemyStatus04, mLaserActive05
     rts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemy5
-    #objectsActiveMacro mEnemy5, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy5 + 2, 18, mLaser00PosY, 6, mEnemy5 + 4, 20
-    #didCollide mEnemy5, mLaser00Active
+    #objectsActiveMacro mEnemyStatus05, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX05, 18, mLaser00PosY, 6, mEnemyY05, 20
+    #didCollide mEnemyStatus05, mLaserActive00
     rts
 
 playerLaser1HitEnemy5
-    #objectsActiveMacro mEnemy5, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy5 + 2, 18, mLaser01PosY, 6, mEnemy5 + 4, 20
-    #didCollide mEnemy5, mLaser01Active
+    #objectsActiveMacro mEnemyStatus05, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX05, 18, mLaser01PosY, 6, mEnemyY05, 20
+    #didCollide mEnemyStatus05, mLaserActive01
     rts
 
 playerLaser2HitEnemy5
-    #objectsActiveMacro mEnemy5, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy5 + 2, 18, mLaser02PosY, 6, mEnemy5 + 4, 20
-    #didCollide mEnemy5, mLaser02Active
+    #objectsActiveMacro mEnemyStatus05, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX05, 18, mLaser02PosY, 6, mEnemyY05, 20
+    #didCollide mEnemyStatus05, mLaserActive02
     rts
 
 playerLaser3HitEnemy5
-    #objectsActiveMacro mEnemy5, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy5 + 2, 18, mLaser03PosY, 6,mEnemy5 + 4, 20
-    #didCollide mEnemy5, mLaser03Active
+    #objectsActiveMacro mEnemyStatus05, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX05, 18, mLaser03PosY, 6,mEnemyY05, 20
+    #didCollide mEnemyStatus05, mLaserActive03
     rts
 
 playerLaser4HitEnemy5
-    #objectsActiveMacro mEnemy5, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy5 + 2, 18, mLaser04PosY, 6,mEnemy5 + 4, 20
-    #didCollide mEnemy5, mLaser04Active
+    #objectsActiveMacro mEnemyStatus05, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX05, 18, mLaser04PosY, 6,mEnemyY05, 20
+    #didCollide mEnemyStatus05, mLaserActive04
     rts
 
 playerLaser5HitEnemy5
-    #objectsActiveMacro mEnemy5, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy5 + 2, 18, mLaser05PosY, 6,mEnemy5 + 4, 20
-    #didCollide mEnemy5, mLaser05Active
+    #objectsActiveMacro mEnemyStatus05, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX05, 18, mLaser05PosY, 6,mEnemyY05, 20
+    #didCollide mEnemyStatus05, mLaserActive05
     rts
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemy6
-    #objectsActiveMacro mEnemy6, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy6 + 2, 18, mLaser00PosY, 6, mEnemy6 + 4, 20
-    #didCollide mEnemy6, mLaser00Active
+    #objectsActiveMacro mEnemyStatus06, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX06, 18, mLaser00PosY, 6, mEnemyY06, 20
+    #didCollide mEnemyStatus06, mLaserActive00
     rts
 
 playerLaser1HitEnemy6
-    #objectsActiveMacro mEnemy6, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy6 + 2, 18, mLaser01PosY, 6, mEnemy6 + 4, 20
-    #didCollide mEnemy6, mLaser01Active
+    #objectsActiveMacro mEnemyStatus06, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX06, 18, mLaser01PosY, 6, mEnemyY06, 20
+    #didCollide mEnemyStatus06, mLaserActive01
     rts
 
 playerLaser2HitEnemy6
-    #objectsActiveMacro mEnemy6, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy6 + 2, 18, mLaser02PosY, 6, mEnemy6 + 4, 20
-    #didCollide mEnemy6, mLaser02Active
+    #objectsActiveMacro mEnemyStatus06, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX06, 18, mLaser02PosY, 6, mEnemyY06, 20
+    #didCollide mEnemyStatus06, mLaserActive02
     rts
 
 playerLaser3HitEnemy6
-    #objectsActiveMacro mEnemy6, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy6 + 2, 18, mLaser03PosY, 6,mEnemy6 + 4, 20
-    #didCollide mEnemy6, mLaser03Active
+    #objectsActiveMacro mEnemyStatus06, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX06, 18, mLaser03PosY, 6,mEnemyY06, 20
+    #didCollide mEnemyStatus06, mLaserActive03
     rts
 
 playerLaser4HitEnemy6
-    #objectsActiveMacro mEnemy6, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy6 + 2, 18, mLaser04PosY, 6,mEnemy6 + 4, 20
-    #didCollide mEnemy6, mLaser04Active
+    #objectsActiveMacro mEnemyStatus06, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX06, 18, mLaser04PosY, 6,mEnemyY06, 20
+    #didCollide mEnemyStatus06, mLaserActive04
     rts
 
 playerLaser5HitEnemy6
-    #objectsActiveMacro mEnemy6, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy6 + 2, 18, mLaser05PosY, 6,mEnemy6 + 4, 20
-    #didCollide mEnemy6, mLaser05Active
+    #objectsActiveMacro mEnemyStatus06, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX06, 18, mLaser05PosY, 6,mEnemyY06, 20
+    #didCollide mEnemyStatus06, mLaserActive05
     rts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemy7
-    #objectsActiveMacro mEnemy7, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy7 + 2, 18, mLaser00PosY, 6, mEnemy7 + 4, 20
-    #didCollide mEnemy7, mLaser00Active
+    #objectsActiveMacro mEnemyStatus07, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX07, 18, mLaser00PosY, 6, mEnemyY07, 20
+    #didCollide mEnemyStatus07, mLaserActive00
     rts
 
 playerLaser1HitEnemy7
-    #objectsActiveMacro mEnemy7, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy7 + 2, 18, mLaser01PosY, 6, mEnemy7 + 4, 20
-    #didCollide mEnemy7, mLaser01Active
+    #objectsActiveMacro mEnemyStatus07, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX07, 18, mLaser01PosY, 6, mEnemyY07, 20
+    #didCollide mEnemyStatus07, mLaserActive01
     rts
 
 playerLaser2HitEnemy7
-    #objectsActiveMacro mEnemy7, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy7 + 2, 18, mLaser02PosY, 6, mEnemy7 + 4, 20
-    #didCollide mEnemy7, mLaser02Active
+    #objectsActiveMacro mEnemyStatus07, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX07, 18, mLaser02PosY, 6, mEnemyY07, 20
+    #didCollide mEnemyStatus07, mLaserActive02
     rts
 
 playerLaser3HitEnemy7
-    #objectsActiveMacro mEnemy7, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy7 + 2, 18, mLaser03PosY, 6,mEnemy7 + 4, 20
-    #didCollide mEnemy7, mLaser03Active
+    #objectsActiveMacro mEnemyStatus07, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX07, 18, mLaser03PosY, 6,mEnemyY07, 20
+    #didCollide mEnemyStatus07, mLaserActive03
     rts
 
 playerLaser4HitEnemy7
-    #objectsActiveMacro mEnemy7, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy7 + 2, 18, mLaser04PosY, 6,mEnemy7 + 4, 20
-    #didCollide mEnemy7, mLaser04Active
+    #objectsActiveMacro mEnemyStatus07, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX07, 18, mLaser04PosY, 6,mEnemyY07, 20
+    #didCollide mEnemyStatus07, mLaserActive04
     rts
 
 playerLaser5HitEnemy7
-    #objectsActiveMacro mEnemy7, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy7 + 2, 18, mLaser05PosY, 6,mEnemy7 + 4, 20
-    #didCollide mEnemy7, mLaser05Active
+    #objectsActiveMacro mEnemyStatus07, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX07, 18, mLaser05PosY, 6,mEnemyY07, 20
+    #didCollide mEnemyStatus07, mLaserActive05
     rts
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemy8
-    #objectsActiveMacro mEnemy8, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy8 + 2, 18, mLaser00PosY, 6, mEnemy8 + 4, 20
-    #didCollide mEnemy8, mLaser00Active
+    #objectsActiveMacro mEnemyStatus08, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX08, 18, mLaser00PosY, 6, mEnemyY08, 20
+    #didCollide mEnemyStatus08, mLaserActive00
     rts
 
 playerLaser1HitEnemy8
-    #objectsActiveMacro mEnemy8, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy8 + 2, 18, mLaser01PosY, 6, mEnemy8 + 4, 20
-    #didCollide mEnemy8, mLaser01Active
+    #objectsActiveMacro mEnemyStatus08, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX08, 18, mLaser01PosY, 6, mEnemyY08, 20
+    #didCollide mEnemyStatus08, mLaserActive01
     rts
 
 playerLaser2HitEnemy8
-    #objectsActiveMacro mEnemy8, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy8 + 2, 18, mLaser02PosY, 6, mEnemy8 + 4, 20
-    l#didCollide mEnemy8, mLaser02Active
+    #objectsActiveMacro mEnemyStatus08, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX08, 18, mLaser02PosY, 6, mEnemyY08, 20
+    l#didCollide mEnemyStatus08, mLaserActive02
     rts
 
 playerLaser3HitEnemy8
-    #objectsActiveMacro mEnemy8, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy8 + 2, 18, mLaser03PosY, 6,mEnemy8 + 4, 20
-    #didCollide mEnemy8, mLaser03Active
+    #objectsActiveMacro mEnemyStatus08, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX08, 18, mLaser03PosY, 6,mEnemyY08, 20
+    #didCollide mEnemyStatus08, mLaserActive03
     rts
 
 playerLaser4HitEnemy8
-    #objectsActiveMacro mEnemy8, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy8 + 2, 18, mLaser04PosY, 6,mEnemy8 + 4, 20
-    #didCollide mEnemy8, mLaser04Active
+    #objectsActiveMacro mEnemyStatus08, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX08, 18, mLaser04PosY, 6,mEnemyY08, 20
+    #didCollide mEnemyStatus08, mLaserActive04
     rts
 
 playerLaser5HitEnemy8
-    #objectsActiveMacro mEnemy8, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy8 + 2, 18, mLaser05PosY, 6,mEnemy8 + 4, 20
-    #didCollide mEnemy8, mLaser05Active
+    #objectsActiveMacro mEnemyStatus08, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX08, 18, mLaser05PosY, 6,mEnemyY08, 20
+    #didCollide mEnemyStatus08, mLaserActive05
     rts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemy9
-    #objectsActiveMacro mEnemy9, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy9 + 2, 18, mLaser00PosY, 6, mEnemy9 + 4, 20
-    #didCollide mEnemy9, mLaser00Active
+    #objectsActiveMacro mEnemyStatus09, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX09, 18, mLaser00PosY, 6, mEnemyY09, 20
+    #didCollide mEnemyStatus09, mLaserActive00
     rts
 
 playerLaser1HitEnemy9
-    #objectsActiveMacro mEnemy9, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy9 + 2, 18, mLaser01PosY, 6, mEnemy9 + 4, 20
-    #didCollide mEnemy9, mLaser01Active
+    #objectsActiveMacro mEnemyStatus09, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX09, 18, mLaser01PosY, 6, mEnemyY09, 20
+    #didCollide mEnemyStatus09, mLaserActive01
     rts
 
 playerLaser2HitEnemy9
-    #objectsActiveMacro mEnemy9, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy9 + 2, 18, mLaser02PosY, 6, mEnemy9 + 4, 20
-    #didCollide mEnemy9, mLaser02Active
+    #objectsActiveMacro mEnemyStatus09, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX09, 18, mLaser02PosY, 6, mEnemyY09, 20
+    #didCollide mEnemyStatus09, mLaserActive02
     rts
 
 playerLaser3HitEnemy9
-    #objectsActiveMacro mEnemy9, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy9 + 2, 18, mLaser03PosY, 6,mEnemy9 + 4, 20
-    #didCollide mEnemy9, mLaser03Active
+    #objectsActiveMacro mEnemyStatus09, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX09, 18, mLaser03PosY, 6,mEnemyY09, 20
+    #didCollide mEnemyStatus09, mLaserActive03
     rts
 
 playerLaser4HitEnemy9
-    #objectsActiveMacro mEnemy9, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy9 + 2, 18, mLaser04PosY, 6,mEnemy9 + 4, 20
-    #didCollide mEnemy9, mLaser04Active
+    #objectsActiveMacro mEnemyStatus09, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX09, 18, mLaser04PosY, 6,mEnemyY09, 20
+    #didCollide mEnemyStatus09, mLaserActive04
     rts
 
 playerLaser5HitEnemy9
-    #objectsActiveMacro mEnemy9, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy9 + 2, 18, mLaser05PosY, 6,mEnemy9 + 4, 20
-    #didCollide mEnemy9, mLaser05Active
+    #objectsActiveMacro mEnemyStatus09, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX09, 18, mLaser05PosY, 6,mEnemyY09, 20
+    #didCollide mEnemyStatus09, mLaserActive05
     rts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemy10
-    #objectsActiveMacro mEnemy10, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy10 + 2, 18, mLaser00PosY, 6, mEnemy10 + 4, 20
-    #didCollide mEnemy10, mLaser00Active
+    #objectsActiveMacro mEnemyStatus10, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX10, 18, mLaser00PosY, 6, mEnemyY10, 20
+    #didCollide mEnemyStatus10, mLaserActive00
     rts
 
 playerLaser1HitEnemy10
-    #objectsActiveMacro mEnemy10, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy10 + 2, 18, mLaser01PosY, 6, mEnemy10 + 4, 20
-    #didCollide mEnemy10, mLaser01Active
+    #objectsActiveMacro mEnemyStatus10, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX10, 18, mLaser01PosY, 6, mEnemyY10, 20
+    #didCollide mEnemyStatus10, mLaserActive01
     rts
 
 playerLaser2HitEnemy10
-    #objectsActiveMacro mEnemy10, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy10 + 2, 18, mLaser02PosY, 6, mEnemy10 + 4, 20
-    #didCollide mEnemy10, mLaser02Active
+    #objectsActiveMacro mEnemyStatus10, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX10, 18, mLaser02PosY, 6, mEnemyY10, 20
+    #didCollide mEnemyStatus10, mLaserActive02
     rts
 
 playerLaser3HitEnemy10
-    #objectsActiveMacro mEnemy10, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy10 + 2, 18, mLaser03PosY, 6,mEnemy10 + 4, 20
-    #didCollide mEnemy10, mLaser03Active
+    #objectsActiveMacro mEnemyStatus10, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX10, 18, mLaser03PosY, 6,mEnemyY10, 20
+    #didCollide mEnemyStatus10, mLaserActive03
     rts
 
 playerLaser4HitEnemy10
-    #objectsActiveMacro mEnemy10, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy10 + 2, 18, mLaser04PosY, 6,mEnemy10 + 4, 20
-    #didCollide mEnemy10, mLaser04Active
+    #objectsActiveMacro mEnemyStatus10, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX10, 18, mLaser04PosY, 6,mEnemyY10, 20
+    #didCollide mEnemyStatus10, mLaserActive04
     rts
 
 playerLaser5HitEnemy10
-    #objectsActiveMacro mEnemy10, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy10 + 2, 18, mLaser05PosY, 6,mEnemy10 + 4, 20
-    #didCollide mEnemy10, mLaser05Active
+    #objectsActiveMacro mEnemyStatus10, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX10, 18, mLaser05PosY, 6,mEnemyY10, 20
+    #didCollide mEnemyStatus10, mLaserActive05
     rts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemy11
-    #objectsActiveMacro mEnemy11, mLaser00Active
-    #coollideMacro mLaser00PosX, 10, mEnemy11 + 2, 18, mLaser00PosY, 6, mEnemy11 + 4, 20
-    #didCollide mEnemy11, mLaser00Active
+    #objectsActiveMacro mEnemyStatus11, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mEnemyX11, 18, mLaser00PosY, 6, mEnemyY11, 20
+    #didCollide mEnemyStatus11, mLaserActive00
     rts
 
 playerLaser1HitEnemy11
-    #objectsActiveMacro mEnemy11, mLaser01Active
-    #coollideMacro mLaser01PosX, 10, mEnemy11 + 2, 18, mLaser01PosY, 6, mEnemy11 + 4, 20
-    #didCollide mEnemy11, mLaser01Active
+    #objectsActiveMacro mEnemyStatus11, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mEnemyX11, 18, mLaser01PosY, 6, mEnemyY11, 20
+    #didCollide mEnemyStatus11, mLaserActive01
     rts
 
 playerLaser2HitEnemy11
-    #objectsActiveMacro mEnemy11, mLaser02Active
-    #coollideMacro mLaser02PosX, 10, mEnemy11 + 2, 18, mLaser02PosY, 6, mEnemy11 + 4, 20
-    #didCollide mEnemy11, mLaser02Active
+    #objectsActiveMacro mEnemyStatus11, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mEnemyX11, 18, mLaser02PosY, 6, mEnemyY11, 20
+    #didCollide mEnemyStatus11, mLaserActive02
     rts
 
 playerLaser3HitEnemy11
-    #objectsActiveMacro mEnemy11, mLaser03Active
-    #coollideMacro mLaser03PosX, 10, mEnemy11 + 2, 18, mLaser03PosY, 6,mEnemy11 + 4, 20
-    #didCollide mEnemy11, mLaser03Active
+    #objectsActiveMacro mEnemyStatus11, mLaserActive03
+    #coollideMacro mLaser03PosX, 10, mEnemyX11, 18, mLaser03PosY, 6,mEnemyY11, 20
+    #didCollide mEnemyStatus11, mLaserActive03
     rts
 
 playerLaser4HitEnemy11
-    #objectsActiveMacro mEnemy11, mLaser04Active
-    #coollideMacro mLaser04PosX, 10, mEnemy11 + 2, 18, mLaser04PosY, 6,mEnemy11 + 4, 20
-    #didCollide mEnemy11, mLaser04Active
+    #objectsActiveMacro mEnemyStatus11, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mEnemyX11, 18, mLaser04PosY, 6,mEnemyY11, 20
+    #didCollide mEnemyStatus11, mLaserActive04
     rts
 
 playerLaser5HitEnemy11
-    #objectsActiveMacro mEnemy11, mLaser05Active
-    #coollideMacro mLaser05PosX, 10, mEnemy11 + 2, 18, mLaser05PosY, 6,mEnemy11 + 4, 20
-    #didCollide mEnemy11, mLaser05Active
+    #objectsActiveMacro mEnemyStatus11, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mEnemyX11, 18, mLaser05PosY, 6,mEnemyY11, 20
+    #didCollide mEnemyStatus11, mLaserActive05
     rts
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 playerLaser0HitEnemyBoss
-    #objectsActiveMacro mLevelOneBossObjectState, mLaser00Active
+    #objectsActiveMacro mLevelOneBossObjectState, mLaserActive00
     #coollideMacro mLaser00PosX, 10, mLevelOneBossX4, 18, mLaser00PosY, 6, mLevelOneBossY5, 20
-    #didCollide mLevelOneBossObjectState, mLaser00Active
+    #didCollide mLevelOneBossObjectState, mLaserActive00
     rts
 
 playerLaser1HitEnemyBoss
-    #objectsActiveMacro mLevelOneBossObjectState, mLaser01Active
+    #objectsActiveMacro mLevelOneBossObjectState, mLaserActive01
     #coollideMacro mLaser01PosX, 10, mLevelOneBossX4, 18, mLaser01PosY, 6, mLevelOneBossY5, 20
-    #didCollide mLevelOneBossObjectState, mLaser01Active
+    #didCollide mLevelOneBossObjectState, mLaserActive01
     rts
 
 playerLaser2HitEnemyBoss
-    #objectsActiveMacro mLevelOneBossObjectState, mLaser02Active
+    #objectsActiveMacro mLevelOneBossObjectState, mLaserActive02
     #coollideMacro mLaser02PosX, 10, mLevelOneBossX4, 18, mLaser02PosY, 6, mLevelOneBossY5, 20
-    #didCollide mLevelOneBossObjectState, mLaser02Active
+    #didCollide mLevelOneBossObjectState, mLaserActive02
     rts
 
 playerLaser3HitEnemyBoss
-    #objectsActiveMacro mLevelOneBossObjectState, mLaser03Active
+    #objectsActiveMacro mLevelOneBossObjectState, mLaserActive03
     #coollideMacro mLaser03PosX, 10,mLevelOneBossX4, 18, mLaser03PosY, 6,mLevelOneBossY5, 20
-    #didCollide mLevelOneBossObjectState, mLaser03Active
+    #didCollide mLevelOneBossObjectState, mLaserActive03
     rts
 
 playerLaser4HitEnemyBoss
-    #objectsActiveMacro mLevelOneBossObjectState, mLaser04Active
+    #objectsActiveMacro mLevelOneBossObjectState, mLaserActive04
     #coollideMacro mLaser04PosX, 10, mLevelOneBossX4, 18, mLaser04PosY, 6,mLevelOneBossY5, 20
-    #didCollide mLevelOneBossObjectState, mLaser04Active
+    #didCollide mLevelOneBossObjectState, mLaserActive04
     rts
 
 playerLaser5HitEnemyBoss
-    #objectsActiveMacro mLevelOneBossObjectState, mLaser05Active
+    #objectsActiveMacro mLevelOneBossObjectState, mLaserActive05
     #coollideMacro mLaser05PosX, 10, mLevelOneBossX4, 18, mLaser05PosY, 6,mLevelOneBossY5, 20
-    #didCollide mLevelOneBossObjectState, mLaser04Active
+    #didCollide mLevelOneBossObjectState, mLaserActive04
     rts
+.endsection

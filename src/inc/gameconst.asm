@@ -88,11 +88,13 @@ spLevelWidth = 24
 spLevelHeigth = 24
 spLevelSize = spLevelWidth * spLevelHeigth
 
-spPlayer00 = spLevelStart
-spPlayer01 = spPlayer00 + spLevelSize
-spPlayer02 = spPlayer01 + spLevelSize
-
-spThrust00 = spLevelStart + (10 * spLevelSize)
+spPlayer00  = spLevelStart
+spPlayer01  = spPlayer00 + spLevelSize
+spPlayer02  = spPlayer01 + spLevelSize
+spStarAddr  = spPlayer02 + spLevelSize
+spPowerAddr = spStarAddr + spLevelSize
+spThrust00  = spLevelStart + (10 * spLevelSize)
+spShieldAddress  = spLevelStart + (11 * spLevelSize)
 spLaser00 = spLevelStart + (14 * spLevelSize)
 spExplosionfr0 = spLevelStart + (20 * spLevelSize)
 spExplosionfr1 = spLevelStart + (21 * spLevelSize)
@@ -142,23 +144,20 @@ spEnemy13 = spLevelStart + (36 * spLevelSize)
 spEnemy14 = spLevelStart + (37 * spLevelSize)
 spEnemy15 = spLevelStart + (38 * spLevelSize)
 
-spPlayer1ShipNumber = 63
-spPlayer1ThrustNumber = 62
-spPlayer1Laser0 = 61
-spPlayer1Laser1 = 60
-spPlayer1Laser2 = 59
+spPlayer1ShipNumber = 61
+spPlayer1ShieldNumber = 60
+spPlayer1ThrustNumber = 59
+spPlayer1Laser0 = 58
+spPlayer1Laser1 = 57
+spPlayer1Laser2 = 56
 
-spPlayer1Laser3 = 58
-spPlayer1Laser4 = 57
-spPlayer1Laser5 = 56
+spPlayer1Laser3 = 55
+spPlayer1Laser4 = 54
+spPlayer1Laser5 = 53
 
-spPlayer1Laser6 = 55
-spPlayer1Laser7 = 54
-spPlayer1Laser8 = 53
-
-spPlayer1Laser9 = 52
-spPlayer1Laser10 = 51
-spPlayer1Laser11 = 50
+spPlayer1Laser6 = 52
+spPlayer1Laser7 = 51
+spPlayer1Laser8 = 50
 
 spEnemyNumber00 = 49
 spEnemyNumber01 = 48
@@ -173,7 +172,7 @@ spEnemyNumber09 = 40
 spEnemyNumber10 = 39
 spEnemyNumber11 = 38
 
-spPowerUp = 37
+spPowerUpNumber = 37
 spGoldStar = 36
 spBossNumberExplosion = 35
 
@@ -190,14 +189,7 @@ spEnemyLaserNumber09 = 20
 spEnemyLaserNumber10 = 19
 spEnemyLaserNumber11 = 18
 
-spScoreNumber0 = 7  
-spScoreNumber1 = 6
-spScoreNumber2 = 5
-spScoreNumber3 = 4
-spScoreNumber4 = 3
-spScoreNumber5 = 2
-spScoreNumber6 = 1
-spScoreNumber7 = 0
+
 .endsection
 
 objectInactive = $00

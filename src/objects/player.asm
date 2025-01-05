@@ -10,6 +10,8 @@ handlePlayer
     cmp #objectGodMode
     beq _godMode
 _controlPlayer
+    jsr playerFireDelayTimer
+    jsr playerLaserMove
     jsr playerControl
     jsr playerControl
     rts
@@ -28,10 +30,15 @@ _resetGodMode
     sta mPlayerStatus
     rts
 
-
 isPlayerHit
     lda mplayerStatus
     cmp #objectCollided
+    beq _checkShield
+    sec
+    rts
+_checkShield
+    lda mPlayerShield
+    cmp #0
     beq _yes
     sec
     rts
@@ -46,6 +53,7 @@ playerControl
     jsr moveL
     jsr moveR
     jsr playerFire
+    ;#macroShowSprite spPlayer1ShipNumber, spPlayer02,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
    ; #macroShowSprite spPlayer1ThrustNumber, spThrust00, mPlayerThrustPosX, mPlayerThrustPosX + 1, mPlayerThrustPosY, SPRITE24L0C2
     rts 
 
@@ -68,6 +76,23 @@ _move
     lda mPlayerPosY
 
     jsr playerCalcThrust
+    lda #spPlayer1ShipNumber
+    jsr setSpriteNumber
+    lda <#spPlayer01
+    ldx >#spPlayer01
+    ldy `#spPlayer01
+    jsr setSpriteAddress
+
+    lda mPlayerPosX
+    ldx mPlayerPosX  + 1
+    jsr setSpriteX
+
+    lda mPlayerPosY
+    ldx mPlayerPosY + 1
+    jsr setSpriteY
+
+    ;lda #SPRITE24L0C2
+    ;jsr showSprite
     ;#macroShowSprite spPlayer1ShipNumber, spPlayer02,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
     #macroShowSprite spPlayer1ShipNumber, spPlayer01,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
     #macroShowSprite spPlayer1ThrustNumber, spThrust00, mPlayerThrustPosX, mPlayerThrustPosX + 1, mPlayerThrustPosY, SPRITE24L0C2
@@ -93,7 +118,7 @@ _move
     lda mPlayerPosY
     jsr setSpriteY
     ldx #0
-    #macroShowSprite spPlayer1ShipNumber, spPlayer02,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
+    #macroShowSprite spPlayer1ShipNumber, spPlayer01,mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
     rts
 
 moveR
@@ -132,7 +157,7 @@ _move
     ldx #>spPlayer02
     ldy #`spPlayer02
     jsr setSpriteAddress
-     #macroShowSprite spPlayer1ShipNumber, spPlayer02, mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
+    #macroShowSprite spPlayer1ShipNumber, spPlayer02, mPlayerPosX, mPlayerPosX+1, mPlayerPosY, SPRITE24L0C2
     rts
 
 moveL
@@ -197,7 +222,19 @@ hidePlayer1
     rts
 .endsection
 
+initPlayer1
+    lda #player1Shield
+    sta mPlayerShield
+    stz mPlayerLaserPower
+    rts
+
+setupSprite
+    lda #spPlayer1ShipNumber
+
+    rts
 .section variables
+player1Shield = 4
+
 mPlayerStatus
     .byte $00
 mPlayerPosX
@@ -211,4 +248,8 @@ mPlayerThrustPosY
 
 mPlayerGodModeTime
     .byte  $00;$00
+mPlayerShield
+    .byte $00
+mPlayerLaserPower
+    .byte $00
 .endsection

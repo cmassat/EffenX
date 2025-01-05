@@ -16,6 +16,7 @@ loseLife
 _gameOver
     lda #stateGameOver
     jsr setState
+    stz mLevelOneBossState
     rts
  
 handleGameOver

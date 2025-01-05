@@ -85,25 +85,25 @@ _move
 
 handleEnemyFire
    ; jsr moveEnemyFire
-    jsr moveEnemyLaser0
-    jsr moveEnemyLaser1
-    jsr moveEnemyLaser2
-    jsr moveEnemyLaser3
-    jsr moveEnemyLaser4
-    ;jsr moveEnemyLaser5
-    ;jsr moveEnemyLaser6
-    ;jsr moveEnemyLaser7
-    ;jsr moveEnemyLaser8
-    ;jsr moveEnemyLaser9
-    ;jsr moveEnemyLaser10
-    ;jsr moveEnemyLaser11
-    
-    jsr initEnemyLaser0
-    jsr initEnemyLaser1
-    jsr initEnemyLaser2
-    jsr initEnemyLaser3
-    jsr initEnemyLaser4
-    ;jsr initEnemyLaser5
+   ;jsr moveEnemyLaser0
+   ;jsr moveEnemyLaser1
+   ;jsr moveEnemyLaser2
+   ;jsr moveEnemyLaser3
+   ;jsr moveEnemyLaser4
+   ;;jsr moveEnemyLaser5
+   ;;jsr moveEnemyLaser6
+   ;;jsr moveEnemyLaser7
+   ;;jsr moveEnemyLaser8
+   ;;jsr moveEnemyLaser9
+   ;;jsr moveEnemyLaser10
+   ;;jsr moveEnemyLaser11
+   ;
+   ;jsr initEnemyLaser0
+   ;jsr initEnemyLaser1
+   ;jsr initEnemyLaser2
+   ;jsr initEnemyLaser3
+   ;jsr initEnemyLaser4
+   ;;jsr initEnemyLaser5
     ;jsr initEnemyLaser6
     ;jsr initEnemyLaser7
     ;jsr initEnemyLaser8
@@ -154,53 +154,53 @@ handleEnemyFire
 ;_end
     rts
 
-initEnemyLaser0
-    #initEnemyLaserMacro mEnemyLaserActive00, mEnemy0, mEnemyLaserX00, mEnemyLaserY00
-    rts 
-initEnemyLaser1
-    lda mEnemy1
-    cmp #objectActive
-    beq _initLaser
-    rts
-_initLaser
-    #initEnemyLaserMacro mEnemyLaserActive01, mEnemy1, mEnemyLaserX01, mEnemyLaserY01
-    rts 
-initEnemyLaser2
-    lda mEnemy2
-    cmp #objectActive
-    beq _initLaser
-    rts
-_initLaser
-    #initEnemyLaserMacro mEnemyLaserActive02, mEnemy2, mEnemyLaserX02, mEnemyLaserY02
-    rts 
-initEnemyLaser3
-    #initEnemyLaserMacro mEnemyLaserActive03, mEnemy3, mEnemyLaserX03, mEnemyLaserY03
-    rts 
+; initEnemyLaser0
+;     #initEnemyLaserMacro mEnemyLaserActive00, mEnemyStatus00, mEnemyLaserX00, mEnemyLaserY00
+;     rts 
+; initEnemyLaser1
+; ;     lda mEnemy1
+; ;     cmp #objectActive
+; ;     beq _initLaser
+; ;     rts
+; ; _initLaser
+; ;     #initEnemyLaserMacro mEnemyLaserActive01, mEnemy1, mEnemyLaserX01, mEnemyLaserY01
+;     rts 
+; initEnemyLaser2
+;     lda mEnemy2
+;     cmp #objectActive
+;     beq _initLaser
+;     rts
+; _initLaser
+;     #initEnemyLaserMacro mEnemyLaserActive02, mEnemy2, mEnemyLaserX02, mEnemyLaserY02
+;     rts 
+; initEnemyLaser3
+;     #initEnemyLaserMacro mEnemyLaserActive03, mEnemy3, mEnemyLaserX03, mEnemyLaserY03
+;     rts 
    
-initEnemyLaser4
-    #initEnemyLaserMacro mEnemyLaserActive04, mEnemy4, mEnemyLaserX04, mEnemyLaserY04
-    rts     
-initEnemyLaser5
-    #initEnemyLaserMacro mEnemyLaserActive05, mEnemy5, mEnemyLaserX05, mEnemyLaserY05
-    rts 
-initEnemyLaser6
-    #initEnemyLaserMacro mEnemyLaserActive06, mEnemy6, mEnemyLaserX06, mEnemyLaserY06
-    rts 
-initEnemyLaser7
-    #initEnemyLaserMacro mEnemyLaserActive07, mEnemy7, mEnemyLaserX07, mEnemyLaserY07
-    rts 
-initEnemyLaser8
-    #initEnemyLaserMacro mEnemyLaserActive08, mEnemy8, mEnemyLaserX08, mEnemyLaserY08
-    rts 
-initEnemyLaser9
-    #initEnemyLaserMacro mEnemyLaserActive09, mEnemy9, mEnemyLaserX09, mEnemyLaserY09
-    rts 
-initEnemyLaser10
-    #initEnemyLaserMacro mEnemyLaserActive10, mEnemy10, mEnemyLaserX10, mEnemyLaserY10
-    rts 
-initEnemyLaser11
-    #initEnemyLaserMacro mEnemyLaserActive11, mEnemy11, mEnemyLaserX11, mEnemyLaserY11
-    rts 
+; initEnemyLaser4
+;     #initEnemyLaserMacro mEnemyLaserActive04, mEnemy4, mEnemyLaserX04, mEnemyLaserY04
+;     rts     
+; initEnemyLaser5
+;     #initEnemyLaserMacro mEnemyLaserActive05, mEnemy5, mEnemyLaserX05, mEnemyLaserY05
+;     rts 
+; initEnemyLaser6
+;     #initEnemyLaserMacro mEnemyLaserActive06, mEnemy6, mEnemyLaserX06, mEnemyLaserY06
+;     rts 
+; initEnemyLaser7
+;     #initEnemyLaserMacro mEnemyLaserActive07, mEnemy7, mEnemyLaserX07, mEnemyLaserY07
+;     rts 
+; initEnemyLaser8
+;     #initEnemyLaserMacro mEnemyLaserActive08, mEnemy8, mEnemyLaserX08, mEnemyLaserY08
+;     rts 
+; initEnemyLaser9
+;     #initEnemyLaserMacro mEnemyLaserActive09, mEnemy9, mEnemyLaserX09, mEnemyLaserY09
+;     rts 
+; initEnemyLaser10
+;     #initEnemyLaserMacro mEnemyLaserActive10, mEnemy10, mEnemyLaserX10, mEnemyLaserY10
+;     rts 
+; initEnemyLaser11
+;     #initEnemyLaserMacro mEnemyLaserActive11, mEnemy11, mEnemyLaserX11, mEnemyLaserY11
+;     rts 
 
 
 

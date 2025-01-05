@@ -5,7 +5,9 @@ initLevelOne
     jsr resetEnemies
     lda #0
    
-   
+   jsr initPlayer1
+
+   jsr disableAllEnemies
 _sprites
     jsr loadLevelOneSpriteRaw
     jsr loadLevelOneSpritePal
@@ -54,14 +56,20 @@ _tileMap
 _defaultMapStart    
     lda #0
     jsr setTilemapNumber
+    lda #levelOneZeroMapStart
+    sta mLayerZeroTile
+    stz mLayerZeroPixel
     lda mLayerZeroTile
     ldx mLayerZeroPixel
     jsr setTilePositionY
 
     lda #1
     jsr setTilemapNumber
-    lda mLayerZeroTile
-    ldx mLayerZeroPixel
+    lda #levelOneZeroMapStart
+    sta mLevelOneTile
+    stz mLevelOnePixel
+    lda mLevelOneTile
+    ldx mLevelOnePixel
     jsr setTilePositionY
 
 _vickyCtrl

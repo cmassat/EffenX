@@ -1,4 +1,7 @@
 .section code
+.include "enemies.asm"
+.include "macros.asm"
+.include "waves.asm"
 handleLevelOne
     lda #stateLvl1
     jsr isState
@@ -16,7 +19,7 @@ _execute
     beq levelOnePlay
     cmp #levelOneStateBossTime
     beq _bossTime
-    rts 
+    rts
 _init
     inc mLevelOneState
     jsr initLevelOne
@@ -40,7 +43,7 @@ _yes
     inc mLevelOneState
     lda #objectActive
     sta mPlayerStatus
-    
+
     jsr levelOneresetMap
     jsr levelOneStart
     rts
@@ -54,17 +57,20 @@ _bossTime
 levelOnePlay
     jsr handleLevelOneScroll
     jsr levelOnePlayerWasHit
-    jsr handleShipDelay
-   
+    jsr handleLevelOneWaves
+
     jsr handlePlayer
     jsr playerLaserMove
     jsr playerFireDelayTimer
-
-    jsr handleEnemy
-    ;jsr playerCollidedWithEnemy
-    ;jsr handleEnemyLaserCollision
+    jsr levelOneInitEnemies
+    jsr levelOneMoveEnemies
+    jsr playerCollidedWithEnemy
+    jsr playerLaserCollide
+    jsr handleEnemyLaserCollision
     jsr enemyHit
+    jsr handlePowerUp
     jsr handleScore
+    jsr hideDisabledEnemies
     rts
 
 handleLevelOneScroll
@@ -83,11 +89,11 @@ _bossTime
      jsr resetEnemies
     lda #levelOneStateBossTime
     sta mLevelOneState
-    rts 
+    rts
 levelOnePlayerWasHit
     jsr isPlayerHit
     bcc _resetLevel
-    rts 
+    rts
 _resetLevel
     jsr LevelOneReady
     jsr levelOneresetMap
@@ -99,7 +105,7 @@ LevelOneReady
     ldx #>mLevelOneHitMessage
     ldy #menuMsgStartLine
     jsr writeText
-    rts 
+    rts
 
 LevelOneLayerOneScroll
     lda layerOne_timer
@@ -107,7 +113,7 @@ LevelOneLayerOneScroll
     bne _move
     lda #skipEver2
     sta layerOne_timer
-    rts 
+    rts
 _move
     dec layerOne_timer
     lda mLevelOnePixel
@@ -125,7 +131,7 @@ _scroll
 
     lda mLevelOneTile
     ldx mLevelOnePixel
-    
+
     jsr setTilePositionY
     rts
 
@@ -135,7 +141,7 @@ LevelOneLayerZeroScroll
     bne _move
     lda #skipEver3
     sta layerZero_timer
-    rts 
+    rts
 _move
     dec layerZero_timer
     lda mLayerZeroPixel
@@ -153,7 +159,7 @@ _scroll
 
     lda mLayerZeroTile
     ldx mLayerZeroPixel
-    
+
     jsr setTilePositionY
     rts
 
@@ -169,7 +175,7 @@ levelOneStart
 
 levelOneresetMap
     stz mLayerZeroPixel
-    lda #255 -20
+    lda #levelOneZeroMapStart
     sta mLayerZeroTile
     jsr resetEnemies
     lda #1
@@ -178,65 +184,11 @@ levelOneresetMap
     stz mEnemeyDelay + 1
     rts
 
-handleShipDelay
-    lda mResetBoard
-    cmp #1
-    beq _resetEnemyShips
-    rts
-_resetEnemyShips
-    lda mEnemeyDelay
-    clc
-    adc #1
-    sta mEnemeyDelay
 
-    lda mEnemeyDelay + 1
-    adc #0
-    sta mEnemeyDelay + 1
-
-    lda mEnemeyDelay + 1
-    cmp #0
-    beq _checkFirstWaves
-    rts
-_checkFirstWaves
-    lda mEnemeyDelay
-    cmp #60
-    beq _launchWave1
-    cmp #120
-    beq _launchWave2
-    cmp #180
-    beq _launchWave3
-    rts
-_launchWave1
-    lda #objectInactive
-    sta mEnemy0
-    sta mEnemyLaserActive00
-    sta mEnemy1
-    sta mEnemyLaserActive01
-    rts
-_launchWave2
-    jsr clearScreenMemory
-    lda #objectInactive
-    sta mEnemy2
-    sta mEnemyLaserActive02
-    sta mEnemy3
-    sta mEnemyLaserActive03
-    jsr clearScreenMemory
-    rts
-_launchWave3
-    lda #objectInactive
-    sta mEnemy4
-    sta mEnemyLaserActive04
-    lda #objectInactive
-    sta mEnemy7
-    sta mEnemyLaserActive07
-    stz mResetBoard
-    
-    rts
 .endsection
 
 .include "init.asm"
 .include "debug.asm"
-
 
 .section variables
 levelOneLayerOneSpeed = 2
@@ -249,18 +201,19 @@ levelOneStateBossTime = 5
 skipEver3 = 3
 skipEver2 = 2
 
+levelOneZeroMapStart = 255 - 20
+
 mLevelOneState
     .byte $00
 mLevelOnePixel
     .byte $00
 mLevelOneTile
-    .byte 255 -20
-
+    .byte $00
 
 mLayerZeroPixel
     .byte $00
 mLayerZeroTile
-    .byte 255 -20
+    .byte $00
 
 mLayerZeroSpeed
     .byte $00
@@ -279,7 +232,6 @@ mResetBoard
     .byte $0
 mEnemeyDelay
     .byte $00, $00
-
 
 mLevelOneHitMessage
     .text '          Ship Lost In Battle', $00

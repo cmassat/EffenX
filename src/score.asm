@@ -3,6 +3,8 @@ handleScore
     jsr set40Col
     jsr displayScore
     jsr displayLives
+    jsr displayShieldLevel
+   ; jsr displayBossEnergy
     rts
 
 writeScoreMacro .macro 
@@ -31,48 +33,83 @@ writeLabelMacro .macro
 
 displayLives
     lda #0 
-    #writeLabelMacro $c000 + (28 * 40), mLivesLabel
-    lda #1
     #writeLabelMacro $c001 + (28 * 40), mLivesLabel
+    lda #1
+    #writeLabelMacro $c002 + (28 * 40), mLivesLabel
     lda #2
-    #writeLabelMacro $c002 + (28 * 40), mLivesLabel 
-    lda #3
     #writeLabelMacro $c003 + (28 * 40), mLivesLabel 
-    lda #4
+    lda #3
     #writeLabelMacro $c004 + (28 * 40), mLivesLabel 
+    lda #4
+    #writeLabelMacro $c005 + (28 * 40), mLivesLabel 
 
     lda mPlayer1Lives  
-    #writeScoreMacro $c006 + (28 * 40)
+    #writeScoreMacro $c007 + (28 * 40)
     rts
 
 displayScore
-     lda #0
-    #writeLabelMacro $c000, mScoreLabel
+    lda #0
+    #writeLabelMacro $c001 + (1 * 40) , mScoreLabel
     lda #1
-    #writeLabelMacro $c001, mScoreLabel
+    #writeLabelMacro $c002 + (1 * 40), mScoreLabel
     lda #2
-    #writeLabelMacro $c002, mScoreLabel
+    #writeLabelMacro $c003 + (1 * 40), mScoreLabel
     lda #3
-    #writeLabelMacro $c003, mScoreLabel
+    #writeLabelMacro $c004 + (1 * 40), mScoreLabel
     lda #4
-    #writeLabelMacro $c004, mScoreLabel
+    #writeLabelMacro $c005 + (1 * 40), mScoreLabel
 
     jsr getScoreDigit0
-    #writeScoreMacro $c00c
+    #writeScoreMacro $c00d + (1 * 40)
     jsr getScoreDigit1
-    #writeScoreMacro $c00b
+    #writeScoreMacro $c00c + (1 * 40)
      jsr getScoreDigit2
-    #writeScoreMacro $c00a
+    #writeScoreMacro $c00b + (1 * 40)
     jsr getScoreDigit3
-    #writeScoreMacro $c009
+    #writeScoreMacro $c00a + (1 * 40)
     jsr getScoreDigit4
-    #writeScoreMacro $c008
+    #writeScoreMacro $c009 + (1 * 40)
     jsr getScoreDigit5
-    #writeScoreMacro $c007
+    #writeScoreMacro $c008 + (1 * 40)
     jsr getScoreDigit6
-    #writeScoreMacro $c006
+    #writeScoreMacro $c007 + (1 * 40)
     rts
 
+displayShieldLevel
+    lda #0
+    #writeLabelMacro $c00a + (28 * 40) , mScoreShieldLabel
+    lda #1
+    #writeLabelMacro $c00b + (28 * 40), mScoreShieldLabel
+    lda #2
+    #writeLabelMacro $c00c + (28 * 40), mScoreShieldLabel
+    lda #3
+    #writeLabelMacro $c00d + (28 * 40), mScoreShieldLabel
+    lda #4
+    #writeLabelMacro $c00e + (28 * 40), mScoreShieldLabel
+    lda #5
+    #writeLabelMacro $c00f + (28 * 40), mScoreShieldLabel
+
+    lda mPlayerShield
+    #writeScoreMacro $c011 + (28 * 40)
+    rts
+
+; displayBossEnergy
+;      ;lda #0
+;      ;#writeLabelMacro $c010 + (1 * 40) , mEnemyEnergyLabel
+;      ;lda #1
+;      ;#writeLabelMacro $c011 + (1 * 40), mEnemyEnergyLabel
+;    ;lda #2
+;    ;#writeLabelMacro $c012 + (1 * 40), mEnemyEnergyLabel
+;    ;lda #3
+;    ;#writeLabelMacro $c013 + (1 * 40), mEnemyEnergyLabel
+;    ;lda #4
+;    ;#writeLabelMacro $c014 + (1 * 40), mEnemyEnergyLabel
+;    ;lda #5
+;    ;#writeLabelMacro $c015 + (1 * 40), mEnemyEnergyLabel
+
+;    ;da mPlayerShield
+;    ;writeScoreMacro $c017 + (1 * 40)
+;     rts
 .endsection
 
 .section variables
@@ -83,4 +120,10 @@ mLivesLabel
 
 mScoreLabel
     .byte 'S','c','o','r','e'
+
+mScoreShieldLabel
+    .byte 'S','h','i','e','l', 'd'
+
+; mEnemyEnergyLabel
+;      .byte 'E','n','e','r','g', 'y'
 .endsection

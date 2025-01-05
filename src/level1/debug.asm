@@ -1,67 +1,70 @@
 debug
+    phy
     lda #2
     sta MMU_IO_CTRL
 
-    lda mLevelOneBossObjectFrame
+    lda mPowerUpStatus
     lsr
     lsr 
     lsr
     lsr
     tay
     lda mHex, y
-    sta $C000 + 40
+    sta $C000
 
-    lda mLevelOneBossObjectFrame
+    lda mPowerUpStatus
     and #$0F
      tay
     lda mHex, y
-    sta $C001 + 40
+    sta $C001
 
-    lda mLevelOneBossState
+    lda mPlayerLaserPower 
+
     lsr
     lsr 
     lsr
     lsr
     tay
     lda mHex, y
-    sta $C002 + 40
+    sta $C002
 
-    lda mLevelOneBossState
+    lda mPlayerLaserPower
     and #$0F
     tay
     lda mHex, y
-    sta $C003 + 40
+    sta $C003
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    lda mEnemyLaserActive03
+    lda mEnemyY04
     lsr
     lsr 
     lsr
     lsr
     tay
     lda mHex, y
-    sta $C005 + 40
+    sta $C005
 
-    lda mEnemyLaserActive03
+    lda mEnemyY04
     and #$0F
     tay
     lda mHex, y
-    sta $C006 + 40
-;
-;    lda m_score_6
-;    lsr
-;    lsr 
-;    lsr
-;    lsr
-;    tay
-;    lda mHex, y
-;    sta $C008
-;
-;    lda m_score_6
-;    and #$0F
-;    tay
-;    lda mHex, y
-;    sta $C009
-;
+    sta $C006 
+
+     lda mLvlOneMoves
+     lsr
+     lsr 
+     lsr
+     lsr
+     tay
+     lda mHex, y
+     sta $C008
+
+     lda mLvlOneMoves
+     and #$0F
+     tay
+     lda mHex, y
+     sta $C009
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
 ;    lda mXhit
@@ -154,6 +157,7 @@ debug
 ;    tay
 ;    lda mHex, y
 ;    sta $C009 + 80
+ ply
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

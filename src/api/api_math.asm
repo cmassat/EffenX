@@ -55,8 +55,46 @@ fn_divide_8bit
 	stx m_math_d
 	#mac_divide_8bit
 	rts
-
 .endsection
+subtractMacro .macro number, amount = 1
+    lda \number
+    sec
+    sbc #\amount
+    sta \number
+    
+    lda \number + 1
+    sbc #0
+    sta \number + 1 
+.endMacro
+
+addMacro .macro number, amount = 1
+    lda \number
+    clc
+    adc #\amount
+    sta \number
+    
+    lda \number + 1
+    adc #0
+    sta \number + 1
+.endMacro
+
+add8Macro .macro number, amount = 1
+    lda \number
+    clc
+    adc #\amount
+    sta \number
+.endMacro
+
+add16Macro .macro number, amount = 1
+    lda \number
+    clc
+    adc #\amount
+    sta \number
+    
+    lda \number + 1
+    adc #0
+    sta \number + 1
+.endMacro
 .section variables 
 m_math_n
 	.byte 0

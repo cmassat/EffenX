@@ -18,8 +18,6 @@ _initMenu
     rts 
 _waitForKey
     jsr isAnyKeyPressed
-    ; lda mAnyKey
-    ; cmp #1
     bcc _yes
     rts
 _yes
@@ -31,7 +29,7 @@ _yes
 
 
 initMenu
-    ;jsr resetKeys
+    jsr hideAllSprites
     jsr clearVideo
     jsr clearLayers
 
@@ -192,8 +190,6 @@ loadMenuFont
     ldy #$05
     jsr fopen
     rts 
-
-
 
 resetMenu
     stz mMenuState

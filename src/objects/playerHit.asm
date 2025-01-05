@@ -1,4 +1,17 @@
 playerHit
+   lda mPlayerShield
+   cmp #0
+   beq _recordHit
+   ;lda mPlayerStatus
+   ;cmp #objectCollided
+   ;beq _activateShield
+   ;rts
+_activateShield
+   jsr player1UseShield
+   rts
+_recordHit
+   lda #player1Shield
+   sta mPlayerShield
    lda mPlayerHitDelay
    cmp #$00
    beq _animate
@@ -48,7 +61,7 @@ _frame2
     rts
 _end
     jsr loseLife
-    jsr hideSprite
+    ;jsr hideSprite
     lda #objectGodMode
     sta mPlayerStatus
     lda #120
@@ -56,12 +69,32 @@ _end
     STZ mPlayerHitFrames
     stz mPlayerHitDelay
     rts
- 
+
+player1UseShield
+    lda mPlayerShieldDelay
+    cmp #10
+    beq _reset
+    #showSpriteMacro spPlayer1ShieldNumber, spShieldAddress, mPlayerPosX , mPlayerPosY, SPRITE24L0C2
+    inc mPlayerShieldDelay
+    rts
+_reset
+    stz mPlayerShieldDelay
+    dec mPlayerShield
+    lda #spPlayer1ShieldNumber
+    jsr setSpriteNumber
+    jsr hideSprite
+    lda #objectActive
+    sta mPlayerStatus
+    rts
 
 
 .section variables
 mPlayerHitFrames
     .byte $00
 mPlayerHitDelay
+    .byte $00
+mPlayerShieldDelay
+    .byte $00
+mPLayerCollided
     .byte $00
 .endsection
