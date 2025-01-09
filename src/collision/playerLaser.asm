@@ -84,6 +84,13 @@ playerLaserCollide
     jsr playerLaser4HitEnemy11
     jsr playerLaser5HitEnemy11
 
+    jsr playerLaser0HitMiniBoss
+    jsr playerLaser1HitMiniBoss
+    jsr playerLaser2HitMiniBoss
+    jsr playerLaser3HitMiniBoss
+    jsr playerLaser4HitMiniBoss
+    jsr playerLaser5HitMiniBoss
+
     jsr playerLaser0HitEnemyBoss
     jsr playerLaser1HitEnemyBoss
     jsr playerLaser2HitEnemyBoss
@@ -552,6 +559,43 @@ playerLaser5HitEnemy11
     #objectsActiveMacro mEnemyStatus11, mLaserActive05
     #coollideMacro mLaser05PosX, 10, mEnemyX11, 18, mLaser05PosY, 6,mEnemyY11, 20
     #didCollide mEnemyStatus11, mLaserActive05
+    rts
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+playerLaser0HitMiniBoss
+    #objectsActiveMacro mMiniBossStatus, mLaserActive00
+    #coollideMacro mLaser00PosX, 10, mMiniBossX, 48, mLaser00PosY, 6, mMiniBossY, 20
+    #didCollide mMiniBossStatus, mLaserActive00
+    rts
+
+playerLaser1HitMiniBoss
+    #objectsActiveMacro mMiniBossStatus, mLaserActive01
+    #coollideMacro mLaser01PosX, 10, mMiniBossX, 48, mLaser01PosY, 6, mMiniBossY, 20
+    #didCollide mMiniBossStatus, mLaserActive01
+    rts
+
+playerLaser2HitMiniBoss
+    #objectsActiveMacro mMiniBossStatus, mLaserActive02
+    #coollideMacro mLaser02PosX, 10, mMiniBossX, 48, mLaser02PosY, 6, mMiniBossY, 20
+    #didCollide mMiniBossStatus, mLaserActive02
+    rts
+
+playerLaser3HitMiniBoss
+    #objectsActiveMacro mMiniBossStatus, mLaserActive03
+    #coollideMacro mLaser03PosX, 10,mMiniBossX, 48, mLaser03PosY, 6,mMiniBossY, 20
+    #didCollide mMiniBossStatus, mLaserActive03
+    rts
+
+playerLaser4HitMiniBoss
+    #objectsActiveMacro mMiniBossStatus, mLaserActive04
+    #coollideMacro mLaser04PosX, 10, mMiniBossX, 48, mLaser04PosY, 6,mMiniBossY, 20
+    #didCollide mMiniBossStatus, mLaserActive04
+    rts
+
+playerLaser5HitMiniBoss
+    #objectsActiveMacro mMiniBossStatus, mLaserActive05
+    #coollideMacro mLaser05PosX, 10, mMiniBossX, 48, mLaser05PosY, 6,mMiniBossY, 20
+    #didCollide mMiniBossStatus, mLaserActive04
     rts
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

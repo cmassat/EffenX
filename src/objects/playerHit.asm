@@ -7,7 +7,11 @@ playerHit
    ;beq _activateShield
    ;rts
 _activateShield
-   jsr player1UseShield
+   lda #1
+   sta mPlayerShieldDelay
+   lda #objectActive
+   sta mPlayerStatus
+   jsr playerInitShield
    rts
 _recordHit
    lda #player1Shield
@@ -69,26 +73,33 @@ _end
     STZ mPlayerHitFrames
     stz mPlayerHitDelay
     rts
+playerInitShield
+    lda #5
+    sta mPlayerShieldDelay
+    dec mPlayerShield
+    lda #objectActive
+    sta mPlayerShieldStatus
+    rts
 
-player1UseShield
+player1ShowShield
     lda mPlayerShieldDelay
-    cmp #10
+    cmp #0
     beq _reset
-    #showSpriteMacro spPlayer1ShieldNumber, spShieldAddress, mPlayerPosX , mPlayerPosY, SPRITE24L0C2
-    inc mPlayerShieldDelay
+    #showSpriteMacro spPlayer1ShieldNumber, spShieldAddress, mPlayerPosX , mPlayerPosY, SPRITE24L0C2, mPlayerShieldStatus
+    dec mPlayerShieldDelay
     rts
 _reset
-    stz mPlayerShieldDelay
-    dec mPlayerShield
     lda #spPlayer1ShieldNumber
     jsr setSpriteNumber
     jsr hideSprite
-    lda #objectActive
-    sta mPlayerStatus
+    lda #objectInactive
+    sta mPlayerShieldStatus
     rts
 
 
 .section variables
+mPlayerShieldStatus
+    .byte $00
 mPlayerHitFrames
     .byte $00
 mPlayerHitDelay

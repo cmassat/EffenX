@@ -18,11 +18,13 @@ handleLevelOneBossBattle
     beq _levelClear
     rts
 _initLevelOneBoss
+    jsr resetEnemies
     jsr initLevelOneBoss
     inc mLevelOneBossState
     rts
 
 _levelOneIntro
+    
     jsr levelOneBossIntro
     rts
 
@@ -40,11 +42,10 @@ _levelClear
 ; Level One Boss Game Loop
 ;----------------------------------
 gameLoopLevelOneBossBattle
-   
+
     jsr playerLaserCollide
-    
-    jsr handleLevelOneBossBomb0
-    jsr handleLevelOneBossBomb1
+    ;jsr handleLevelOneBossBomb0
+    ;jsr handleLevelOneBossBomb1
     jsr handleLevelOneBossBomb2
     jsr handleLevelOneBossBomb3
     jsr handleLevelOneBossBoss
@@ -52,11 +53,12 @@ gameLoopLevelOneBossBattle
     jsr handleLevelOneBossEnamyLaser0
     jsr handleEnemyLaserCollision
     jsr handleBossHit
+    ;jsr hideDisabledEnemies
     jsr handleScore
-    
+
     rts
 
-handleBossByeBye    
+handleBossByeBye
     lda mLevelOneBossTimer
     cmp #10
     beq _animate
@@ -105,27 +107,27 @@ _frame5
     inc mLevelOneBossObjectFrame
     rts
 _reset
-    lda #spEnemyNumber00
+    lda #spBossNumber00
     jsr setSpriteNumber
     jsr hideSprite
 
-    lda #spEnemyNumber01
+    lda #spBossNumber01
     jsr setSpriteNumber
     jsr hideSprite
 
-    lda #spEnemyNumber02
+    lda #spBossNumber02
     jsr setSpriteNumber
     jsr hideSprite
 
-    lda #spEnemyNumber03
+    lda #spBossNumber03
     jsr setSpriteNumber
     jsr hideSprite
 
-    lda #spEnemyNumber04
+    lda #spBossNumber04
     jsr setSpriteNumber
     jsr hideSprite
 
-    lda #spEnemyNumber05
+    lda #spBossNumber05
     jsr setSpriteNumber
     jsr hideSprite
 
@@ -133,54 +135,53 @@ _reset
     inc mLevelOneBossState
     rts
 
-
 _frameOneExplode0
-    #showSpriteMacro spEnemyNumber00, spExplosionfr0, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber01, spExplosionfr1, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber02, spExplosionfr2, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber03, spExplosionfr2, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber04, spExplosionfr1, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber05, spExplosionfr0, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2
+    #showSpriteMacro spBossNumber00, spExplosionfr0, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber01, spExplosionfr1, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber02, spExplosionfr2, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber03, spExplosionfr2, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber04, spExplosionfr1, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber05, spExplosionfr0, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2, objectActive
     rts
 _frameOneExplode1
-    #showSpriteMacro spEnemyNumber00, spExplosionfr1, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber01, spExplosionfr2, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber02, spExplosionfr1, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber03, spExplosionfr1, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber04, spExplosionfr2, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber05, spExplosionfr1, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2
+    #showSpriteMacro spBossNumber00, spExplosionfr1, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber01, spExplosionfr2, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber02, spExplosionfr1, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber03, spExplosionfr1, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber04, spExplosionfr2, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber05, spExplosionfr1, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2, objectActive
     rts
 _frameOneExplode2
-    #showSpriteMacro spEnemyNumber00, spExplosionfr2, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber01, spExplosionfr1, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber02, spExplosionfr0, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber03, spExplosionfr0, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber04, spExplosionfr1, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber05, spExplosionfr2, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2
+    #showSpriteMacro spBossNumber00, spExplosionfr2, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber01, spExplosionfr1, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber02, spExplosionfr0, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber03, spExplosionfr0, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber04, spExplosionfr1, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber05, spExplosionfr2, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2, objectActive
     rts
 _frameOneExplode3
-    #showSpriteMacro spEnemyNumber00, spExplosionfr2, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber01, spExplosionfr0, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber02, spExplosionfr1, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber03, spExplosionfr1, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber04, spExplosionfr0, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber05, spExplosionfr2, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2
+    #showSpriteMacro spBossNumber00, spExplosionfr2, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber01, spExplosionfr0, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber02, spExplosionfr1, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber03, spExplosionfr1, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber04, spExplosionfr0, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber05, spExplosionfr2, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2, objectActive
     rts
 _frameOneExplode4
-    #showSpriteMacro spEnemyNumber00, spExplosionfr1, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber01, spExplosionfr1, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber02, spExplosionfr2, mLevelOneBossX1, mLevelOneBossY2, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber03, spExplosionfr2, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber04, spExplosionfr1, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber05, spExplosionfr1, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2
+    #showSpriteMacro spBossNumber00, spExplosionfr1, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber01, spExplosionfr1, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber02, spExplosionfr2, mLevelOneBossX1, mLevelOneBossY2, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber03, spExplosionfr2, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber04, spExplosionfr1, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber05, spExplosionfr1, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2, objectActive
     rts
 _frameOneExplode5
-    #showSpriteMacro spEnemyNumber00, spExplosionfr0, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber01, spExplosionfr2, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber02, spExplosionfr1, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber03, spExplosionfr1, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber04, spExplosionfr0, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2
-    #showSpriteMacro spEnemyNumber05, spExplosionfr0, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2
+    #showSpriteMacro spBossNumber00, spExplosionfr0, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber01, spExplosionfr2, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber02, spExplosionfr1, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber03, spExplosionfr1, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber04, spExplosionfr0, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2, objectActive
+    #showSpriteMacro spBossNumber05, spExplosionfr0, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L1C2, objectActive
     rts
 
 handleLevelOneBossEnamyLaser0
@@ -206,7 +207,6 @@ _move
     jsr moveEnemyLaser0
     rts
 
-
 handleBossHit
     LDA mLevelOneBossState
     cmp #levelOneBossStateStart
@@ -230,12 +230,11 @@ _checkStrength
     jsr setSpriteNumber
     jsr hideSprite
 
-
     lda #spEnemyLaserNumber00
     jsr setSpriteNumber
     jsr hideSprite
     rts
-_recordHit    
+_recordHit
     lda mLevelOneBossObjectState
     cmp #objectCollided
     beq _ani
@@ -249,18 +248,18 @@ _ani
     cmp #2
     beq _frame2
     cmp #3
-    beq _reset
+    jsr _reset
     rts
 _frame0
-    #showSpriteMacro spBossNumberExplosion, spExplosionfr0, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2
+    #showSpriteMacro spBossNumberExplosion, spExplosionfr0, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2, objectActive
     inc mLevelOneBossObjectFrame
     rts
 _frame1
-    #showSpriteMacro spBossNumberExplosion, spExplosionfr1, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2
+    #showSpriteMacro spBossNumberExplosion, spExplosionfr1, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2, objectActive
     inc mLevelOneBossObjectFrame
     rts
 _frame2
-    #showSpriteMacro spBossNumberExplosion, spExplosionfr0, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2
+    #showSpriteMacro spBossNumberExplosion, spExplosionfr0, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L1C2, objectActive
     inc mLevelOneBossObjectFrame
     rts
 _reset
@@ -268,11 +267,11 @@ _reset
     lda #spBossNumberExplosion
     jsr setSpriteNumber
     jsr hideSprite
-   
+
     lda #objectActive
     sta mLevelOneBossObjectState
     dec mLevelOneBossStrength
-    
+
     rts
 
 handleLevelOneBossBoss
@@ -398,17 +397,17 @@ handleLevelOneBossBomb0
     adc #0
     sta mLevelOneBossBombPathPtr0 + 1
 
-    #macroShowSprite spEnemyLaserNumber11, spEnemyLaserOrange, mLevelOneBossBombX0, mLevelOneBossBombX0 + 1, mLevelOneBossBombY0, SPRITE24L1C2
+    #showSpriteMacro spEnemyLaserNumber11, spEnemyLaserOrange, mLevelOneBossBombX0, mLevelOneBossBombY0, SPRITE24L1C2, mEnemyLaserActive11
     inc mLevelOneBossBombPath0
-    rts 
+    rts
 _reset
     stz mLevelOneBossBombActive0
-    lda #<mBossBombPath0
-    sta mLevelOneBossBombPathPtr0
-    lda #>mBossBombPath0 + 1
-    sta mLevelOneBossBombPathPtr0  + 1
+    ;lda #<mBossBombPath0
+    ;sta mLevelOneBossBombPathPtr0
+    ;lda #>mBossBombPath0 + 1
+    ;sta mLevelOneBossBombPathPtr0  + 1
     stz  mLevelOneBossBombPath0
-    rts 
+    rts
 
 handleLevelOneBossBomb1
     lda mLevelOneBossBombPath1
@@ -420,7 +419,6 @@ handleLevelOneBossBomb1
     sta POINTER_SPR_X
     lda mLevelOneBossBombPathPtr1 + 1
     sta POINTER_SPR_X + 1
-
 
     ldy #0
     lda (POINTER_SPR_X),y
@@ -434,7 +432,7 @@ handleLevelOneBossBomb1
     lda (POINTER_SPR_X),y
     sta mLevelOneBossBombY1
     sta mEnemyLaserY10
-    iny 
+    iny
     lda (POINTER_SPR_X),y
     sta mLevelOneBossBombY1 + 1
     sta mEnemyLaserY10 + 1
@@ -447,19 +445,19 @@ handleLevelOneBossBomb1
     lda mLevelOneBossBombPathPtr1 + 1
     adc #0
     sta mLevelOneBossBombPathPtr1 + 1
-    #showSpriteMacro spEnemyLaserNumber10, spEnemyLaserOrange, mEnemyLaserX10, mEnemyLaserY10, SPRITE24L1C2
+    #showSpriteMacro spEnemyLaserNumber10, spEnemyLaserOrange, mEnemyLaserX10, mEnemyLaserY10, SPRITE24L1C2, mEnemyLaserActive10
     ;#macroShowSprite spEnemyLaserNumber10, spEnemyLaserOrange, mLevelOneBossBombX1, mLevelOneBossBombX1 + 1, mLevelOneBossBombY1, SPRITE24L1C2
     inc mLevelOneBossBombPath1
-    rts 
+    rts
 _reset
     lda #objectInactive
     sta mLevelOneBossBombActive1
-    lda #<mBossBombPath1
-    sta mLevelOneBossBombPathPtr1
-    lda #>mBossBombPath1 + 1
-    sta mLevelOneBossBombPathPtr1  + 1
+   ; lda #<mBossBombPath1
+   ; sta mLevelOneBossBombPathPtr1
+   ; lda #>mBossBombPath1 + 1
+   ; sta mLevelOneBossBombPathPtr1  + 1
     stz  mLevelOneBossBombPath1
-    rts 
+    rts
 
 handleLevelOneBossBomb2
     lda mEnemyLaserActive09
@@ -481,12 +479,12 @@ _move
     cmp #32
     beq _reset
     dec mEnemyLaserY09
-    #showSpriteMacro spEnemyLaserNumber09, spEnemyLaserOrange, mEnemyLaserX09, mEnemyLaserY09, SPRITE24L1C2
-    rts 
+    #showSpriteMacro spEnemyLaserNumber09, spEnemyLaserOrange, mEnemyLaserX09, mEnemyLaserY09, SPRITE24L1C2, mEnemyLaserActive09
+    rts
 _reset
     lda #objectInactive
     sta mEnemyLaserActive09
-    rts 
+    rts
 
 handleLevelOneBossBomb3
     lda mEnemyLaserActive08
@@ -509,18 +507,18 @@ _move
     cmp #32
     beq _reset
     dec mEnemyLaserY08
-    #showSpriteMacro spEnemyLaserNumber08, spEnemyLaserOrange, mEnemyLaserX08, mEnemyLaserY08, SPRITE24L1C2
-    rts 
+    #showSpriteMacro spEnemyLaserNumber08, spEnemyLaserOrange, mEnemyLaserX08, mEnemyLaserY08, SPRITE24L1C2, mEnemyLaserActive08
+    rts
 _reset
     lda #objectInactive
     sta mEnemyLaserActive08
-    rts 
+    rts
 
 startBattle
     jsr handlePlayer
     jsr playerLaserMove
     jsr playerFireDelayTimer
-    rts 
+    rts
 resetLevelOneBossState
     lda #levelOneBossStateinit
     sta mLevelOneBossState
@@ -539,7 +537,6 @@ initLevelOneBoss
     lda #levelOneBossXStart + 24 + 24
     sta mLevelOneBossX2
     sta mLevelOneBossX5
-
 
     lda #0
     sta mLevelOneBossY0 + 1
@@ -572,26 +569,25 @@ initLevelOneBoss
     sta mEnemyLaserActive00
     stz mLevelOneBossObjectFrame
 
-    jsr levelOneShowBoss 
+    jsr levelOneShowBoss
 
     stz mLevelOneBossBombPath0
     stz mLevelOneBossBombActive0
-    lda #<mBossBombPath0
-    sta mLevelOneBossBombPathPtr0
-    lda #>mBossBombPath0 + 1
-    sta mLevelOneBossBombPathPtr0  + 1
+  ;  lda #<mBossBombPath0
+  ;  sta mLevelOneBossBombPathPtr0
+  ;  lda #>mBossBombPath0 + 1
+  ;  sta mLevelOneBossBombPathPtr0  + 1
 
     stz mLevelOneBossBombPath1
     stz mLevelOneBossBombActive1
-    lda #<mBossBombPath1
-    sta mLevelOneBossBombPathPtr1
-    lda #>mBossBombPath1 + 1
-    sta mLevelOneBossBombPathPtr1  + 1
-   
+  ;  lda #<mBossBombPath1
+  ;  sta mLevelOneBossBombPathPtr1
+  ;  lda #>mBossBombPath1 + 1
+  ;  sta mLevelOneBossBombPathPtr1  + 1
     rts
 
 levelOneBossIntro
-    lda mLevelOneBossTimer 
+    lda mLevelOneBossTimer
     cmp #0
     beq _endIntro
     dec mLevelOneBossTimer
@@ -609,7 +605,6 @@ _endIntro
     sta mLevelOneBossObjectState
     rts
 
-
 levelOneShowBoss
     jsr levelOneShowBoss0
     jsr levelOneShowBoss1
@@ -625,7 +620,7 @@ levelOneShowBoss0
     bcc _show
     rts
 _show
-     #showSpriteMacro spEnemyNumber00, spBoss1part0, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L0C2
+     #showSpriteMacro spBossNumber00, spBoss1part0, mLevelOneBossX0, mLevelOneBossY0, SPRITE24L0C2, objectActive
     rts
 levelOneShowBoss1
     lda mLevelOneBossY1
@@ -633,7 +628,7 @@ levelOneShowBoss1
     bcc _show
     rts
 _show
-    #showSpriteMacro spEnemyNumber01, spBoss1part1, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L0C2
+    #showSpriteMacro spBossNumber01, spBoss1part1, mLevelOneBossX1, mLevelOneBossY1, SPRITE24L0C2, objectActive
     rts
 levelOneShowBoss2
     lda mLevelOneBossY2
@@ -641,7 +636,7 @@ levelOneShowBoss2
     bcc _show
     rts
 _show
-    #showSpriteMacro spEnemyNumber02, spBoss1part2, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L0C2
+    #showSpriteMacro spBossNumber02, spBoss1part2, mLevelOneBossX2, mLevelOneBossY2, SPRITE24L0C2, objectActive
     rts
 levelOneShowBoss3
     lda mLevelOneBossY3
@@ -649,7 +644,7 @@ levelOneShowBoss3
     bcc _show
     rts
 _show
-    #showSpriteMacro spEnemyNumber03, spBoss1part3, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L0C2
+    #showSpriteMacro spBossNumber03, spBoss1part3, mLevelOneBossX3, mLevelOneBossY3, SPRITE24L0C2, objectActive
     rts
 levelOneShowBoss4
     lda mLevelOneBossY4
@@ -657,7 +652,7 @@ levelOneShowBoss4
     bcc _show
     rts
 _show
-    #showSpriteMacro spEnemyNumber04, spBoss1part4, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L0C2
+    #showSpriteMacro spBossNumber04, spBoss1part4, mLevelOneBossX4, mLevelOneBossY4, SPRITE24L0C2, objectActive
     rts
 levelOneShowBoss5
     lda mLevelOneBossY5
@@ -665,9 +660,8 @@ levelOneShowBoss5
     bcc _show
     rts
 _show
-    #showSpriteMacro spEnemyNumber05, spBoss1part5, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L0C2
-    rts  
-
+    #showSpriteMacro spBossNumber05, spBoss1part5, mLevelOneBossX5, mLevelOneBossY5, SPRITE24L0C2, objectActive
+    rts
 
 .endsection
 
@@ -677,7 +671,6 @@ levelOneBossStateIntro = 1
 levelOneBossStateStart = 2
 levelOneBossStateBossByeBye = 3
 levelOneBossClear = 4
-
 
 levelOneBossStrength = 20
 
@@ -758,232 +751,4 @@ mLevelOneBossBombActive1
     .byte $00
 mLevelOneBossBombPath1
     .byte $00
-.endsection
-
-.section variables
-mBossBombPath0
-; .byte 42,240
-; .byte 44,236
-; .byte 45,232
-; .byte 47,228
-; .byte 48,224
-; .byte 50,221
-; .byte 52,217
-; .byte 53,214
-; .byte 55,210
-; .byte 57,207
-; .byte 58,204
-; .byte 60,200
-; .byte 61,197
-; .byte 63,194
-; .byte 65,191
-; .byte 66,189
-; .byte 68,186
-; .byte 69,183
-; .byte 71,180
-; .byte 73,178
-; .byte 74,176
-; .byte 76,173
-; .byte 78,171
-; .byte 79,169
-; .byte 81,167
-; .byte 82,164
-; .byte 84,163
-; .byte 86,161
-; .byte 87,159
-; .byte 89,157
-; .byte 90,156
-; .byte 92,154
-; .byte 94,152
-; .byte 95,151
-; .byte 97,150
-; .byte 99,149
-; .byte 100,147
-; .byte 102,146
-; .byte 103,145
-; .byte 105,144
-; .byte 107,144
-; .byte 108,143
-; .byte 110,142
-; .byte 111,142
-; .byte 113,141
-; .byte 115,141
-; .byte 116,140
-; .byte 118,140
-; .byte 120,140
-; .byte 121,140
-; .byte 123,140
-; .byte 124,140
-; .byte 126,140
-; .byte 128,140
-; .byte 129,141
-; .byte 131,141
-; .byte 133,142
-; .byte 134,142
-; .byte 136,143
-; .byte 137,144
-; .byte 139,144
-; .byte 141,145
-; .byte 142,146
-; .byte 144,147
-; .byte 145,149
-; .byte 147,150
-; .byte 149,151
-; .byte 150,152
-; .byte 152,154
-; .byte 154,156
-; .byte 155,157
-; .byte 157,159
-; .byte 158,161
-; .byte 160,163
-; .byte 162,164
-; .byte 163,167
-; .byte 165,169
-; .byte 166,171
-; .byte 168,173
-; .byte 170,176
-; .byte 171,178
-; .byte 173,180
-; .byte 175,183
-; .byte 176,186
-; .byte 178,189
-; .byte 179,191
-; .byte 181,194
-; .byte 183,197
-; .byte 184,200
-; .byte 186,204
-; .byte 187,207
-; .byte 189,210
-; .byte 191,214
-; .byte 192,217
-; .byte 194,221
-; .byte 196,224
-; .byte 197,228
-; .byte 199,232
-; .byte 200,236
-; .byte 202,240
-; .byte 203,242
-; .byte 203,244
-; .byte 204,245
-; .byte 204,248
-; .byte 205,250
-; .byte 205,252
-; .byte 206,254
-; .byte 206,254
-; .byte 206,254
-; .byte 206,254
-
-mBossBombPath1
-; .word 334,240
-; .word 334,236
-; .word 334,232
-; .word 334,228
-; .word 333,224
-; .word 333,221
-; .word 332,217
-; .word 332,214
-; .word 331,210
-; .word 331,207
-; .word 330,204
-; .word 328,200
-; .word 327,197
-; .word 325,194
-; .word 324,191
-; .word 322,189
-; .word 320,186
-; .word 319,183
-; .word 317,180
-; .word 315,178
-; .word 314,176
-; .word 312,173
-; .word 311,171
-; .word 309,169
-; .word 307,167
-; .word 306,164
-; .word 304,163
-; .word 303,161
-; .word 301,159
-; .word 299,157
-; .word 298,156
-; .word 296,154
-; .word 294,152
-; .word 293,151
-; .word 291,150
-; .word 290,149
-; .word 288,147
-; .word 286,146
-; .word 285,145
-; .word 283,144
-; .word 282,144
-; .word 280,143
-; .word 278,142
-; .word 277,142
-; .word 275,141
-; .word 273,141
-; .word 272,140
-; .word 270,140
-; .word 269,140
-; .word 267,140
-; .word 265,140
-; .word 264,140
-; .word 262,140
-; .word 261,140
-; .word 259,141
-; .word 257,141
-; .word 256,142
-; .word 254,142
-; .word 252,143
-; .word 251,144
-; .word 249,144
-; .word 248,145
-; .word 246,146
-; .word 244,147
-; .word 243,149
-; .word 241,150
-; .word 239,151
-; .word 238,152
-; .word 236,154
-; .word 235,156
-; .word 233,157
-; .word 231,159
-; .word 230,161
-; .word 228,163
-; .word 227,164
-; .word 225,167
-; .word 223,169
-; .word 222,171
-; .word 220,173
-; .word 218,176
-; .word 217,178
-; .word 215,180
-; .word 214,183
-; .word 212,186
-; .word 210,189
-; .word 209,191
-; .word 207,194
-; .word 206,197
-; .word 204,200
-; .word 202,204
-; .word 201,207
-; .word 199,210
-; .word 197,214
-; .word 196,217
-; .word 194,221
-; .word 193,224
-; .word 191,228
-; .word 189,232
-; .word 188,236
-; .word 186,240
-; .word 185,242
-; .word 183,244
-; .word 181,245
-; .word 180,248
-; .word 178,250
-; .word 176,252
-; .word 175,254
-; .word 173,254
-; .word 172,254
-; .word 170,254
-
-
 .endsection

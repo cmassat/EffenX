@@ -63,12 +63,28 @@ _playerFire1
     jsr sound_play_fire
     rts
 playerFire0
+    lda mPlayerLaserPower
+    cmp #0
+    beq _low
+    cmp #1
+    beq _med
+
+    rts
+_low
+    #playerLaserSetup mLaser00PosX, mLaser00PosX + 1, mLaser00PosY, mLaserActive00, 9
+    rts
+_med
     #playerLaserSetup mLaser00PosX, mLaser00PosX + 1, mLaser00PosY, mLaserActive00, 9
     #playerLaserSetup mLaser01PosX, mLaser01PosX + 1, mLaser01PosY, mLaserActive01, 12
     #playerLaserSetup mLaser02PosX, mLaser02PosX + 1, mLaser02PosY, mLaserActive02, 6
     rts
 
 playerFire1
+    lda mPlayerLaserPower
+    cmp #2
+    beq _hi
+    rts
+_hi
     #playerLaserSetup mLaser03PosX, mLaser03PosX + 1, mLaser03PosY, mLaserActive03, 9
     #playerLaserSetup mLaser04PosX, mLaser04PosX + 1, mLaser04PosY, mLaserActive04, 12
     #playerLaserSetup mLaser05PosX, mLaser05PosX + 1, mLaser05PosY, mLaserActive05, 6
@@ -92,24 +108,24 @@ _moveOK
 .endmacro
 
 playerLaserMove
-    lda mPlayerLaserPower
-    cmp #0
-    beq _low
-    cmp #1
-    beq _med
-    cmp #1
-    beq _hi
-    rts
-_low
-    jsr playerLaser0
-   ;jsr playerLaser3
-    rts
-_med
-    jsr playerLaser0
-    jsr playerLaser1
-    jsr playerLaser2
-    rts
-_hi
+;     lda mPlayerLaserPower
+;     cmp #0
+;     beq _low
+;     cmp #1
+;     beq _med
+;     cmp #2
+;     beq _hi
+;     rts
+; _low
+;     jsr playerLaser0
+   
+;     rts
+; _med
+;     jsr playerLaser0
+;     jsr playerLaser1
+;     jsr playerLaser2
+;     rts
+; _hi
     jsr playerLaser0
     jsr playerLaser1
     jsr playerLaser2
@@ -215,7 +231,7 @@ _moveOK
     dec mLaser03Posy
     dec mLaser03Posy
     dec mLaser03Posy
-    #macroShowSprite spPlayer1Laser3, spLaser00 ,mLaser03PosX, mLaser03PosX+1, mLaser03PosY, SPRITE24L0C2 
+    #macroShowSprite spPlayer1Laser3, spLaser01 ,mLaser03PosX, mLaser03PosX+1, mLaser03PosY, SPRITE24L0C2 
     rts
 
 playerLaser4
@@ -244,7 +260,7 @@ _moveOK
     lda mLaser04PosX + 1
     sbc #0
     sta  mLaser04PosX + 1
-    #macroShowSprite spPlayer1Laser4, spLaser00 ,mLaser04PosX, mLaser04PosX+1, mLaser04PosY, SPRITE24L0C2 
+    #macroShowSprite spPlayer1Laser4, spLaser01 ,mLaser04PosX, mLaser04PosX+1, mLaser04PosY, SPRITE24L0C2 
     rts
  
 playerLaser5
@@ -273,10 +289,20 @@ _moveOK
     lda mLaser05PosX + 1
     adc #0
     sta  mLaser05PosX + 1
-    #macroShowSprite spPlayer1Laser5, spLaser00 ,mLaser05PosX, mLaser05PosX+1, mLaser05PosY, SPRITE24L0C2 
+    #macroShowSprite spPlayer1Laser5, spLaser01 ,mLaser05PosX, mLaser05PosX+1, mLaser05PosY, SPRITE24L0C2 
     rts
 
-resetAllLasers
+deactivateAllLasers
+    lda #objectInactive
+    sta mLaserActive00
+    sta mLaserActive01
+    sta mLaserActive02
+    sta mLaserActive03
+    sta mLaserActive04
+    sta mLaserActive05 
+    rts
+
+disableAllLasers
     lda #objectDisabled
     sta mLaserActive00
     sta mLaserActive01
@@ -316,7 +342,6 @@ resetAllLasers
     lda spPlayer1Laser5
     jsr setSpriteNumber
     jsr hideSprite
-
     rts
 .endsection
 

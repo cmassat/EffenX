@@ -10,13 +10,13 @@ _checkCollisions
    ;jsr enemyLaser2HitPlayer0
    ;jsr enemyLaser3HitPlayer0
    ;;jsr enemyLaser4HitPlayer0
-   ;;jsr enemyLaser5HitPlayer0
-   ;;jsr enemyLaser6HitPlayer0
-   ;;jsr enemyLaser7HitPlayer0
-   ;jsr enemyLaser8HitPlayer0
-   ;jsr enemyLaser9HitPlayer0
-   ;jsr enemyLaser10HitPlayer0
-   ;jsr enemyLaser11HitPlayer0
+   jsr enemyLaser5HitPlayer0
+   jsr enemyLaser6HitPlayer0
+   jsr enemyLaser7HitPlayer0
+   jsr enemyLaser8HitPlayer0
+   jsr enemyLaser9HitPlayer0
+   jsr enemyLaser10HitPlayer0
+   jsr enemyLaser11HitPlayer0
     rts
 
 enemyLaser0HitPlayer0
@@ -26,6 +26,7 @@ enemyLaser0HitPlayer0
     sta mPlayerStatus
     lda #objectInactive
     sta mEnemyLaserActive00
+   
     ;jsr sound_play_explosion
     rts
 
@@ -98,7 +99,7 @@ enemyLaser7HitPlayer0
     #coollideMacro mEnemyLaserX07, 10, mPlayerPosX, 18, mEnemyLaserY07, 6,mPlayerPosY, 20
     lda #objectCollided
     sta mPlayerStatus
-    stz mEnemyLaserActive07
+    sta mEnemyLaserActive07
     stz mLaser02Posy
     stz mLaser02Posy + 1
     ;jsr sound_play_explosion

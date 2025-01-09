@@ -5,7 +5,7 @@ handlePowerUp
     jsr powerupCollide
     jsr checkPowerUpCollision
     
-    jsr debug
+ 
     rts
 _initPowerUp
     lda mPowerUpStatus
@@ -38,6 +38,13 @@ _youGotPower
     jsr hideSprite
     lda #objectDisabled
     sta mPowerUpStatus
+    lda mPlayerLaserPower
+    cmp #3
+    bcs _setMax
+    rts
+_setMax
+    lda #2
+    sta mPlayerLaserPower
     rts
 
 movePowerUp
@@ -47,8 +54,16 @@ movePowerUp
     rts
 _show
     #add16Macro mPowerUpY
-    #showSpriteMacro spPowerUpNumber, spPowerAddr, mPowerUpX ,mPowerUpY, SPRITE24L0C2
-   
+    #showSpriteMacro spPowerUpNumber, spPowerAddr, mPowerUpX ,mPowerUpY, SPRITE24L0C2, mPowerUpStatus
+    rts
+
+losePowerUp
+    lda mPlayerLaserPower
+    cmp #0
+    bne _losePower
+    rts
+_losePower
+    dec mPlayerLaserPower
     rts
 
 isPowerUp
@@ -92,6 +107,62 @@ clearFireBoost
     stz mFireBoostGroup3
     stz mFireBoostGroup4
     rts
+
+checkFireBoost
+    jsr _checkFireBoost0
+    jsr _checkFireBoost1
+    jsr _checkFireBoost2
+    jsr _checkFireBoost3
+    jsr _checkFireBoost4
+    rts
+
+_checkFireBoost0
+    lda mEnemyStatus00
+    jsr isEnemyHit
+    bcc _incBoost0
+    rts
+_incBoost0
+    lda #1
+    sta mFireBoostGroup0
+    rts
+
+_checkFireBoost1
+    lda mEnemyStatus01
+    jsr isEnemyHit
+    bcc _incBoost1
+    rts
+_incBoost1
+    lda #1
+    sta mFireBoostGroup1
+    rts
+_checkFireBoost2
+    lda mEnemyStatus02
+    jsr isEnemyHit
+    bcc _incBoost2
+    rts
+_incBoost2
+    lda #1
+    sta mFireBoostGroup2
+    rts
+_checkFireBoost3
+    lda mEnemyStatus03
+    jsr isEnemyHit
+    bcc _incBoost3
+    rts
+_incBoost3
+    lda #1
+    sta mFireBoostGroup3
+    rts
+_checkFireBoost4
+    lda mEnemyStatus04
+    jsr isEnemyHit
+    bcc _incBoost4
+    rts
+_incBoost4
+    lda #1
+    sta mFireBoostGroup4
+    rts
+
 .section variables
 mPowerUpStatus
     .byte $00
@@ -99,4 +170,14 @@ mPowerUpX
     .word $00
 mPowerUpY
     .word $00
+mFireBoostGroup0
+    .byte $00
+mFireBoostGroup1
+    .byte $00
+mFireBoostGroup2
+    .byte $00
+mFireBoostGroup3
+    .byte $00
+mFireBoostGroup4
+    .byte $00
 .endsection

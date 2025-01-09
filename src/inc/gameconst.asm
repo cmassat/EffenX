@@ -96,11 +96,16 @@ spPowerAddr = spStarAddr + spLevelSize
 spThrust00  = spLevelStart + (10 * spLevelSize)
 spShieldAddress  = spLevelStart + (11 * spLevelSize)
 spLaser00 = spLevelStart + (14 * spLevelSize)
+spLaser01 = spLevelStart + (24 * spLevelSize)
 spExplosionfr0 = spLevelStart + (20 * spLevelSize)
 spExplosionfr1 = spLevelStart + (21 * spLevelSize)
 spExplosionfr2 = spLevelStart + (22 * spLevelSize)
 spEnemyLaserGreen = spLevelStart + (13 * spLevelSize)
 spEnemyLaserOrange = spLevelStart + (23 * spLevelSize)
+
+spMiniBossAddr0 = spLevelStart + (9 * spLevelSize)
+spMiniBossAddr1 = spLevelStart + (19 * spLevelSize)
+
 ;BOSS1
 spBoss1part0 = spLevelStart + (30 * spLevelSize)
 spBoss1part1 = spLevelStart + (31 * spLevelSize)
@@ -126,23 +131,28 @@ tileMapStartL1 = $64000
 
 ;SPRITE
 ;spNumberEnemyStart = 10
-spEnemy00 = spLevelStart + (5 * spLevelSize)
-spEnemy01 = spLevelStart + (6 * spLevelSize)
-spEnemy02 = spLevelStart + (7 * spLevelSize)
-spEnemy03 = spLevelStart + (8 * spLevelSize)
-spEnemy04 = spLevelStart + (15 * spLevelSize)
-spEnemy05 = spLevelStart + (16 * spLevelSize)
-spEnemy06 = spLevelStart + (17 * spLevelSize)
-spEnemy07 = spLevelStart + (18 * spLevelSize)
-spEnemy08 = spLevelStart + (25 * spLevelSize)
-spEnemy09 = spLevelStart + (26 * spLevelSize)
-spEnemy10 = spLevelStart + (27 * spLevelSize)
-spEnemy11 = spLevelStart + (28 * spLevelSize)
+spEnemyAddr00 = spLevelStart + (5 * spLevelSize)
+spEnemyAddr01 = spLevelStart + (6 * spLevelSize)
+spEnemyAddr02 = spLevelStart + (7 * spLevelSize)
+spEnemyAddr03 = spLevelStart + (8 * spLevelSize)
+spEnemyAddr04 = spLevelStart + (15 * spLevelSize)
+spEnemyAddr05 = spLevelStart + (16 * spLevelSize)
+spEnemyAddr06 = spLevelStart + (17 * spLevelSize)
+spEnemyAddr07 = spLevelStart + (18 * spLevelSize)
+spEnemyAddr08 = spLevelStart + (25 * spLevelSize)
+spEnemyAddr09 = spLevelStart + (26 * spLevelSize)
+spEnemyAddr10 = spLevelStart + (27 * spLevelSize)
+spEnemyAddr11 = spLevelStart + (28 * spLevelSize)
 
 spHoldStar = spLevelStart + (35 * spLevelSize)
 spEnemy13 = spLevelStart + (36 * spLevelSize)
 spEnemy14 = spLevelStart + (37 * spLevelSize)
 spEnemy15 = spLevelStart + (38 * spLevelSize)
+
+
+
+spHitFlashNumber = 63
+spMuzzleFlashNumber = 62
 
 spPlayer1ShipNumber = 61
 spPlayer1ShieldNumber = 60
@@ -165,35 +175,67 @@ spEnemyNumber02 = 47
 spEnemyNumber03 = 46
 spEnemyNumber04 = 45
 spEnemyNumber05 = 44
-spEnemyNumber06 = 43
+spEnemyNumber06 = 43   
 spEnemyNumber07 = 42
 spEnemyNumber08 = 41
 spEnemyNumber09 = 40
 spEnemyNumber10 = 39
 spEnemyNumber11 = 38
+spEnemyNumber12 = 37
+spEnemyNumber13 = 36
+spEnemyNumber14 = 35
+spEnemyNumber15 = 34
 
-spPowerUpNumber = 37
-spGoldStar = 36
-spBossNumberExplosion = 35
 
-spEnemyLaserNumber00 = 29
-spEnemyLaserNumber01 = 28
-spEnemyLaserNumber02 = 27
-spEnemyLaserNumber03 = 26
-spEnemyLaserNumber04 = 25
-spEnemyLaserNumber05 = 24
-spEnemyLaserNumber06 = 23
-spEnemyLaserNumber07 = 22
-spEnemyLaserNumber08 = 21
-spEnemyLaserNumber09 = 20
-spEnemyLaserNumber10 = 19
-spEnemyLaserNumber11 = 18
+spBossLaserNumber0 = 33
+spBossLaserNumber1 = 32
+spBossLaserNumber2 = 31
 
+spMiniBossLaserNumber0 = 30
+spMiniBossLaserNumber1 = 29
+spMiniBossNumber0 = 28
+spMiniBossNumber1 = 27
+
+spPowerUpNumber = 26
+spGoldStar = 25
+spBossNumberExplosion = 24
+
+spEnemyLaserNumber00 = 23
+spEnemyLaserNumber01 = 22
+spEnemyLaserNumber02 = 21
+spEnemyLaserNumber03 = 20
+spEnemyLaserNumber04 = 19
+spEnemyLaserNumber05 = 18
+spEnemyLaserNumber06 = 17
+spEnemyLaserNumber07 = 16
+spEnemyLaserNumber08 = 15
+spEnemyLaserNumber09 = 14
+spEnemyLaserNumber10 = 13
+spEnemyLaserNumber11 = 12
+spEnemyLaserNumber12 = 11
+spEnemyLaserNumber13 = 10
+spEnemyLaserNumber14 = 9
+spEnemyLaserNumber15 = 8
+
+spBossNumber00 = 7
+spBossNumber01 = 6
+spBossNumber02 = 5
+spBossNumber03 = 4
+spBossNumber04 = 3
+spBossNumber05 = 2
+spBossNumber06 = 1
+spBossNumber07 = 0
 
 .endsection
 
-objectInactive = $00
 objectActive   = $01
 objectCollided = $02
-objectGodMode = $fe
+
+objectGodMode = $fd
+objectInactive = $0e
 objectDisabled = $ff
+
+directionLeft = 1
+directionRight = 2
+directionUp = 3
+directionDown = 4

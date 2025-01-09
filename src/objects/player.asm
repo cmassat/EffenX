@@ -233,7 +233,7 @@ setupSprite
 
     rts
 .section variables
-player1Shield = 4
+player1Shield = 2
 
 mPlayerStatus
     .byte $00

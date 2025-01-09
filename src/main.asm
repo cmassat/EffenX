@@ -1,7 +1,7 @@
 *=$1000
 .dsection variables
 
-*=$2000
+*=$1900
 .dsection code 
 
 
@@ -19,7 +19,7 @@ main
     ;jsr loadFont
     jsr resetGame
 
-    
+    jsr loadFont
     jsr initEvents
     jsr InitState
     jsr resetEnemies
@@ -51,14 +51,13 @@ _gameLoop
 .include "./api/api_joy.asm"
 .include "./api/api_score.asm"
 .include "./api/api_math.asm"
-.include "./objects/player.asm"
-.include "./objects/playerHit.asm"
-.include "./objects/playerLaser.asm"
-.include "./objects/enemy/enemyHit.asm"
-.include "./objects/enemy/enemy.asm"
-.include "./objects/enemy/paths.asm"
-.include "./objects/enemy/enemyLaser.asm"
-.include "./objects/enemy/enemyReset.asm"
+; .include "./objects/player.asm"
+; .include "./objects/playerHit.asm"
+; .include "./objects/playerLaser.asm"
+; .include "./objects/enemy/enemyHit.asm"
+; .include "./objects/enemy/enemy.asm"
+; .include "./objects/enemy/enemyLaser.asm"
+; .include "./objects/enemy/enemyReset.asm"
 .include "./objects/includes.asm"
 .include "./collision/includes.asm"
 .include "state.asm"
@@ -70,7 +69,7 @@ _gameLoop
 .include "font.asm"
 .include "psgSound.asm"
 .include "score.asm"
-.include "./level1/main.asm"
+.include "./level1/levelLoop.asm"
 .include "./level1/bossFight.asm"
 
 .include "./api/api_collision.asm"

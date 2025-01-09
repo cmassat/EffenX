@@ -88,29 +88,65 @@ _loop
 _end
     rts
 
-showSpriteMacro .macro 
-    lda #\1
+showSpriteMacro .macro spriteNumber, spriteAddress, spriteXPos, spriteYPos, spriteAttrib, status
+    lda \status
+    cmp #objectActive
+    beq _showSprite
+    lda #\spriteNumber
+    jsr setSpriteNumber
+    jsr hideSprite
+    rts
+_showSprite
+    lda #\spriteNumber
     jsr setSpriteNumber
 
-    lda <#\2
-    ldx >#\2
-    ldy `#\2
+    lda <#\spriteAddress
+    ldx >#\spriteAddress
+    ldy `#\spriteAddress
     jsr setSpriteAddress
 
-    lda \3
-    ldx \3 + 1
+    lda \spriteXPos
+    ldx \spriteXPos + 1
     jsr setSpriteX
 
     ;lda #<\4
     ;ldx #>\4
-    lda \4
-    ldx \4 + 1
+    lda \spriteYPos
+    ldx \spriteYPos + 1
     jsr setSpriteY
 
-    lda #\5
+    lda #\spriteAttrib
     jsr showSprite
 .endmacro
 
+
+showSpriteMacroA .macro spriteNumber, spriteAddress, spriteXPos, spriteYPos, spriteAttrib, status
+    lda \status
+    cmp #objectActive
+    beq _showSprite
+    rts
+_showSprite
+    lda #\spriteNumber
+    jsr setSpriteNumber
+
+    lda \spriteAddress
+    ldx \spriteAddress + 1
+    ldy \spriteAddress + 2
+    jsr setSpriteAddress
+
+    lda \spriteXPos
+    ldx \spriteXPos + 1
+    jsr setSpriteX
+
+    ;lda #<\4
+    ;ldx #>\4
+    lda \spriteYPos
+    ldx \spriteYPos + 1
+    jsr setSpriteY
+
+    lda #\spriteAttrib
+    jsr showSprite
+.endmacro
 macroShowSprite .macro 
     lda #\1
     jsr setSpriteNumber

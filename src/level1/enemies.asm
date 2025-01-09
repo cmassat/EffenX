@@ -1,158 +1,172 @@
-levelOneInitEnemies
-    jsr enemyInit00
-    jsr enemyInit01
-    jsr enemyInit02
-    jsr enemyInit03
-    jsr enemyInit04
-    rts
-
-enemyInit00
-    #levelOneInitMacro mEnemyStatus00, mEnemyX00, mEnemyY00
-    rts
-
-enemyInit01
-    #levelOneInitMacro mEnemyStatus01, mEnemyX01, mEnemyY01
-    rts
-
-enemyInit02
-    #levelOneInitMacro mEnemyStatus02, mEnemyX02, mEnemyY02
-    rts
-
-enemyInit03
-    #levelOneInitMacro mEnemyStatus03, mEnemyX03, mEnemyY03
-    rts
-
-enemyInit04
-    #levelOneInitMacro mEnemyStatus04, mEnemyX04, mEnemyY04
-    rts
-
+.section code
 levelOneMoveEnemies
-   
-    jsr levelOneMove00
-    jsr levelOneMove01
-    jsr levelOneMove02
-    jsr levelOneMove03
-    jsr levelOneMove04
-    jsr levelOneMove05
+    jsr levelOneWaveOne
     jsr showEnemies
     rts
 
-levelOneMoveMacro .macro
-    lda \1
-    cmp #objectDisabled
-    bne _checkActive
-    rts
-_checkActive
-    lda \1
-    cmp #objectActive
-    beq _moveEnemy
-    rts
-_moveEnemy
-    cmp  #240
-    bcs _resetEnemy
-    lda \2
-    adc #1
-    sta \2
-    rts
-_resetEnemy
-    lda #objectDisabled
-    sta \1
-.endmacro
+levelOneWaveOne
+;    lda mwave
+;    cmp #1
+;    beq _continue
+;    rts
+;_continue
+    jsr _move0
+    jsr _move1
+    jsr _move2
+    jsr _move3
+    jsr _move4
+    jsr _move5
+    jsr _move6
+    jsr _move7
+    jsr _move8
+    jsr _move9
+    jsr _move10
+    jsr _move11
+    jsr _move12
+    jsr _move13
+    jsr _move14
+    
+    ;jsr _move0
+    ;jsr _move1
+    ;jsr _move2
+    ;jsr _move3
+    ;jsr _move4
+    jsr _move5
+    jsr _move6
+    jsr _move7
+    jsr _move8
+    jsr _move9
+    jsr _move10
+    jsr _move11
+    jsr _move12
+    jsr _move13
+    jsr _move14
 
-levelOneMove00
-    #levelOneMoveMacro mEnemyStatus00, mEnemyY00
+    ;jsr _move0
+    ;jsr _move1
+    ;jsr _move2
+    ;jsr _move3
+    ;jsr _move4
+    jsr _move10
+    jsr _move11
+    jsr _move12
+    jsr _move13
+    jsr _move14
     rts
-levelOneMove01
-    #levelOneMoveMacro mEnemyStatus01, mEnemyY01
+_move0
+    #moveObjectMacro mEnemyStatus00, mEnemyPath00,  mEnemyX00, mEnemyY00, objectDisabled
     rts
-
-levelOneMove02
-    #levelOneMoveMacro mEnemyStatus02, mEnemyY02
+_move1
+    #moveObjectMacro mEnemyStatus01, mEnemyPath01,  mEnemyX01, mEnemyY01, objectDisabled
     rts
-
-levelOneMove03
-    #levelOneMoveMacro mEnemyStatus03, mEnemyY03
+_move2
+    #moveObjectMacro mEnemyStatus02, mEnemyPath02,  mEnemyX02, mEnemyY02, objectDisabled
     rts
-
-levelOneMove04
-    #levelOneMoveMacro mEnemyStatus04, mEnemyY04
+_move3
+    #moveObjectMacro mEnemyStatus03, mEnemyPath03,  mEnemyX03, mEnemyY03, objectDisabled
+    rts
+_move4
+    #moveObjectMacro mEnemyStatus04, mEnemyPath04,  mEnemyX04, mEnemyY04, objectDisabled
+    rts
+_move5
+    #moveObjectMacro mEnemyStatus05, mEnemyPath05,  mEnemyX05, mEnemyY05, objectDisabled
+    rts
+_move6
+    #moveObjectMacro mEnemyStatus06, mEnemyPath06,  mEnemyX06, mEnemyY06, objectDisabled
+    rts
+_move7
+    #moveObjectMacro mEnemyStatus07, mEnemyPath07,  mEnemyX07, mEnemyY07, objectDisabled
+    rts
+_move8
+    #moveObjectMacro mEnemyStatus08, mEnemyPath08,  mEnemyX08, mEnemyY08, objectDisabled
+    rts
+_move9
+    #moveObjectMacro mEnemyStatus09, mEnemyPath09,  mEnemyX09, mEnemyY09, objectDisabled
+    rts
+_move10
+    #moveObjectMacro mEnemyStatus10, mEnemyPath10,  mEnemyX10, mEnemyY10, objectDisabled
+    rts
+_move11
+    #moveObjectMacro mEnemyStatus11, mEnemyPath11,  mEnemyX11, mEnemyY11, objectDisabled
+    rts
+_move12
+    #moveObjectMacro mEnemyStatus12, mEnemyPath12,  mEnemyX12, mEnemyY12, objectDisabled
+    rts
+_move13
+    #moveObjectMacro mEnemyStatus13, mEnemyPath13,  mEnemyX13, mEnemyY13, objectDisabled
+    rts
+_move14
+    #moveObjectMacro mEnemyStatus14, mEnemyPath14,  mEnemyX14, mEnemyY14, objectDisabled
     rts
 
 levelOneMove05
-    #levelOneMoveMacro mEnemyStatus05, mEnemyY05
+    #moveObjectMacro mEnemyStatus05, mEnemyPath05,  mEnemyX05, mEnemyY05, objectDisabled
     rts
     
-lvlOneMoves = $3
-mLvlOneMoves
-    .byte $00
-
-jmpTableEnemyStatus
-.byte  <mEnemyStatus00, >mEnemyStatus00
-.byte  <mEnemyStatus01, >mEnemyStatus01
-.word  mEnemyStatus02
-.word  mEnemyStatus03
-.word  mEnemyStatus04
-jmpTableEnemyMove
-.byte <mEnemyY00, >mEnemyY00
-.byte <mEnemyY01, >mEnemyY01
-.word  mEnemyY02
-.word  mEnemyY03
-.word  mEnemyY04
-tmpPtr
-    .byte 0,0
-; jmpTableEnemyInit
-; .word enemy00Init
-; .word enemy01Init
-
-jmpLocation
-    .word $00
-
 showEnemies
     jsr showEnemy00
     jsr showEnemy01
     jsr showEnemy02
     jsr showEnemy03
     jsr showEnemy04
+    jsr showEnemy05
+    jsr showEnemy06
+    jsr showEnemy07
+    jsr showEnemy08
+    jsr showEnemy09
+    jsr showEnemy10
+    jsr showEnemy11
+    jsr showEnemy12
+    jsr showEnemy13
+    jsr showEnemy14
     rts
 
 showEnemy00
-    lda mEnemyStatus00
-    cmp #objectActive
-    beq _show
+    #showSpriteMacroA spEnemyNumber00, mEnemySpriteAddr00, mEnemyX00 ,mEnemyY00, SPRITE24L0C2, mEnemyStatus00
     rts
-_show
-    #showSpriteMacro spEnemyNumber00, spEnemy00, mEnemyX00 ,mEnemyY00, SPRITE24L0C2
-    rts
-
 showEnemy01
-    lda mEnemyStatus01
-    cmp #objectActive
-    beq _show
-    rts
-_show
-    #showSpriteMacro spEnemyNumber01, spEnemy00, mEnemyX01 ,mEnemyY01, SPRITE24L0C2
+    #showSpriteMacroA spEnemyNumber01, mEnemySpriteAddr01, mEnemyX01 ,mEnemyY01, SPRITE24L0C2, mEnemyStatus01
     rts
 showEnemy02
-    lda mEnemyStatus02
-    cmp #objectActive
-    beq _show
-    rts
-_show
-    #showSpriteMacro spEnemyNumber02, spEnemy00, mEnemyX02 ,mEnemyY02, SPRITE24L0C2
+    #showSpriteMacroA spEnemyNumber02, mEnemySpriteAddr02, mEnemyX02 ,mEnemyY02, SPRITE24L0C2, mEnemyStatus02
     rts
 showEnemy03
-    lda mEnemyStatus03
-    cmp #objectActive
-    beq _show
-    rts
-_show
-    #showSpriteMacro spEnemyNumber03, spEnemy00, mEnemyX03 ,mEnemyY03, SPRITE24L0C2
+    #showSpriteMacroA spEnemyNumber03, mEnemySpriteAddr03, mEnemyX03 ,mEnemyY03, SPRITE24L0C2, mEnemyStatus03
     rts
 showEnemy04
-    lda mEnemyStatus04
-    cmp #objectActive
-    beq _show
+    #showSpriteMacroA spEnemyNumber04, mEnemySpriteAddr04, mEnemyX04 ,mEnemyY04, SPRITE24L0C2, mEnemyStatus04
     rts
-_show
-    #showSpriteMacro spEnemyNumber04, spEnemy00, mEnemyX04 ,mEnemyY04, SPRITE24L0C2
+showEnemy05
+    #showSpriteMacroA spEnemyNumber05, mEnemySpriteAddr05, mEnemyX05 ,mEnemyY05, SPRITE24L0C2, mEnemyStatus05
     rts
+showEnemy06
+    #showSpriteMacroA spEnemyNumber06, mEnemySpriteAddr06, mEnemyX06 ,mEnemyY06, SPRITE24L0C2, mEnemyStatus06
+    rts
+showEnemy07
+    #showSpriteMacroA spEnemyNumber07, mEnemySpriteAddr07, mEnemyX07 ,mEnemyY07, SPRITE24L0C2, mEnemyStatus07
+    rts
+showEnemy08
+    #showSpriteMacroA spEnemyNumber08, mEnemySpriteAddr08, mEnemyX08 ,mEnemyY08, SPRITE24L0C2, mEnemyStatus08
+    rts
+showEnemy09
+    #showSpriteMacroA spEnemyNumber09, mEnemySpriteAddr09, mEnemyX09 ,mEnemyY09, SPRITE24L0C2, mEnemyStatus09
+    rts
+showEnemy10
+    #showSpriteMacroA spEnemyNumber10, mEnemySpriteAdd10, mEnemyX10 ,mEnemyY10, SPRITE24L0C2, mEnemyStatus10
+    rts
+showEnemy11
+    #showSpriteMacroA spEnemyNumber11, mEnemySpriteAddr11, mEnemyX11 ,mEnemyY11, SPRITE24L0C2, mEnemyStatus11
+    rts
+showEnemy12
+    #showSpriteMacroA spEnemyNumber12, mEnemySpriteAddr12, mEnemyX12 ,mEnemyY12, SPRITE24L0C2, mEnemyStatus12
+    rts
+showEnemy13
+    #showSpriteMacroA spEnemyNumber13, mEnemySpriteAddr13, mEnemyX13 ,mEnemyY13, SPRITE24L0C2, mEnemyStatus13
+    rts
+showEnemy14
+    #showSpriteMacroA spEnemyNumber14, mEnemySpriteAddr14, mEnemyX14 ,mEnemyY14, SPRITE24L0C2, mEnemyStatus14
+    rts
+showEnemy15
+    #showSpriteMacroA spEnemyNumber15, mEnemySpriteAddr15, mEnemyX15 ,mEnemyY15, SPRITE24L0C2, mEnemyStatus15
+    rts
+.endsection

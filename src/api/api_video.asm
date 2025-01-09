@@ -114,6 +114,8 @@ setLayers
 
 clearScreenMemory
     pha
+    phx
+    phy
     lda #2
     sta MMU_IO_CTRL
     lda #' '
@@ -143,6 +145,8 @@ _loop
     cpy #0
     bne _loop
     stz MMU_IO_CTRL 
+    ply
+    plx
     pla
     rts
 .endsection

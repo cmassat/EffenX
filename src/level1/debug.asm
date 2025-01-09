@@ -1,9 +1,10 @@
+.section code
 debug
     phy
     lda #2
     sta MMU_IO_CTRL
 
-    lda mPowerUpStatus
+    lda mEnemyLaserActive07
     lsr
     lsr 
     lsr
@@ -12,14 +13,13 @@ debug
     lda mHex, y
     sta $C000
 
-    lda mPowerUpStatus
+    lda mEnemyLaserActive07
     and #$0F
      tay
     lda mHex, y
     sta $C001
 
-    lda mPlayerLaserPower 
-
+    lda mFireBoostGroup1
     lsr
     lsr 
     lsr
@@ -28,14 +28,14 @@ debug
     lda mHex, y
     sta $C002
 
-    lda mPlayerLaserPower
+    lda mFireBoostGroup1
     and #$0F
     tay
     lda mHex, y
     sta $C003
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    lda mEnemyY04
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;w
+    lda mFireBoostGroup2
     lsr
     lsr 
     lsr
@@ -44,13 +44,14 @@ debug
     lda mHex, y
     sta $C005
 
-    lda mEnemyY04
+    lda mFireBoostGroup2
+
     and #$0F
     tay
     lda mHex, y
     sta $C006 
 
-     lda mLvlOneMoves
+     lda mFireBoostGroup3
      lsr
      lsr 
      lsr
@@ -59,44 +60,43 @@ debug
      lda mHex, y
      sta $C008
 
-     lda mLvlOneMoves
+     lda mFireBoostGroup3
      and #$0F
      tay
      lda mHex, y
      sta $C009
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;
-;    lda mXhit
-;    lsr
-;    lsr 
-;    lsr
-;    lsr
-;    tay
-;    lda mHex, y
-;    sta $C000 + 40
-;
-;    lda mXhit
-;    and #$0F
-;     tay
-;    lda mHex, y
-;    sta $C001 + 40
-;
-;    lda mYhit
-;    lsr
-;    lsr 
-;    lsr
-;    lsr
-;    tay
-;    lda mHex, y
-;    sta $C002 + 40
-;
-;    lda mYhit
-;    and #$0F
-;     tay
-;    lda mHex, y
-;    sta $C003 + 40
-;
+
+    lda mFireBoostGroup4
+    lsr
+    lsr 
+    lsr
+    lsr
+    tay
+    lda mHex, y
+    sta $C00b
+
+    lda mFireBoostGroup4
+    and #$0F
+     tay
+    lda mHex, y
+    sta $C00c
+
+    lda mLaserActive05 
+    lsr
+    lsr 
+    lsr
+    lsr
+    tay
+    lda mHex, y
+    sta $C00d
+
+    lda mLaserActive05 
+    and #$0F
+     tay
+    lda mHex, y
+    sta $C00e
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;    lda m_score_3
 ;    lsr
@@ -195,3 +195,5 @@ mDebug1
 
 mHex
     .text '0123456789ABCDEF'
+
+.endsection

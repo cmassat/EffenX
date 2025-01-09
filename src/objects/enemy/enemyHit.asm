@@ -104,26 +104,40 @@ enemyHit4
 
 enemyHit5
      #enemyExplosionMacro mEnemyStatus05, mPlayerHitDelay5, mEnemyHitFrames5, spEnemyNumber05
+     lda #objectInactive
+     sta mEnemyStatus05
      rts
 
 enemyHit6
      #enemyExplosionMacro mEnemyStatus06, mPlayerHitDelay6, mEnemyHitFrames6, spEnemyNumber06
+     lda #objectInactive
+     sta mEnemyStatus06
      rts
 
 enemyHit7
      #enemyExplosionMacro mEnemyStatus07, mPlayerHitDelay7, mEnemyHitFrames7, spEnemyNumber07
+     lda #objectInactive
+     sta mEnemyStatus07
      rts
 enemyHit8
      #enemyExplosionMacro mEnemyStatus08, mPlayerHitDelay8, mEnemyHitFrames8, spEnemyNumber08
+     lda #objectInactive
+     sta mEnemyStatus08
      rts
 enemyHit9
      #enemyExplosionMacro mEnemyStatus09, mPlayerHitDelay9, mEnemyHitFrames9, spEnemyNumber09
+     lda #objectInactive
+     sta mEnemyStatus09
      rts
 enemyHit10
      #enemyExplosionMacro mEnemyStatus10, mPlayerHitDelay10, mEnemyHitFrames10, spEnemyNumber10
+     lda #objectInactive
+     sta mEnemyStatus10
      rts
 enemyHit11
      #enemyExplosionMacro mEnemyStatus11, mPlayerHitDelay11, mEnemyHitFrames11, spEnemyNumber11
+      lda #objectInactive
+     sta mEnemyStatus11
      rts
 .section variables
 mEnemyHitFrames0
