@@ -20,11 +20,11 @@ levelOneWaveOne
     jsr _move7
     jsr _move8
     jsr _move9
-    jsr _move10
-    jsr _move11
-    jsr _move12
-    jsr _move13
-    jsr _move14
+    ; jsr _move10
+    ; jsr _move11
+    ; jsr _move12
+    ; jsr _move13
+    ; jsr _move14
     
     ;jsr _move0
     ;jsr _move1
@@ -36,22 +36,22 @@ levelOneWaveOne
     jsr _move7
     jsr _move8
     jsr _move9
-    jsr _move10
-    jsr _move11
-    jsr _move12
-    jsr _move13
-    jsr _move14
+    ;jsr _move10
+    ; jsr _move11
+    ; jsr _move12
+    ; jsr _move13
+    ; jsr _move14
 
     ;jsr _move0
     ;jsr _move1
     ;jsr _move2
     ;jsr _move3
     ;jsr _move4
-    jsr _move10
-    jsr _move11
-    jsr _move12
-    jsr _move13
-    jsr _move14
+    ; jsr _move10
+    ; jsr _move11
+    ; jsr _move12
+    ; jsr _move13
+    ; jsr _move14
     rts
 _move0
     #moveObjectMacro mEnemyStatus00, mEnemyPath00,  mEnemyX00, mEnemyY00, objectDisabled
@@ -83,21 +83,6 @@ _move8
 _move9
     #moveObjectMacro mEnemyStatus09, mEnemyPath09,  mEnemyX09, mEnemyY09, objectDisabled
     rts
-_move10
-    #moveObjectMacro mEnemyStatus10, mEnemyPath10,  mEnemyX10, mEnemyY10, objectDisabled
-    rts
-_move11
-    #moveObjectMacro mEnemyStatus11, mEnemyPath11,  mEnemyX11, mEnemyY11, objectDisabled
-    rts
-_move12
-    #moveObjectMacro mEnemyStatus12, mEnemyPath12,  mEnemyX12, mEnemyY12, objectDisabled
-    rts
-_move13
-    #moveObjectMacro mEnemyStatus13, mEnemyPath13,  mEnemyX13, mEnemyY13, objectDisabled
-    rts
-_move14
-    #moveObjectMacro mEnemyStatus14, mEnemyPath14,  mEnemyX14, mEnemyY14, objectDisabled
-    rts
 
 levelOneMove05
     #moveObjectMacro mEnemyStatus05, mEnemyPath05,  mEnemyX05, mEnemyY05, objectDisabled
@@ -114,11 +99,11 @@ showEnemies
     jsr showEnemy07
     jsr showEnemy08
     jsr showEnemy09
-    jsr showEnemy10
-    jsr showEnemy11
-    jsr showEnemy12
-    jsr showEnemy13
-    jsr showEnemy14
+    ; jsr showEnemy10
+    ; jsr showEnemy11
+    ; jsr showEnemy12
+    ; jsr showEnemy13
+    ; jsr showEnemy14
     rts
 
 showEnemy00
@@ -151,22 +136,22 @@ showEnemy08
 showEnemy09
     #showSpriteMacroA spEnemyNumber09, mEnemySpriteAddr09, mEnemyX09 ,mEnemyY09, SPRITE24L0C2, mEnemyStatus09
     rts
-showEnemy10
-    #showSpriteMacroA spEnemyNumber10, mEnemySpriteAdd10, mEnemyX10 ,mEnemyY10, SPRITE24L0C2, mEnemyStatus10
-    rts
-showEnemy11
-    #showSpriteMacroA spEnemyNumber11, mEnemySpriteAddr11, mEnemyX11 ,mEnemyY11, SPRITE24L0C2, mEnemyStatus11
-    rts
-showEnemy12
-    #showSpriteMacroA spEnemyNumber12, mEnemySpriteAddr12, mEnemyX12 ,mEnemyY12, SPRITE24L0C2, mEnemyStatus12
-    rts
-showEnemy13
-    #showSpriteMacroA spEnemyNumber13, mEnemySpriteAddr13, mEnemyX13 ,mEnemyY13, SPRITE24L0C2, mEnemyStatus13
-    rts
-showEnemy14
-    #showSpriteMacroA spEnemyNumber14, mEnemySpriteAddr14, mEnemyX14 ,mEnemyY14, SPRITE24L0C2, mEnemyStatus14
-    rts
-showEnemy15
-    #showSpriteMacroA spEnemyNumber15, mEnemySpriteAddr15, mEnemyX15 ,mEnemyY15, SPRITE24L0C2, mEnemyStatus15
-    rts
+; showEnemy10
+;     #showSpriteMacroA spEnemyNumber10, mEnemySpriteAdd10, mEnemyX10 ,mEnemyY10, SPRITE24L0C2, mEnemyStatus10
+;     rts
+; showEnemy11
+;     #showSpriteMacroA spEnemyNumber11, mEnemySpriteAddr11, mEnemyX11 ,mEnemyY11, SPRITE24L0C2, mEnemyStatus11
+;     rts
+; showEnemy12
+;     #showSpriteMacroA spEnemyNumber12, mEnemySpriteAddr12, mEnemyX12 ,mEnemyY12, SPRITE24L0C2, mEnemyStatus12
+;     rts
+; showEnemy13
+;     #showSpriteMacroA spEnemyNumber13, mEnemySpriteAddr13, mEnemyX13 ,mEnemyY13, SPRITE24L0C2, mEnemyStatus13
+;     rts
+; showEnemy14
+;     #showSpriteMacroA spEnemyNumber14, mEnemySpriteAddr14, mEnemyX14 ,mEnemyY14, SPRITE24L0C2, mEnemyStatus14
+;     rts
+; showEnemy15
+;     #showSpriteMacroA spEnemyNumber15, mEnemySpriteAddr15, mEnemyX15 ,mEnemyY15, SPRITE24L0C2, mEnemyStatus15
+;     rts
 .endsection

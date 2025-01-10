@@ -31,15 +31,7 @@ _beginLaunch
     beq _launchShip7
     cmp #130
     beq _launchShip8
-    cmp #135
-    beq _launchShip9
-    cmp #150
-    beq _launchShip10
-    cmp #165
-    beq _launchShip11
-    cmp #180
-    beq _launchShip12
-    cmp #180
+    cmp #140
     bcs _nextStage
     #addMacro mEnemeyDelay
     rts 
@@ -74,19 +66,7 @@ _launchShip7
     rts
 _launchShip8
     jsr _ship9
-    jsr _ship10
-    rts
-_launchShip9
-    jsr _ship11
-    rts
-_launchShip10
-    jsr _ship12
-    rts
-_launchShip11
-    jsr _ship13
-    rts
-_launchShip12
-    jsr _ship14
+  ;  jsr _ship10
     rts
 _ship0
     #addMacro mEnemeyDelay
@@ -145,38 +125,38 @@ _ship8
     rts
 _ship9
      #addMacro mEnemeyDelay
-;    lda #objectInactive
-;    sta mEnemyStatus09
-;    #initObjectMacro mEnemyStatus09, mEnemyX09, mEnemyY09, mEnemyPath09, constPathDown, 176, 000, spEnemyAddr04, mEnemySpriteAddr09
+    lda #objectInactive
+    sta mEnemyStatus09
+    #initObjectMacro mEnemyStatus09, mEnemyX09, mEnemyY09, mEnemyPath09, constPathDown, 176, 000, spEnemyAddr04, mEnemySpriteAddr09
     rts
 
  ;;;;;;;;;;;;;;;;;;
-_ship10
-     #addMacro mEnemeyDelay
-    lda #objectInactive
-    sta mEnemyStatus10
-    #initObjectMacro mEnemyStatus10, mEnemyX10, mEnemyY10, mEnemyPath10, constPathDown, 252, 000, spEnemyAddr08, mEnemySpriteAdd10
-    rts
-_ship11
-     #addMacro mEnemeyDelay
-    lda #objectInactive
-    sta mEnemyStatus11
-    #initObjectMacro mEnemyStatus11, mEnemyX11, mEnemyY11, mEnemyPath11, constPathDown, 252, 000, spEnemyAddr09, mEnemySpriteAddr11
-    rts
-_ship12
-     #addMacro mEnemeyDelay
-    lda #objectInactive
-    sta mEnemyStatus12
-    #initObjectMacro mEnemyStatus12, mEnemyX12, mEnemyY12, mEnemyPath12, constPathDown, 252, 000, spEnemyAddr10, mEnemySpriteAddr12
-    rts
-_ship13
-     #addMacro mEnemeyDelay
-     lda #objectInactive
-    sta mEnemyStatus13
-    #initObjectMacro mEnemyStatus13, mEnemyX13, mEnemyY13, mEnemyPath13, constPathDown, 252, 000, spEnemyAddr11, mEnemySpriteAddr13
-    rts
-_ship14
-     #addMacro mEnemeyDelay
+; _ship10
+;      #addMacro mEnemeyDelay
+;     lda #objectInactive
+;     sta mEnemyStatus10
+;     #initObjectMacro mEnemyStatus10, mEnemyX10, mEnemyY10, mEnemyPath10, constPathDown, 252, 000, spEnemyAddr08, mEnemySpriteAdd10
+;     rts
+; _ship11
+;      #addMacro mEnemeyDelay
+;     lda #objectInactive
+;     sta mEnemyStatus11
+;     #initObjectMacro mEnemyStatus11, mEnemyX11, mEnemyY11, mEnemyPath11, constPathDown, 252, 000, spEnemyAddr09, mEnemySpriteAddr11
+;     rts
+; _ship12
+;      #addMacro mEnemeyDelay
+;     lda #objectInactive
+;     sta mEnemyStatus12
+;     #initObjectMacro mEnemyStatus12, mEnemyX12, mEnemyY12, mEnemyPath12, constPathDown, 252, 000, spEnemyAddr10, mEnemySpriteAddr12
+;     rts
+; _ship13
+;      #addMacro mEnemeyDelay
+;      lda #objectInactive
+;     sta mEnemyStatus13
+;     #initObjectMacro mEnemyStatus13, mEnemyX13, mEnemyY13, mEnemyPath13, constPathDown, 252, 000, spEnemyAddr11, mEnemySpriteAddr13
+;     rts
+; _ship14
+;      #addMacro mEnemeyDelay
 ;    lda #objectInactive
 ;    sta mEnemyStatus14
 ;    #initObjectMacro mEnemyStatus14, mEnemyX14, mEnemyY14, mEnemyPath14, constPathDown, 252, 000, spEnemyAddr08, mEnemySpriteAddr14
@@ -246,35 +226,6 @@ _checkObject08
     rts
 _checkObject09
     lda mEnemyStatus09
-    cmp #objectActive
-    bne _checkObject10
-    sec
-    rts
-_checkObject10
-    lda mEnemyStatus10
-    cmp #objectActive
-    bne _checkObject11
-    sec
-    rts
-_checkObject11
-    lda mEnemyStatus11
-    cmp #objectActive
-    bne _checkObject12
-    sec
-    rts
-_checkObject12
-    lda mEnemyStatus12
-    cmp #objectActive
-    bne _checkObject13
-    sec
-    rts
-_checkObject13
-    lda mEnemyStatus13
-    cmp #objectActive
-    bne _checkObject14
-    rts
-_checkObject14
-    lda mEnemyStatus14
     cmp #objectActive
     bne _isClear
     sec

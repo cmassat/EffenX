@@ -11,12 +11,12 @@ resetEnemies
    sta mEnemyStatus07
    sta mEnemyStatus08
    sta mEnemyStatus09
-   sta mEnemyStatus10
-   sta mEnemyStatus11
-   sta mEnemyStatus12
-   sta mEnemyStatus13
-   sta mEnemyStatus14
-   sta mEnemyStatus15
+   ; sta mEnemyStatus10
+   ; sta mEnemyStatus11
+   ; sta mEnemyStatus12
+   ; sta mEnemyStatus13
+   ; sta mEnemyStatus14
+   ; sta mEnemyStatus15
    
    lda #objectDisabled
    sta mEnemyLaserActive00
@@ -29,8 +29,8 @@ resetEnemies
    sta mEnemyLaserActive07
    sta mEnemyLaserActive08
    sta mEnemyLaserActive09
-   sta mEnemyLaserActive10
-   sta mEnemyLaserActive11
+   ; sta mEnemyLaserActive10
+   ; sta mEnemyLaserActive11
 
     jsr hideAllEnemies
     jsr hideAllEnemyLasers
@@ -67,12 +67,12 @@ hideAllEnemies
    lda #spEnemyNumber09
    jsr setSpriteNumber
    jsr hideSprite
-   lda #spEnemyNumber10
-   jsr setSpriteNumber
-   jsr hideSprite
-   lda #spEnemyNumber11
-   jsr setSpriteNumber
-   jsr hideSprite
+   ; lda #spEnemyNumber10
+   ; jsr setSpriteNumber
+   ; jsr hideSprite
+   ; lda #spEnemyNumber11
+   ; jsr setSpriteNumber
+   ; jsr hideSprite
    rts
 
 hideAllEnemyLasers
@@ -106,11 +106,11 @@ hideAllEnemyLasers
    lda #spEnemyLaserNumber09
    jsr setSpriteNumber
    jsr hideSprite 
-   lda #spEnemyLaserNumber10
-   jsr setSpriteNumber
-   jsr hideSprite 
-   lda #spEnemyLaserNumber11
-   jsr setSpriteNumber
-   jsr hideSprite
+   ; lda #spEnemyLaserNumber10
+   ; jsr setSpriteNumber
+   ; jsr hideSprite 
+   ; lda #spEnemyLaserNumber11
+   ; jsr setSpriteNumber
+   ; jsr hideSprite
    rts
 .endsection

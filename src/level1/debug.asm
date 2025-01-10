@@ -4,7 +4,7 @@ debug
     lda #2
     sta MMU_IO_CTRL
 
-    lda mEnemyLaserActive07
+    lda mPlayerShieldDelay
     lsr
     lsr 
     lsr
@@ -13,13 +13,13 @@ debug
     lda mHex, y
     sta $C000
 
-    lda mEnemyLaserActive07
+    lda mPlayerShieldDelay
     and #$0F
      tay
     lda mHex, y
     sta $C001
 
-    lda mFireBoostGroup1
+    lda mLaser00Posy
     lsr
     lsr 
     lsr
@@ -28,7 +28,7 @@ debug
     lda mHex, y
     sta $C002
 
-    lda mFireBoostGroup1
+    lda mLaser00Posy
     and #$0F
     tay
     lda mHex, y

@@ -1,22 +1,22 @@
 .section code
-playerLaserSetup .macro
+playerLaserSetup .macro laserX, laserY, status, xOffSet
     lda mPlayerPosX
     clc
-    adc #\5
-    sta \1
+    adc #\xOffSet
+    sta \laserX
     lda mPlayerPosX + 1
     adc #0
-    sta \2
+    sta \laserX + 1
 
     lda mPlayerPosY
     sec
     sbc #8
-    sta \3
+    sta \laserY
 
-    stz \3+1
+    stz \laserY+1
 
-    lda #1
-    sta \4
+    lda #objectActive
+    sta \status
     lda #LaserDelay
     sta mLaserDelay
 
@@ -48,7 +48,7 @@ _fireAway
     lda #LaserDelay
     sta mLaserDelay
     lda mLaserActive00
-    cmp #0
+    cmp #objectInactive
     beq _playerFire0
     lda mLaserActive03
     cmp #0
@@ -71,12 +71,12 @@ playerFire0
 
     rts
 _low
-    #playerLaserSetup mLaser00PosX, mLaser00PosX + 1, mLaser00PosY, mLaserActive00, 9
+    #playerLaserSetup mLaser00PosX, mLaser00PosY, mLaserActive00, 9
     rts
 _med
-    #playerLaserSetup mLaser00PosX, mLaser00PosX + 1, mLaser00PosY, mLaserActive00, 9
-    #playerLaserSetup mLaser01PosX, mLaser01PosX + 1, mLaser01PosY, mLaserActive01, 12
-    #playerLaserSetup mLaser02PosX, mLaser02PosX + 1, mLaser02PosY, mLaserActive02, 6
+    #playerLaserSetup mLaser00PosX, mLaser00PosY, mLaserActive00, 9
+    #playerLaserSetup mLaser01PosX, mLaser01PosY, mLaserActive01, 12
+    #playerLaserSetup mLaser02PosX, mLaser02PosY, mLaserActive02, 6
     rts
 
 playerFire1
@@ -85,9 +85,9 @@ playerFire1
     beq _hi
     rts
 _hi
-    #playerLaserSetup mLaser03PosX, mLaser03PosX + 1, mLaser03PosY, mLaserActive03, 9
-    #playerLaserSetup mLaser04PosX, mLaser04PosX + 1, mLaser04PosY, mLaserActive04, 12
-    #playerLaserSetup mLaser05PosX, mLaser05PosX + 1, mLaser05PosY, mLaserActive05, 6
+    #playerLaserSetup mLaser03PosX, mLaser03PosY, mLaserActive03, 9
+    #playerLaserSetup mLaser04PosX, mLaser04PosY, mLaserActive04, 12
+    #playerLaserSetup mLaser05PosX, mLaser05PosY, mLaserActive05, 6
     rts
 
 playerLaserMac .macro
@@ -137,8 +137,8 @@ playerLaserMove
 
 playerLaser0
     lda mLaserActive00
-    cmp #0
-    bne _checkMoveOk
+    cmp #objectActive
+    beq _checkMoveOk
     lda #spPlayer1Laser0
     jsr setSpriteNumber
     jsr hideSprite
@@ -147,7 +147,8 @@ _checkMoveOk
     lda mLaser00Posy
     cmp #3
     bcs _moveOK
-    stz mLaserActive00
+    lda #objectInactive
+    sta mLaserActive00
     rts
 _moveOK
     dec mLaser00Posy
@@ -168,7 +169,7 @@ _checkMoveOk
     lda mLaser01Posy
     cmp #3
     bcs _moveOK
-    stz mLaserActive00
+    
     rts
 _moveOK
     dec mLaser01Posy
@@ -303,7 +304,7 @@ deactivateAllLasers
     rts
 
 disableAllLasers
-    lda #objectDisabled
+    lda #objectInactive
     sta mLaserActive00
     sta mLaserActive01
     sta mLaserActive02

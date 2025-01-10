@@ -4,6 +4,7 @@ handleMiniBoss
     jsr showMiniBoss
     jsr handleMiniBossCollision
     jsr handleMiniBossHitFlash
+   
     rts
 
 setMiniBossX
@@ -125,16 +126,81 @@ handleMiniBossHitFlash
     jsr hideSprite
     rts
 _showFlash
-    #showSpriteMacro spHitFlashNumber, spExplosionfr1, mMiniBossX, mMiniBossY, SPRITE24L1C2, objectActive
-    ;#showSpriteMacroA spHitFlashNumber, mFlashAddr, mMiniBossX ,mMiniBossY, SPRITE24L0C2, mMiniBossStatus
+    jsr debug
     dec mMiniBossFlashTimer
+    lda mMiniBossX 
+    clc
+    adc #12
+    sta mMiniBossHitX
+    lda mMiniBossHitX + 1
+    adc #0
+    sta mMiniBossHitX + 1
+
+    lda mMiniBossY
+    clc
+    adc #6
+    sta mMiniBossHitY
+    lda mMiniBossY + 1
+    adc #0
+    sta mMiniBossHitY + 1
+    #showSpriteMacroA spHitFlashNumber, mFlashAddr, mMiniBossHitX ,mMiniBossHitY, SPRITE24L0C2, mMiniBossStatus
+    rts
+
+miniBossActivateLaser
+    lda mMiniBosslaserStatus
+    cmp #objectActive
+    bne _activateLaser
+    rts
+_activateLaser
+    lda #objectActive
+    sta mMiniBosslaserStatus
+    lda #objectActive
+    sta mMiniBosslaserStatus
+
+    lda mMiniBossX
+    sta mMiniBosslaserX
+    lda mMiniBossX + 1
+    sta mMiniBosslaserX + 1
+
+    lda mMiniBossY
+    sta mMiniBosslaserY
+    lda mMiniBossY + 1
+    sta mMiniBosslaserY + 1
+    rts
+
+
+miniBossMoveLaser
+    lda mMiniBosslaserStatus
+    cmp #objectActive
+    beq _move
+    rts
+_move
+    lda mMiniBosslaserY
+    cmp #240
+    bcs _reset
+    inc mMiniBosslaserY
+    #showSpriteMacroA spEnemyLaserNumber15, mlaserAddr, mMiniBosslaserX ,mMiniBosslaserY, SPRITE24L0C2, mMiniBossStatus
+    rts
+_reset
+    lda #objectInactive
+    sta mMiniBosslaserStatus
+    lda #spEnemyLaserNumber15
+    jsr setSpriteNumber
+    jsr hideSprite 
     rts
 .endsection
 
 .section variables
 constMiniBossStrength = 10
-constMiniBossFlashTimer = 3
+constMiniBossFlashTimer = 10
 
+
+mMiniBosslaserStatus
+    .byte $00
+mMiniBosslaserX
+    .byte $00, $00
+mMiniBosslaserY
+    .byte $00, $00
 mMiniBossStatus
     .byte $00
 mMiniBossDirection
@@ -144,7 +210,10 @@ mMiniBossX
 
 mMiniBossX1
     .byte $00, $00
-
+mMiniBossHitX
+    .byte $00, $00
+mMiniBossHitY
+    .byte $00, $00
 mMiniBossY
     .byte $00, $00
 mMiniBossStrength
@@ -155,6 +224,8 @@ mMiniBossAddr1
     .byte <spMiniBossAddr1, >spMiniBossAddr1, `spMiniBossAddr1
 mFlashAddr
     .byte <spExplosionfr0, >spExplosionfr0, `spExplosionfr0
+mlaserAddr
+    .byte <spEnemyLaserOrange, >spEnemyLaserOrange, `spEnemyLaserOrange
 mMiniBossFlashTimer
     .byte $00
 .endsection

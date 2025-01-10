@@ -15,14 +15,6 @@ _beginLaunch
     lda mEnemeyDelay
     cmp #0
     beq _launchShip0
-   cmp #25
-   beq _launchShip1
-   ;cmp #40
-   ;beq _launchShip2
-   ;cmp #55
-   ;beq _launchShip3
-   ;cmp #70
-   ;beq _launchShip4
     cmp #30
     bcs _nextStage
     #add16Macro mEnemeyDelay
@@ -36,22 +28,6 @@ _launchShip0
     jsr _ship1
     jsr _ship2
     jsr _ship3
-    jsr _ship4
-    rts
-_launchShip1
-    jsr _ship5
-    jsr _ship6
-    jsr _ship7
-    jsr _ship8
-    jsr _ship9
-    rts
-_launchShip2
-    jsr _ship2
-    rts
-_launchShip3
-   jsr _ship3
-    rts
-_launchShip4
     jsr _ship4
     rts
 _ship0
@@ -88,43 +64,6 @@ _ship4
     sta mEnemyStatus09
     sta mEnemyLaserActive09
    #initObjectMacro mEnemyStatus09, mEnemyX09, mEnemyY09, mEnemyPath09, constPathDown, 320, 000, spEnemyAddr04, mEnemySpriteAddr09
-    rts
-
-_ship5
-    #add16Macro mEnemeyDelay
-    lda #objectInactive
-    sta mEnemyStatus10
-    #initObjectMacro mEnemyStatus10, mEnemyX10, mEnemyY10, mEnemyPath10, constPathDown, 32, 000, spEnemyAddr08, mEnemySpriteAdd10
-    rts
-_ship6
-    #add16Macro mEnemeyDelay
-    lda #objectInactive
-    sta mEnemyStatus11
-    #initObjectMacro mEnemyStatus11, mEnemyX11, mEnemyY11, mEnemyPath11, constPathDown, 96, 000, spEnemyAddr09, mEnemySpriteAddr11
-    rts
-_ship7
-    #add16Macro mEnemeyDelay
-    lda #objectInactive
-    sta mEnemyStatus12
-    #initObjectMacro mEnemyStatus12, mEnemyX12, mEnemyY12, mEnemyPath12, constPathDown, 160, 000, spEnemyAddr10, mEnemySpriteAddr12
-    rts
-_ship8
-    #add16Macro mEnemeyDelay
-    lda #objectInactive
-    sta mEnemyStatus13
-    #initObjectMacro mEnemyStatus13, mEnemyX13, mEnemyY13, mEnemyPath13, constPathDown, 224, 000, spEnemyAddr11, mEnemySpriteAddr13
-    rts
-_ship9
-    #add16Macro mEnemeyDelay
-   lda #objectInactive
-    sta mEnemyStatus14
-    #initObjectMacro mEnemyStatus14, mEnemyX14, mEnemyY14, mEnemyPath14, constPathDown, 288, 000, spEnemyAddr08, mEnemySpriteAddr14
-    rts
-_ship10
-    #add16Macro mEnemeyDelay
-    lda #objectInactive
-    sta mEnemyStatus15
-    #initObjectMacro mEnemyStatus15, mEnemyX15, mEnemyY15, mEnemyPath15, constPathDown, 352, 000, spEnemyAddr08, mEnemySpriteAddr15
     rts
 _checkNextStage  
     jsr areEnemiesClear

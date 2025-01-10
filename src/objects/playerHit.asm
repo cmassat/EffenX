@@ -1,4 +1,9 @@
 playerHit
+   lda mPlayerShieldDelay
+   cmp #0
+   beq _canBeHit
+   rts 
+_canBeHit
    lda mPlayerShield
    cmp #0
    beq _recordHit
@@ -22,7 +27,7 @@ _recordHit
    dec mPlayerHitDelay
    rts
 _animate
-    lda #10
+    lda #30
     sta mPlayerHitDelay
     lda #spPlayer1ShipNumber
     jsr setSpriteNumber
@@ -74,7 +79,7 @@ _end
     stz mPlayerHitDelay
     rts
 playerInitShield
-    lda #5
+    lda #10
     sta mPlayerShieldDelay
     dec mPlayerShield
     lda #objectActive

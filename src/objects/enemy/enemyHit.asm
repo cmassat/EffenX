@@ -80,8 +80,6 @@ enemyHit
     jsr enemyHit7
     jsr enemyHit8
     jsr enemyHit9
-    jsr enemyHit10
-    jsr enemyHit11
     rts
 
 enemyHit0
@@ -128,16 +126,6 @@ enemyHit9
      #enemyExplosionMacro mEnemyStatus09, mPlayerHitDelay9, mEnemyHitFrames9, spEnemyNumber09
      lda #objectInactive
      sta mEnemyStatus09
-     rts
-enemyHit10
-     #enemyExplosionMacro mEnemyStatus10, mPlayerHitDelay10, mEnemyHitFrames10, spEnemyNumber10
-     lda #objectInactive
-     sta mEnemyStatus10
-     rts
-enemyHit11
-     #enemyExplosionMacro mEnemyStatus11, mPlayerHitDelay11, mEnemyHitFrames11, spEnemyNumber11
-      lda #objectInactive
-     sta mEnemyStatus11
      rts
 .section variables
 mEnemyHitFrames0
@@ -188,15 +176,5 @@ mPlayerHitDelay8
 mEnemyHitFrames9
     .byte $00
 mPlayerHitDelay9
-    .byte $00
-
-mEnemyHitFrames10
-    .byte $00
-mPlayerHitDelay10
-    .byte $00
-
-mEnemyHitFrames11
-    .byte $00
-mPlayerHitDelay11
     .byte $00
 .endsection

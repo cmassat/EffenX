@@ -105,7 +105,11 @@ levelOnePlay
     ;jsr hideDisabledEnemies
     ;jsr hideDisabledEnemyLasers    
     jsr hideEnemyLasers
+    jsr miniBossActivateLaser
+    jsr miniBossMoveLaser
+
     jsr debug
+    
     rts
 
 handleLevelOneScroll

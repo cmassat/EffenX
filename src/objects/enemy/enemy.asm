@@ -14,12 +14,12 @@ disableAllEnemies
     sta mEnemyStatus07
     sta mEnemyStatus08
     sta mEnemyStatus09
-    sta mEnemyStatus10
-    sta mEnemyStatus11
-    sta mEnemyStatus12
-    sta mEnemyStatus13
-    sta mEnemyStatus14
-    sta mEnemyStatus15
+    ; sta mEnemyStatus10
+    ; sta mEnemyStatus11
+    ; sta mEnemyStatus12
+    ; sta mEnemyStatus13
+    ; sta mEnemyStatus14
+    ; sta mEnemyStatus15
     rts
 
 ; hideDisabledEnemyLasers
@@ -192,47 +192,7 @@ mEnemyX09
 mEnemyY09
     .word $00
 
-mEnemyStatus10
-    .byte $00
-mEnemyX10
-    .word $00
-mEnemyY10
-    .word $00
 
-mEnemyStatus11
-    .byte $00
-mEnemyX11
-    .word $00
-mEnemyY11
-    .word $00
-
-mEnemyStatus12
-    .byte $00
-mEnemyX12
-    .word $00
-mEnemyY12
-    .word $00
-
-mEnemyStatus13
-    .byte $00
-mEnemyX13
-    .word $00
-mEnemyY13
-    .word $00
-
-mEnemyStatus14
-    .byte $00
-mEnemyX14
-    .word $00
-mEnemyY14
-    .word $00
-
-mEnemyStatus15
-    .byte $00
-mEnemyX15
-    .word $00
-mEnemyY15
-    .word $00
 diagcenter = 0
 diagLeft   = 1
 diagRight  = 2
@@ -257,19 +217,7 @@ mEnemyPath08
     .byte 00
 mEnemyPath09
     .byte 00
-mEnemyPath10
-    .byte 00
-mEnemyPath11
-    .byte 00
-mEnemyPath12
-    .byte 00
-mEnemyPath13
-    .byte 00
-mEnemyPath14
-    .byte 00
-mEnemyPath15
-    .byte 00
-;#initObjectMacro mEnemyStatus06, mEnemyX06, mEnemyY06, mEnemyPath06, constPathDown, 150, 000, spEnemyAddr05, mEnemySpriteAddr06
+
 mEnemySpriteAddr00
     .byte 00, 00, 00
 mEnemySpriteAddr01
@@ -289,17 +237,5 @@ mEnemySpriteAddr07
 mEnemySpriteAddr08
     .byte 00, 00, 00
 mEnemySpriteAddr09
-    .byte 00, 00, 00
-mEnemySpriteAdd10
-    .byte 00, 00, 00
-mEnemySpriteAddr11
-    .byte 00, 00, 00
-mEnemySpriteAddr12
-    .byte 00, 00, 00
-mEnemySpriteAddr13
-    .byte 00, 00, 00
-mEnemySpriteAddr14
-    .byte 00, 00, 00
-mEnemySpriteAddr15
     .byte 00, 00, 00
 .endsection

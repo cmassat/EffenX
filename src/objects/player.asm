@@ -226,6 +226,15 @@ initPlayer1
     lda #player1Shield
     sta mPlayerShield
     stz mPlayerLaserPower
+    lda #objectInactive
+    sta mLaserActive00
+    sta mLaserActive01
+    sta mLaserActive02
+    sta mLaserActive03
+    sta mLaserActive04
+    sta mLaserActive05
+
+
     rts
 
 setupSprite

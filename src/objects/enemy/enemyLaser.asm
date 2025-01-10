@@ -37,12 +37,12 @@ initEnemyLaser8
 initEnemyLaser9
      #initEnemyLaserMacro mEnemyLaserActive09, mEnemyStatus09, mEnemyLaserX09, mEnemyLaserY09, mEnemyX09, mEnemyY09
      rts 
-initEnemyLaser10
-     #initEnemyLaserMacro mEnemyLaserActive10, mEnemyStatus10, mEnemyLaserX10, mEnemyLaserY10, mEnemyX10, mEnemyY10
-     rts 
-initEnemyLaser11
-     #initEnemyLaserMacro mEnemyLaserActive11, mEnemyStatus11, mEnemyLaserX11, mEnemyLaserY11, mEnemyX11, mEnemyY11
-     rts 
+; initEnemyLaser10
+;      #initEnemyLaserMacro mEnemyLaserActive10, mEnemyStatus10, mEnemyLaserX10, mEnemyLaserY10, mEnemyX10, mEnemyY10
+;      rts 
+; initEnemyLaser11
+;      #initEnemyLaserMacro mEnemyLaserActive11, mEnemyStatus11, mEnemyLaserX11, mEnemyLaserY11, mEnemyX11, mEnemyY11
+;      rts 
 
 moveEnemyLaser0 
      #objectsActiveMacro mEnemyLaserActive00, mEnemyLaserActive00
@@ -98,16 +98,16 @@ moveEnemyLaser9
     #showSpriteMacro spEnemyLaserNumber09, spEnemyLaserGreen, mEnemyLaserX09, mEnemyLaserY09, SPRITE24L0C2, mEnemyLaserActive09
     #moveEnemyLaserMacro mEnemyLaserActive09, mEnemyLaserY09, spEnemyLaserNumber09
     rts
-moveEnemyLaser10
-    #objectsActiveMacro mEnemyLaserActive10, mEnemyLaserActive10
-    #showSpriteMacro spEnemyLaserNumber10, spEnemyLaserOrange, mEnemyLaserX10, mEnemyLaserY10, SPRITE24L0C2, mEnemyLaserActive10
-    #moveEnemyLaserMacro mEnemyLaserActive10, mEnemyLaserY10, spEnemyLaserNumber10
-    rts
-moveEnemyLaser11
-    #objectsActiveMacro mEnemyLaserActive11, mEnemyLaserActive11
-    #showSpriteMacro spEnemyLaserNumber11, spEnemyLaserOrange, mEnemyLaserX11, mEnemyLaserY11, SPRITE24L0C2, mEnemyLaserActive11
-    #moveEnemyLaserMacro mEnemyLaserActive11, mEnemyLaserY11, spEnemyLaserNumber11
-    rts
+; moveEnemyLaser10
+;     #objectsActiveMacro mEnemyLaserActive10, mEnemyLaserActive10
+;     #showSpriteMacro spEnemyLaserNumber10, spEnemyLaserOrange, mEnemyLaserX10, mEnemyLaserY10, SPRITE24L0C2, mEnemyLaserActive10
+;     #moveEnemyLaserMacro mEnemyLaserActive10, mEnemyLaserY10, spEnemyLaserNumber10
+;     rts
+; moveEnemyLaser11
+;     #objectsActiveMacro mEnemyLaserActive11, mEnemyLaserActive11
+;     #showSpriteMacro spEnemyLaserNumber11, spEnemyLaserOrange, mEnemyLaserX11, mEnemyLaserY11, SPRITE24L0C2, mEnemyLaserActive11
+;     #moveEnemyLaserMacro mEnemyLaserActive11, mEnemyLaserY11, spEnemyLaserNumber11
+;     rts
 
 hideEnemyLasers
     lda mEnemyLaserActive00
@@ -150,29 +150,29 @@ hideEnemyLasers
     ldx #spEnemyLaserNumber09
     jsr _tryHide
 
-    lda mEnemyLaserActive10
-    ldx #spEnemyLaserNumber10
-    jsr _tryHide
+    ; lda mEnemyLaserActive10
+    ; ldx #spEnemyLaserNumber10
+    ; jsr _tryHide
 
-    lda mEnemyLaserActive11
-    ldx #spEnemyLaserNumber11
-    jsr _tryHide
+    ; lda mEnemyLaserActive11
+    ; ldx #spEnemyLaserNumber11
+    ; jsr _tryHide
 
-    lda mEnemyLaserActive12
-    ldx #spEnemyLaserNumber12
-    jsr _tryHide
+    ; lda mEnemyLaserActive12
+    ; ldx #spEnemyLaserNumber12
+    ; jsr _tryHide
 
-    lda mEnemyLaserActive13
-    ldx #spEnemyLaserNumber13
-    jsr _tryHide
+    ; lda mEnemyLaserActive13
+    ; ldx #spEnemyLaserNumber13
+    ; jsr _tryHide
 
-    lda mEnemyLaserActive14
-    ldx #spEnemyLaserNumber14
-    jsr _tryHide
+    ; lda mEnemyLaserActive14
+    ; ldx #spEnemyLaserNumber14
+    ; jsr _tryHide
 
-    lda mEnemyLaserActive15
-    ldx #spEnemyLaserNumber15
-    jsr _tryHide
+    ; lda mEnemyLaserActive15
+    ; ldx #spEnemyLaserNumber15
+    ; jsr _tryHide
     rts
 _tryHide
     cmp #objectActive

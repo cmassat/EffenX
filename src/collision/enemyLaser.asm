@@ -65,7 +65,7 @@ enemyLaser4HitPlayer0
     #coollideMacro mEnemyLaserX04, 10, mPlayerPosX, 18, mEnemyLaserY04, 6,mPlayerPosY, 20
     lda #objectCollided
     sta mPlayerStatus
-     lda #objectInactive
+    lda #objectInactive
     sta mEnemyLaserActive04
     stz mLaser02Posy
     stz mLaser02Posy + 1
@@ -77,7 +77,8 @@ enemyLaser5HitPlayer0
     #coollideMacro mEnemyLaserX05, 10, mPlayerPosX, 18, mEnemyLaserY05, 6,mPlayerPosY, 20
     lda #objectCollided
     sta mPlayerStatus
-    stz mEnemyLaserActive05
+    lda #objectInactive
+    sta mEnemyLaserActive05
     stz mLaser02Posy
     stz mLaser02Posy + 1
     ;jsr sound_play_explosion
@@ -88,7 +89,8 @@ enemyLaser6HitPlayer0
     #coollideMacro mEnemyLaserX06, 10, mPlayerPosX, 18, mEnemyLaserY06, 6,mPlayerPosY, 20
     lda #objectCollided
     sta mPlayerStatus
-    stz mEnemyLaserActive06
+    lda #objectInactive
+    sta mEnemyLaserActive06
     stz mLaser02Posy
     stz mLaser02Posy + 1
     ;jsr sound_play_explosion
@@ -99,6 +101,7 @@ enemyLaser7HitPlayer0
     #coollideMacro mEnemyLaserX07, 10, mPlayerPosX, 18, mEnemyLaserY07, 6,mPlayerPosY, 20
     lda #objectCollided
     sta mPlayerStatus
+    lda #objectInactive
     sta mEnemyLaserActive07
     stz mLaser02Posy
     stz mLaser02Posy + 1
@@ -109,7 +112,7 @@ enemyLaser8HitPlayer0
     #coollideMacro mEnemyLaserX08, 10, mPlayerPosX, 18, mEnemyLaserY08, 6,mPlayerPosY, 20
     lda #objectCollided
     sta mPlayerStatus
-     lda #objectInactive
+    lda #objectInactive
     sta mEnemyLaserActive08
     ;jsr sound_play_explosion
     rts
@@ -118,7 +121,7 @@ enemyLaser9HitPlayer0
     #coollideMacro mEnemyLaserX09, 10, mPlayerPosX, 18, mEnemyLaserY09, 6,mPlayerPosY, 20
     lda #objectCollided
     sta mPlayerStatus
-     lda #objectInactive
+    lda #objectInactive
     sta mEnemyLaserActive09
     ;jsr sound_play_explosion
     rts
@@ -127,7 +130,8 @@ enemyLaser10HitPlayer0
     #coollideMacro mEnemyLaserX10, 10, mPlayerPosX, 18, mEnemyLaserY10, 6,mPlayerPosY, 20
     lda #objectCollided
     sta mPlayerStatus
-     lda #objectInactive
+    lda #objectInactive
+    sta mEnemyLaserX10
    ; jsr sound_play_explosion
     rts
 enemyLaser11HitPlayer0
@@ -135,7 +139,7 @@ enemyLaser11HitPlayer0
     #coollideMacro mEnemyLaserX11, 10, mPlayerPosX, 18, mEnemyLaserY11, 6,mPlayerPosY, 20
     lda #objectCollided
     sta mPlayerStatus
-     lda #objectInactive
+    lda #objectInactive
     sta mEnemyLaserActive11
   ;  jsr sound_play_explosion
     rts
