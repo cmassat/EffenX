@@ -107,8 +107,8 @@ levelOnePlay
     jsr hideEnemyLasers
     jsr miniBossActivateLaser
     jsr miniBossMoveLaser
-
-    jsr debug
+    jsr miniBossMoveLaser
+    
     
     rts
 

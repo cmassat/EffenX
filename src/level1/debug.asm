@@ -4,7 +4,7 @@ debug
     lda #2
     sta MMU_IO_CTRL
 
-    lda mPlayerShieldDelay
+    lda mMiniBosslaserX + 1
     lsr
     lsr 
     lsr
@@ -13,13 +13,13 @@ debug
     lda mHex, y
     sta $C000
 
-    lda mPlayerShieldDelay
+    lda mMiniBosslaserX + 1
     and #$0F
      tay
     lda mHex, y
     sta $C001
 
-    lda mLaser00Posy
+    lda mMiniBosslaserX
     lsr
     lsr 
     lsr
@@ -28,14 +28,14 @@ debug
     lda mHex, y
     sta $C002
 
-    lda mLaser00Posy
+    lda mMiniBosslaserX
     and #$0F
     tay
     lda mHex, y
     sta $C003
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;w
-    lda mFireBoostGroup2
+    lda mMiniBosslaserY + 1
     lsr
     lsr 
     lsr
@@ -44,46 +44,46 @@ debug
     lda mHex, y
     sta $C005
 
-    lda mFireBoostGroup2
+    lda mMiniBosslaserY + 1
 
     and #$0F
     tay
     lda mHex, y
     sta $C006 
 
-     lda mFireBoostGroup3
+     lda mMiniBosslaserY
      lsr
      lsr 
      lsr
      lsr
      tay
      lda mHex, y
-     sta $C008
+     sta $C007
 
-     lda mFireBoostGroup3
+     lda mMiniBosslaserY
      and #$0F
      tay
      lda mHex, y
-     sta $C009
+     sta $C008
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    lda mFireBoostGroup4
+    lda mDx
     lsr
     lsr 
     lsr
     lsr
     tay
     lda mHex, y
-    sta $C00b
+    sta $C00a
 
-    lda mFireBoostGroup4
+    lda mDx
     and #$0F
      tay
     lda mHex, y
-    sta $C00c
+    sta $C00b
 
-    lda mLaserActive05 
+    lda mDy 
     lsr
     lsr 
     lsr
@@ -92,41 +92,41 @@ debug
     lda mHex, y
     sta $C00d
 
-    lda mLaserActive05 
+    lda mDy 
     and #$0F
      tay
     lda mHex, y
     sta $C00e
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;    lda m_score_3
-;    lsr
-;    lsr 
-;    lsr
-;    lsr
-;    tay
-;    lda mHex, y
-;    sta $C006 + 40
-;
-;    lda m_score_3
-;    and #$0F
-;    tay
-;    lda mHex, y
-;    sta $C007 + 40
-;
-;    lda m_score_2
-;    lsr
-;    lsr 
-;    lsr
-;    lsr
-;    tay
-;    lda mHex, y
-;    sta $C008 + 40
-;
-;    lda m_score_2
-;    and #$0F
-;    tay
-;    lda mHex, y
-;    sta $C009 + 40
+    lda mDecision
+    lsr
+    lsr 
+    lsr
+    lsr
+    tay
+    lda mHex, y
+    sta $C010
+
+    lda mDecision
+    and #$0F
+    tay
+    lda mHex, y
+    sta $C011
+
+    lda mDy
+    lsr
+    lsr 
+    lsr
+    lsr
+    tay
+    lda mHex, y
+    sta  $C012
+
+    lda mDy
+    and #$0F
+    tay
+    lda mHex, y
+    sta  $C013
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;    lda m_score_1
 ;    lsr

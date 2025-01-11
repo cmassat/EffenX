@@ -126,7 +126,7 @@ handleMiniBossHitFlash
     jsr hideSprite
     rts
 _showFlash
-    jsr debug
+    
     dec mMiniBossFlashTimer
     lda mMiniBossX 
     clc
@@ -147,6 +147,11 @@ _showFlash
     rts
 
 miniBossActivateLaser
+    lda mMiniBossStatus
+    cmp #objectActive
+    beq _checkLaser
+    rts
+_checkLaser
     lda mMiniBosslaserStatus
     cmp #objectActive
     bne _activateLaser
@@ -158,16 +163,26 @@ _activateLaser
     sta mMiniBosslaserStatus
 
     lda mMiniBossX
+    clc 
+    adc #24
     sta mMiniBosslaserX
+   
     lda mMiniBossX + 1
+    adc #0
     sta mMiniBosslaserX + 1
 
     lda mMiniBossY
+    clc
+    adc #12
     sta mMiniBosslaserY
-    lda mMiniBossY + 1
-    sta mMiniBosslaserY + 1
-    rts
 
+    lda mMiniBossY + 1
+    adc #0
+    sta mMiniBosslaserY + 1
+
+    jsr initMiniBossLaser
+    
+    rts
 
 miniBossMoveLaser
     lda mMiniBosslaserStatus
@@ -178,8 +193,11 @@ _move
     lda mMiniBosslaserY
     cmp #240
     bcs _reset
-    inc mMiniBosslaserY
+   
     #showSpriteMacroA spEnemyLaserNumber15, mlaserAddr, mMiniBosslaserX ,mMiniBosslaserY, SPRITE24L0C2, mMiniBossStatus
+    jsr nextMiniBossLaserCoordinated
+    jsr getMinitBossLaserCoordinates
+    
     rts
 _reset
     lda #objectInactive
@@ -188,18 +206,90 @@ _reset
     jsr setSpriteNumber
     jsr hideSprite 
     rts
+
+
+nextMiniBossLaserCoordinated
+    lda mMiniBosslaserX
+    ldx mMiniBosslaserX + 1
+    jsr setX1
+
+    lda mMiniBossXDest
+    ldx mMiniBossXDest + 1
+    jsr setX2
+
+    lda mMiniBosslaserY
+    ldx mMiniBosslaserY + 1
+    jsr setY1
+   
+    lda mMiniBossYDest
+    ldx mMiniBossYDest + 1
+    jsr setY2
+
+    lda mMiniBossLinePath
+    cmp #constDownRight
+    bne _drawDownLeft
+    jsr drawDownRight
+    rts
+_drawDownLeft
+    jsr drawDownLeft
+    rts
+getMinitBossLaserCoordinates
+    jsr getLineX
+    sta mMiniBosslaserX
+    stx mMiniBosslaserX + 1
+    jsr getLineY
+    sta mMiniBosslaserY
+    stx mMiniBosslaserY + 1
+    rts
+
+initMiniBossLaser
+    lda mMiniBosslaserX
+    ldx mMiniBosslaserX + 1
+    jsr setX1
+
+    lda mPlayerPosX
+    ldx mPlayerPosX + 1
+    jsr setX2
+
+    lda mPlayerPosX
+    sta mMiniBossXDest
+    lda mPlayerPosX + 1
+    sta mMiniBossXDest + 1
+
+    lda mMiniBosslaserY
+    ldx mMiniBosslaserY + 1
+    jsr setY1
+   
+    lda mPlayerPosY
+    ldx mPlayerPosY + 1
+    jsr setY2
+
+    lda mPlayerPosY
+    sta mMiniBossYDest
+
+    lda  mPlayerPosY + 1
+    sta mMiniBossYDest + 1
+
+    jsr initLinePath
+    sta mMiniBossLinePath
+    rts
 .endsection
 
 .section variables
 constMiniBossStrength = 10
 constMiniBossFlashTimer = 10
 
-
+mMiniBossLinePath
+    .byte $0
 mMiniBosslaserStatus
     .byte $00
 mMiniBosslaserX
     .byte $00, $00
 mMiniBosslaserY
+    .byte $00, $00
+mMiniBossXDest
+    .byte $00, $00
+mMiniBossYDest
     .byte $00, $00
 mMiniBossStatus
     .byte $00

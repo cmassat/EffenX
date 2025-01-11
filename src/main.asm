@@ -73,6 +73,7 @@ _gameLoop
 .include "./level1/bossFight.asm"
 
 .include "./api/api_collision.asm"
+.include "./api/api_line.asm"
 .include "./collision/playerLaser.asm"
 .include "./collision/ships.asm"
 .include "./collision/enemyLaser.asm"
