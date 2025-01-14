@@ -222,11 +222,11 @@ _checkStrength
     sta mLevelOneBossBombActive0
     sta mLevelOneBossBombActive1
 
-    lda #spEnemyLaserNumber11
+    lda #spHomingMissleNumber01
     jsr setSpriteNumber
     jsr hideSprite
 
-    lda #spEnemyLaserNumber10
+    lda #spHomingMissleNumber00
     jsr setSpriteNumber
     jsr hideSprite
 
@@ -397,7 +397,7 @@ handleLevelOneBossBomb0
     adc #0
     sta mLevelOneBossBombPathPtr0 + 1
 
-    #showSpriteMacro spEnemyLaserNumber11, spEnemyLaserOrange, mLevelOneBossBombX0, mLevelOneBossBombY0, SPRITE24L1C2, mEnemyLaserActive11
+    #showSpriteMacro spHomingMissleNumber01, spEnemyLaserOrange, mLevelOneBossBombX0, mLevelOneBossBombY0, SPRITE24L1C2, mEnemyLaserActive11
     inc mLevelOneBossBombPath0
     rts
 _reset
@@ -445,8 +445,8 @@ handleLevelOneBossBomb1
     lda mLevelOneBossBombPathPtr1 + 1
     adc #0
     sta mLevelOneBossBombPathPtr1 + 1
-    #showSpriteMacro spEnemyLaserNumber10, spEnemyLaserOrange, mEnemyLaserX10, mEnemyLaserY10, SPRITE24L1C2, mEnemyLaserActive10
-    ;#macroShowSprite spEnemyLaserNumber10, spEnemyLaserOrange, mLevelOneBossBombX1, mLevelOneBossBombX1 + 1, mLevelOneBossBombY1, SPRITE24L1C2
+    #showSpriteMacro spHomingMissleNumber00, spEnemyLaserOrange, mEnemyLaserX10, mEnemyLaserY10, SPRITE24L1C2, mEnemyLaserActive10
+    ;#macroShowSprite spHomingMissleNumber00, spEnemyLaserOrange, mLevelOneBossBombX1, mLevelOneBossBombX1 + 1, mLevelOneBossBombY1, SPRITE24L1C2
     inc mLevelOneBossBombPath1
     rts
 _reset

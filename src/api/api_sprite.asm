@@ -119,11 +119,46 @@ _showSprite
     jsr showSprite
 .endmacro
 
+showSpriteMissleMacro .macro spriteNumber, spriteAddress, spriteXPos, spriteYPos, spriteAttrib, status
+    lda \status
+    cmp #objectActive
+    beq _showSprite
+    lda \spriteNumber
+    jsr setSpriteNumber
+    jsr hideSprite
+    rts
+_showSprite
+    lda #\spriteNumber
+    jsr setSpriteNumber
+
+    lda <\spriteAddress
+    ldx >\spriteAddress
+    ldy `\spriteAddress
+    jsr setSpriteAddress
+
+    lda \spriteXPos
+    ldx \spriteXPos + 1
+    jsr setSpriteX
+
+    ;lda #<\4
+    ;ldx #>\4
+    lda \spriteYPos
+    ldx \spriteYPos + 1
+    jsr setSpriteY
+
+    lda #\spriteAttrib
+    jsr showSprite
+.endmacro
 
 showSpriteMacroA .macro spriteNumber, spriteAddress, spriteXPos, spriteYPos, spriteAttrib, status
     lda \status
     cmp #objectActive
     beq _showSprite
+    cmp #objectCollided
+    beq _showSprite
+    lda #\spriteNumber
+    jsr setSpriteNumber
+    jsr hideSprite
     rts
 _showSprite
     lda #\spriteNumber

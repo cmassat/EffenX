@@ -105,9 +105,11 @@ levelOnePlay
     ;jsr hideDisabledEnemies
     ;jsr hideDisabledEnemyLasers    
     jsr hideEnemyLasers
-    jsr miniBossActivateLaser
-    jsr miniBossMoveLaser
-    jsr miniBossMoveLaser
+  ;  jsr miniBossActivateLaser
+ ;   jsr miniBossMoveLaser
+ ;   jsr miniBossMoveLaser
+    jsr handleHomingMissle
+  ;  jsr moveMinitBossLaser06
     
     
     rts

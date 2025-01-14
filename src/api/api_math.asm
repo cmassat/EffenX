@@ -2,6 +2,29 @@
 ;a lo_byte
 ;b hi_byte
 ;destruct a,x,y
+
+;a lo byte
+;x hi byte
+addOne
+	clc
+	adc #1
+	pha
+	txa
+	adc #0
+	tax
+	pla
+	rts
+
+add24
+	clc
+	adc #24
+	pha
+	txa
+	adc #0
+	tax
+	pla
+	rts
+
 substract1
 	sta POINTER_UTIL
 	stx POINTER_UTIL + 1

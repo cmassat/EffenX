@@ -4,7 +4,7 @@ debug
     lda #2
     sta MMU_IO_CTRL
 
-    lda mMiniBosslaserX + 1
+    lda mMiniBossStatus
     lsr
     lsr 
     lsr
@@ -13,13 +13,13 @@ debug
     lda mHex, y
     sta $C000
 
-    lda mMiniBosslaserX + 1
+    lda mMiniBossStatus
     and #$0F
      tay
     lda mHex, y
     sta $C001
 
-    lda mMiniBosslaserX
+    lda mHomingMissleStatus00
     lsr
     lsr 
     lsr
@@ -28,14 +28,14 @@ debug
     lda mHex, y
     sta $C002
 
-    lda mMiniBosslaserX
+    lda mHomingMissleStatus00
     and #$0F
     tay
     lda mHex, y
     sta $C003
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;w
-    lda mMiniBosslaserY + 1
+    lda mHomingMissleX00 + 1
     lsr
     lsr 
     lsr
@@ -44,14 +44,14 @@ debug
     lda mHex, y
     sta $C005
 
-    lda mMiniBosslaserY + 1
+    lda mHomingMissleX00 + 1
 
     and #$0F
     tay
     lda mHex, y
     sta $C006 
 
-     lda mMiniBosslaserY
+     lda mHomingMissleX00
      lsr
      lsr 
      lsr
@@ -60,7 +60,7 @@ debug
      lda mHex, y
      sta $C007
 
-     lda mMiniBosslaserY
+     lda mHomingMissleX00
      and #$0F
      tay
      lda mHex, y
@@ -68,7 +68,7 @@ debug
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    lda mDx
+    lda mHomingMissleY00 + 1
     lsr
     lsr 
     lsr
@@ -77,13 +77,13 @@ debug
     lda mHex, y
     sta $C00a
 
-    lda mDx
+    lda  mHomingMissleY00 + 1
     and #$0F
      tay
     lda mHex, y
     sta $C00b
 
-    lda mDy 
+    lda  mHomingMissleY00
     lsr
     lsr 
     lsr
@@ -92,7 +92,7 @@ debug
     lda mHex, y
     sta $C00d
 
-    lda mDy 
+    lda mHomingMissleY00 
     and #$0F
      tay
     lda mHex, y

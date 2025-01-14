@@ -45,15 +45,16 @@ _ship0
     jsr setMiniDirection
 
     lda #objectActive
-    jsr setMinitBossStatus
-
+    jsr setMiniBossStatus
+    jsr enableHoming0
+    jsr miniBossActivateLaser
     rts
 _ship1
     #add16Macro mEnemeyDelay
     lda #objectInactive
     sta mEnemyStatus06
-    sta mEnemyLaserActive06
     #initObjectMacro mEnemyStatus06, mEnemyX06, mEnemyY06, mEnemyPath06, constPathDown, 128, 000, spEnemyAddr05, mEnemySpriteAddr06 
+    
     rts
 _chackNextStage  
     lda mMiniBossStatus

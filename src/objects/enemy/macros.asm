@@ -63,3 +63,45 @@ _badFire
     sta \laserStatus
 _end
 .endmacro
+
+
+initLaserHomingMacro .macro startX, startY, endX, endY, lineType
+    lda \startX
+    ldx \startX + 1
+    jsr setX1
+
+    lda \endX
+    ldx \endX + 1
+    jsr setX2
+
+    lda mPlayerPosX
+    sta mMiniBossXDest
+    lda mPlayerPosX + 1
+    sta mMiniBossXDest + 1
+
+    lda \startY
+    ldx \startY + 1
+    jsr setY1
+   
+    lda \endY
+    ldx \endY + 1
+    jsr setY2
+
+    lda mPlayerPosY
+    sta mMiniBossYDest
+
+    lda  mPlayerPosY + 1
+    sta mMiniBossYDest + 1
+
+    jsr initLinePath
+    sta \lineType
+    rts
+.endmacro
+
+copyWordMacro .macro from, to
+    lda \from
+    sta \to
+    lda \from + 1
+    sta \to + 1
+    rts
+.endmacro

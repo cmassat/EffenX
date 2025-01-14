@@ -106,10 +106,10 @@ hideAllEnemyLasers
    lda #spEnemyLaserNumber09
    jsr setSpriteNumber
    jsr hideSprite 
-   ; lda #spEnemyLaserNumber10
+   ; lda #spHomingMissleNumber00
    ; jsr setSpriteNumber
    ; jsr hideSprite 
-   ; lda #spEnemyLaserNumber11
+   ; lda #spHomingMissleNumber01
    ; jsr setSpriteNumber
    ; jsr hideSprite
    rts

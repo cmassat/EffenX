@@ -79,9 +79,9 @@ moveEnemyLaser5
     #moveEnemyLaserMacro mEnemyLaserActive05, mEnemyLaserY05, spEnemyLaserNumber05
     rts
 moveEnemyLaser6
-    #objectsActiveMacro mEnemyLaserActive06, mEnemyLaserActive06
-    #showSpriteMacro spEnemyLaserNumber06, spEnemyLaserGreen, mEnemyLaserX06, mEnemyLaserY06, SPRITE24L0C2, mEnemyLaserActive06
-    #moveEnemyLaserMacro mEnemyLaserActive06, mEnemyLaserY06, spEnemyLaserNumber06
+    ;#objectsActiveMacro mEnemyLaserActive06, mEnemyLaserActive06
+    ;#showSpriteMacro spEnemyLaserNumber06, spEnemyLaserGreen, mEnemyLaserX06, mEnemyLaserY06, SPRITE24L0C2, mEnemyLaserActive06
+    ;#moveEnemyLaserMacro mEnemyLaserActive06, mEnemyLaserY06, spEnemyLaserNumber06
     rts
 moveEnemyLaser7
     #objectsActiveMacro mEnemyLaserActive07, mEnemyLaserActive07
@@ -100,13 +100,13 @@ moveEnemyLaser9
     rts
 ; moveEnemyLaser10
 ;     #objectsActiveMacro mEnemyLaserActive10, mEnemyLaserActive10
-;     #showSpriteMacro spEnemyLaserNumber10, spEnemyLaserOrange, mEnemyLaserX10, mEnemyLaserY10, SPRITE24L0C2, mEnemyLaserActive10
-;     #moveEnemyLaserMacro mEnemyLaserActive10, mEnemyLaserY10, spEnemyLaserNumber10
+;     #showSpriteMacro spHomingMissleNumber00, spEnemyLaserOrange, mEnemyLaserX10, mEnemyLaserY10, SPRITE24L0C2, mEnemyLaserActive10
+;     #moveEnemyLaserMacro mEnemyLaserActive10, mEnemyLaserY10, spHomingMissleNumber00
 ;     rts
 ; moveEnemyLaser11
 ;     #objectsActiveMacro mEnemyLaserActive11, mEnemyLaserActive11
-;     #showSpriteMacro spEnemyLaserNumber11, spEnemyLaserOrange, mEnemyLaserX11, mEnemyLaserY11, SPRITE24L0C2, mEnemyLaserActive11
-;     #moveEnemyLaserMacro mEnemyLaserActive11, mEnemyLaserY11, spEnemyLaserNumber11
+;     #showSpriteMacro spHomingMissleNumber01, spEnemyLaserOrange, mEnemyLaserX11, mEnemyLaserY11, SPRITE24L0C2, mEnemyLaserActive11
+;     #moveEnemyLaserMacro mEnemyLaserActive11, mEnemyLaserY11, spHomingMissleNumber01
 ;     rts
 
 hideEnemyLasers
@@ -151,11 +151,11 @@ hideEnemyLasers
     jsr _tryHide
 
     ; lda mEnemyLaserActive10
-    ; ldx #spEnemyLaserNumber10
+    ; ldx #spHomingMissleNumber00
     ; jsr _tryHide
 
     ; lda mEnemyLaserActive11
-    ; ldx #spEnemyLaserNumber11
+    ; ldx #spHomingMissleNumber01
     ; jsr _tryHide
 
     ; lda mEnemyLaserActive12
@@ -171,7 +171,7 @@ hideEnemyLasers
     ; jsr _tryHide
 
     ; lda mEnemyLaserActive15
-    ; ldx #spEnemyLaserNumber15
+    ; ldx #spHomingMissleNumber00
     ; jsr _tryHide
     rts
 _tryHide
@@ -233,6 +233,12 @@ mEnemyLaserX06
 mEnemyLaserY06
     .byte $00, $00
 mEnemyLaserActive06
+    .byte $00
+mEnemyLaserDestX06
+    .byte $00, $00
+mEnemyLaserDestY06
+    .byte $00, $00
+mEnemyLaserPath06
     .byte $00
 
 mEnemyLaserX07

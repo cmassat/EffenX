@@ -64,11 +64,11 @@ disableAllEnemies
 ;     jsr _tryDisable
 
 ;     lda mEnemyLaserActive10
-;     ldx spEnemyLaserNumber10
+;     ldx spHomingMissleNumber00
 ;     jsr _tryDisable
 
 ;     lda mEnemyLaserActive11
-;     ldx spEnemyLaserNumber11
+;     ldx spHomingMissleNumber01
 ;     jsr _tryDisable
 
 ;     lda mEnemyLaserActive12
@@ -84,7 +84,7 @@ disableAllEnemies
 ;     jsr _tryDisable
 
 ;     lda mEnemyLaserActive15
-;     ldx spEnemyLaserNumber15
+;     ldx spHomingMissleNumber00
 ;     jsr _tryDisable
 ;     rts
 ;  _tryDisable

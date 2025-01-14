@@ -9,3 +9,4 @@
 .include "./enemy/paths.asm"
 .include "./miniBoss/miniBoss.asm"
 .include "powerUp.asm"
+.include "homingMissle.asm"
